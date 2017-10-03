@@ -1,0 +1,13 @@
+{
+    "name": "VideoEdit",
+    "version": "0.0.1",
+    "main": "node.js",
+    "repository": "https://github.com/WouterHisschemoller/Video-Edit.git",
+    "author": "Wouter Hisschemöller <wouter.hisschemoller@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.16.1",
+        "socket.io": "^2.0.3"
+    },
+    "devDependencies": {}
+}
