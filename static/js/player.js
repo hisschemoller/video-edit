@@ -7,37 +7,33 @@ var WH = WH || {};
             video,
             canvas,
             ctx,
+            clipData,
             clipDataIndex = 0,
             clipIndex = 0;
-
-
-        const clipData = WH.clipData,
-            dev = {
+            
+        const dev = {
                 info: true,
                 infoTimeEl: document.querySelector('.info__time'),
                 startOffset: 0
             },
             clips = [],
-            fileURL = 'static/video/weesperplein_2017-07-21-mvi_0535.mp4',
-            startOffset = 12,
-            width = 640,
-            height = 360,
             numClips = 8,
 
             init = function() {
                 canvas = document.getElementById('canvas');
-                canvas.width = width;
-                canvas.height = height;
+                canvas.width = specs.canvasWidth;
+                canvas.height = specs.canvasHeight;
                 ctx = canvas.getContext('2d');
 
                 video = document.createElement('video');
-                video.src = fileURL;
+                video.src = specs.videoPath;
                 video.addEventListener('loadeddata', onVideoLoaded);
-
+                
+                clipData = specs.clipData;
                 clipData.forEach(function(data) {
-                    data.start += startOffset;
-                    data.end += startOffset;
-                    data.clipStart += startOffset;
+                    data.start += specs.startOffset;
+                    data.end += specs.startOffset;
+                    data.clipStart += specs.startOffset;
                     data.width = data.xx - data.x;
                     data.height = data.yy - data.y;
                 });
@@ -51,7 +47,7 @@ var WH = WH || {};
                     }));
                 }
 
-                video.currentTime = startOffset;
+                video.currentTime = specs.startOffset;
 
                 // start later in the video (while developing)
                 if (dev.startOffset > 0) {
