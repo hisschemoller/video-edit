@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
         framerate: 30,
         canvasHeight: 360,
         canvasWidth: 480,
-        startOffset: 0
+        startOffset: 0,
+        isCapture: true
     });
 });

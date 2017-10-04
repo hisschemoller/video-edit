@@ -9,7 +9,8 @@ var WH = WH || {};
             ctx,
             clipData,
             clipDataIndex = 0,
-            clipIndex = 0;
+            clipIndex = 0,
+            captureCounter;
             
         const dev = {
                 info: true,
@@ -70,8 +71,13 @@ var WH = WH || {};
                     }
                 }
 
-                video.play();
-                draw();
+                if (specs.isCapture === true) {
+                    captureCounter = 0;
+                    capture();
+                } else {
+                    video.play();
+                    draw();
+                }
             },
 
             draw = function() {
@@ -93,6 +99,31 @@ var WH = WH || {};
                 }
 
                 requestAnimationFrame(draw);
+            },
+            
+            capture = function() {
+                if (captureCounter % 30 === 0) {
+                    ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+                    video.currentTime += 1;
+                    
+                    let isDone = false;
+                    while (!isDone) {
+                        isDone = checkClipData();
+                    }
+                    
+                    clips.forEach(function(clip) {
+                        if (clip.getIsPlaying(video.currentTime)) {
+                            clip.draw(ctx);
+                        }
+                    });
+                    
+                    if (dev.info) {
+                        dev.infoTimeEl.innerHTML = video.currentTime.toFixed(1);
+                    }
+                }
+                
+                captureCounter++;
+                requestAnimationFrame(capture);
             },
 
             checkClipData = function() {
