@@ -10,7 +10,9 @@ var WH = WH || {};
             clipData,
             clipDataIndex = 0,
             clipIndex = 0,
-            captureCounter;
+            captureCounter,
+            frameCounter,
+            socket;
             
         const dev = {
                 info: true,
@@ -72,6 +74,8 @@ var WH = WH || {};
                 }
 
                 if (specs.isCapture === true) {
+                    socket = io.connect('http://localhost:3000');
+                    frameCounter = 0;
                     captureCounter = 0;
                     capture();
                 } else {
@@ -120,6 +124,13 @@ var WH = WH || {};
                     if (dev.info) {
                         dev.infoTimeEl.innerHTML = video.currentTime.toFixed(1);
                     }
+                    
+                    socket.emit('render-frame', {
+                        frame: frameCounter,
+                        file: canvas.toDataURL()
+                    });
+                    
+                    frameCounter++;
                 }
                 
                 captureCounter++;
