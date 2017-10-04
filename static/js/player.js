@@ -15,7 +15,7 @@ var WH = WH || {};
         const dev = {
                 info: true,
                 infoTimeEl: document.querySelector('.info__time'),
-                startOffset: 0
+                startOffset: 8
             },
             clips = [],
             numClips = 8,
@@ -104,7 +104,7 @@ var WH = WH || {};
             capture = function() {
                 if (captureCounter % 30 === 0) {
                     ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-                    video.currentTime += 1;
+                    video.currentTime += 1 / specs.framerate;
                     
                     let isDone = false;
                     while (!isDone) {
@@ -113,7 +113,7 @@ var WH = WH || {};
                     
                     clips.forEach(function(clip) {
                         if (clip.getIsPlaying(video.currentTime)) {
-                            clip.draw(ctx);
+                            clip.capture(ctx, specs.framerate);
                         }
                     });
                     
@@ -129,7 +129,7 @@ var WH = WH || {};
             checkClipData = function() {
                 let isNothingToStart = true;
                 if (clipDataIndex < clipData.length && clipData[clipDataIndex].start <= video.currentTime) {
-                    clips[clipIndex].start(clipData[clipDataIndex]);
+                    clips[clipIndex].start(clipData[clipDataIndex], specs.isCapture);
                     clipDataIndex++;
                     clipIndex = (clipIndex + 1) % numClips;
                     isNothingToStart = false;
