@@ -11,13 +11,14 @@ var WH = WH || {};
             clipDataIndex = 0,
             clipIndex = 0,
             captureCounter,
+            captureEndTime,
             frameCounter,
             socket;
             
         const dev = {
                 info: true,
                 infoTimeEl: document.querySelector('.info__time'),
-                startOffset: 8
+                startOffset: 0
             },
             clips = [],
             numClips = 8,
@@ -77,6 +78,7 @@ var WH = WH || {};
                     socket = io.connect('http://localhost:3000');
                     frameCounter = 0;
                     captureCounter = 0;
+                    captureEndTime = video.currentTime + 2;
                     capture();
                 } else {
                     video.play();
@@ -133,8 +135,10 @@ var WH = WH || {};
                     frameCounter++;
                 }
                 
-                captureCounter++;
-                requestAnimationFrame(capture);
+                if (video.currentTime < captureEndTime) {
+                    captureCounter++;
+                    requestAnimationFrame(capture);
+                }
             },
 
             checkClipData = function() {

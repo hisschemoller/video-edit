@@ -19,6 +19,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
         canvasHeight: 360,
         canvasWidth: 480,
         startOffset: 0,
-        isCapture: false
+        isCapture: true
     });
 });
