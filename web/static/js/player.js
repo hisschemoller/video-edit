@@ -13,7 +13,16 @@ var WH = WH || {};
             captureCounter,
             captureEndTime,
             frameCounter,
-            socket;
+            socket,
+            settings = {
+                videoPath: null,
+                clipData: null,
+                framerate: 30,
+                canvasHeight: 360,
+                canvasWidth: 480,
+                startOffset: 0,
+                isCapture: false
+            };
             
         const dev = {
                 info: true,
@@ -24,20 +33,22 @@ var WH = WH || {};
             numClips = 8,
 
             init = function() {
+                settings = Object.assign(settings, specs);
+                
                 canvas = document.getElementById('canvas');
-                canvas.width = specs.canvasWidth;
-                canvas.height = specs.canvasHeight;
+                canvas.width = settings.canvasWidth;
+                canvas.height = settings.canvasHeight;
                 ctx = canvas.getContext('2d');
 
                 video = document.createElement('video');
-                video.src = specs.videoPath;
+                video.src = settings.videoPath;
                 video.addEventListener('loadeddata', onVideoLoaded);
                 
-                clipData = specs.clipData;
+                clipData = settings.clipData;
                 clipData.forEach(function(data) {
-                    data.start += specs.startOffset;
-                    data.end += specs.startOffset;
-                    data.clipStart += specs.startOffset;
+                    data.start += settings.startOffset;
+                    data.end += settings.startOffset;
+                    data.clipStart += settings.startOffset;
                     data.width = data.xx - data.x;
                     data.height = data.yy - data.y;
                 });
@@ -51,7 +62,7 @@ var WH = WH || {};
                     }));
                 }
 
-                video.currentTime = specs.startOffset;
+                video.currentTime = settings.startOffset;
 
                 // start later in the video (while developing)
                 if (dev.startOffset > 0) {
@@ -74,7 +85,7 @@ var WH = WH || {};
                     }
                 }
 
-                if (specs.isCapture === true) {
+                if (settings.isCapture === true) {
                     socket = io.connect('http://localhost:3000');
                     frameCounter = 0;
                     captureCounter = 0;
@@ -110,7 +121,7 @@ var WH = WH || {};
             capture = function() {
                 if (captureCounter % 30 === 0) {
                     ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-                    video.currentTime += 1 / specs.framerate;
+                    video.currentTime += 1 / settings.framerate;
                     
                     let isDone = false;
                     while (!isDone) {
@@ -119,7 +130,7 @@ var WH = WH || {};
                     
                     clips.forEach(function(clip) {
                         if (clip.getIsPlaying(video.currentTime)) {
-                            clip.capture(ctx, specs.framerate);
+                            clip.capture(ctx, settings.framerate);
                         }
                     });
                     
@@ -144,7 +155,7 @@ var WH = WH || {};
             checkClipData = function() {
                 let isNothingToStart = true;
                 if (clipDataIndex < clipData.length && clipData[clipDataIndex].start <= video.currentTime) {
-                    clips[clipIndex].start(clipData[clipDataIndex], specs.isCapture);
+                    clips[clipIndex].start(clipData[clipDataIndex], settings.isCapture);
                     clipDataIndex++;
                     clipIndex = (clipIndex + 1) % numClips;
                     isNothingToStart = false;
