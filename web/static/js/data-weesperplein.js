@@ -344,6 +344,6 @@ var WH = WH || {};
             });
     }
 
-    WH.clipData = clipData;
+    WH.clipDataWeesperplein = clipData;
 
 })(WH);
