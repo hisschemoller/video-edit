@@ -7,6 +7,7 @@ var WH = WH || {};
             video,
             canvas,
             ctx,
+            data,
             clipData,
             clipDataIndex = 0,
             clipIndex = 0,
@@ -33,6 +34,15 @@ var WH = WH || {};
             numClips = 8,
 
             init = function() {
+                data = WH.createData({
+                    dataObject: WH.dataBerlinerDom
+                });
+            },
+                
+            setup = function() {
+                console.log('setup');
+                return;
+                
                 settings = Object.assign(settings, specs);
                 
                 canvas = document.getElementById('canvas');
