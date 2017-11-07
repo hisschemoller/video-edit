@@ -7,23 +7,23 @@ var WH = WH || {};
             video,
             canvas,
             ctx,
-            data,
+            // data,
             clipData,
             clipDataIndex = 0,
             clipIndex = 0,
             captureCounter,
             captureEndTime,
             frameCounter,
-            socket,
-            settings = {
-                videoPath: null,
-                clipData: null,
-                framerate: 30,
-                canvasHeight: 360,
-                canvasWidth: 480,
-                startOffset: 0,
-                isCapture: false
-            };
+            socket;
+            // settings = {
+            //     videoPath: null,
+            //     clipData: null,
+            //     framerate: 30,
+            //     canvasHeight: 360,
+            //     canvasWidth: 480,
+            //     startOffset: 0,
+            //     isCapture: false
+            // };
             
         const dev = {
                 info: true,
@@ -37,31 +37,24 @@ var WH = WH || {};
                 data = WH.createData({
                     dataObject: WH.dataBerlinerDom
                 });
+                
+                setup();
             },
                 
             setup = function() {
-                console.log('setup');
-                return;
-                
-                settings = Object.assign(settings, specs);
                 
                 canvas = document.getElementById('canvas');
-                canvas.width = settings.canvasWidth;
-                canvas.height = settings.canvasHeight;
+                canvas.width = data.settings.canvasWidth;
+                canvas.height = data.settings.canvasHeight;
                 ctx = canvas.getContext('2d');
 
                 video = document.createElement('video');
-                video.src = settings.videoPath;
+                video.src = data.resources[0].url;
                 video.addEventListener('loadeddata', onVideoLoaded);
+            },
+            
+            loadResources = function(data.resources) {
                 
-                clipData = settings.clipData;
-                clipData.forEach(function(data) {
-                    data.start += settings.startOffset;
-                    data.end += settings.startOffset;
-                    data.clipStart += settings.startOffset;
-                    data.width = data.xx - data.x;
-                    data.height = data.yy - data.y;
-                });
             },
 
             onVideoLoaded = function() {
