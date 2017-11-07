@@ -12,7 +12,6 @@ var WH = WH || {};
 
             start = function(newData, isCapture) {
                 data = newData;
-                console.log(data);
                 video.currentTime = data.clipStart;
                 isPlaying = true;
                 

@@ -7,8 +7,9 @@ var WH = WH || {};
             video,
             canvas,
             ctx,
-            // data,
-            clipData,
+            data,
+            resources,
+            // clipData,
             clipDataIndex = 0,
             clipIndex = 0,
             captureCounter,
@@ -34,28 +35,31 @@ var WH = WH || {};
             numClips = 8,
 
             init = function() {
+                
                 data = WH.createData({
                     dataObject: WH.dataBerlinerDom
                 });
                 
-                setup();
-            },
-                
-            setup = function() {
+                resources = WH.createResources({
+                    data: data.resources,
+                    loadedCallback: onVideosLoaded
+                });
                 
                 canvas = document.getElementById('canvas');
                 canvas.width = data.settings.canvasWidth;
                 canvas.height = data.settings.canvasHeight;
                 ctx = canvas.getContext('2d');
-
-                video = document.createElement('video');
-                video.src = data.resources[0].url;
-                video.addEventListener('loadeddata', onVideoLoaded);
             },
             
-            loadResources = function(data.resources) {
-                
+            onVideosLoaded = function() {
+                console.log('onVideosLoaded');
             },
+                
+            // setup = function() {
+            //     video = document.createElement('video');
+            //     video.src = data.resources[0].url;
+            //     video.addEventListener('loadeddata', onVideoLoaded);
+            // },
 
             onVideoLoaded = function() {
                 // create clips to play video fragments

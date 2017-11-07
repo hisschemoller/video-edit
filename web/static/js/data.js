@@ -60,9 +60,11 @@ var WH = WH || {};
                 return clipData;
             };
         
-        that = specs.that || {};
+        that = data; // specs.that || {};
         
         init();
+        
+        return that;
     };
 
 })(WH);

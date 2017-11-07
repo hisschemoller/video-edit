@@ -27,7 +27,7 @@ WH.dataBerlinerDom = {
     
     "resources": [
         {
-            "id": "dom1"
+            "id": "dom1",
             "url": "static/video/Dublin-Life-Pearse-Street-Nothing-Happens-Static-Camera.mp4",
             "startOffset": 12
         }
