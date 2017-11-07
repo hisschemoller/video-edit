@@ -2,13 +2,12 @@ var WH = WH || {};
 
 (function(WH) {
 
-    WH.createClip = function(specs, my) {
+    WH.createClip = function(specs = {}, my = {}) {
 
         let that,
             data,
+            video,
             isPlaying = false;
-
-        const video = specs.video,
 
             start = function(newData, isCapture) {
                 data = newData;

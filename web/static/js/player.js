@@ -8,6 +8,7 @@ var WH = WH || {};
             canvas,
             ctx,
             data,
+            clips,
             resources,
             // clipData,
             clipDataIndex = 0,
@@ -31,14 +32,14 @@ var WH = WH || {};
                 infoTimeEl: document.querySelector('.info__time'),
                 startOffset: 0
             },
-            clips = [],
-            numClips = 8,
 
             init = function() {
                 
                 data = WH.createData({
                     dataObject: WH.dataBerlinerDom
                 });
+                
+                clips = WH.createClips();
                 
                 resources = WH.createResources({
                     data: data.resources,
@@ -63,11 +64,11 @@ var WH = WH || {};
 
             onVideoLoaded = function() {
                 // create clips to play video fragments
-                for (let i = 0; i < numClips; i++) {
-                    clips.push(WH.createClip({
-                        video: video.cloneNode()
-                    }));
-                }
+                // for (let i = 0; i < numClips; i++) {
+                //     clips.push(WH.createClip({
+                //         video: video.cloneNode()
+                //     }));
+                // }
 
                 video.currentTime = settings.startOffset;
 
