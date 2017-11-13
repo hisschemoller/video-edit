@@ -4,10 +4,12 @@ var WH = WH || {};
 
     WH.createPlayer = function(specs = {}, my = {}) {
         let that,
+            dataObject = specs.dataObject,
+            isCapture = specs.isCapture,
+            data,
             video,
             canvas,
             ctx,
-            data,
             clips,
             resources,
             // clipData,
@@ -34,22 +36,21 @@ var WH = WH || {};
             },
 
             init = function() {
-                
                 data = WH.createData({
-                    dataObject: WH.dataBerlinerDom
-                });
-                
-                clips = WH.createClips();
-                
-                resources = WH.createResources({
-                    data: data.resources,
-                    loadedCallback: onVideosLoaded
+                    dataObject: dataObject
                 });
                 
                 canvas = document.getElementById('canvas');
                 canvas.width = data.settings.canvasWidth;
                 canvas.height = data.settings.canvasHeight;
                 ctx = canvas.getContext('2d');
+                
+                clips = WH.createClips();
+                
+                resources = WH.createResources({
+                    data: data.resources,
+                    loadedCallback: start
+                });
             },
             
             onVideosLoaded = function() {
