@@ -25,12 +25,23 @@ var WH = WH || {};
                 if (numToLoad === 0) {
                     specs.loadedCallback();
                 }
+            },
+            
+            getResourceByID = function(id) {
+                return resources[id];
+                // for (let i = 0, n = data.length; i < n; i++) {
+                //     console.log(data[i].id, id);
+                //     if (data[i].id === id) {
+                //         return data[i];
+                //     }
+                // }
             };
         
         that = specs.that || {};
         
         init();
         
+        that.getResourceByID = getResourceByID;
         return that;
     };
 

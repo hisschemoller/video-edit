@@ -12,9 +12,11 @@ var WH = WH || {};
             ctx,
             clips,
             resources,
+            origin,
+            position,
             // clipData,
-            clipDataIndex = 0,
-            clipIndex = 0,
+            // clipDataIndex = 0,
+            // clipIndex = 0,
             captureCounter,
             captureEndTime,
             frameCounter,
@@ -41,20 +43,38 @@ var WH = WH || {};
                 });
                 
                 canvas = document.getElementById('canvas');
-                canvas.width = data.settings.canvasWidth;
-                canvas.height = data.settings.canvasHeight;
+                canvas.width = data.get().settings.canvasWidth;
+                canvas.height = data.get().settings.canvasHeight;
                 ctx = canvas.getContext('2d');
                 
                 clips = WH.createClips();
                 
                 resources = WH.createResources({
-                    data: data.resources,
+                    data: data.get().resources,
                     loadedCallback: start
                 });
             },
             
-            onVideosLoaded = function() {
-                console.log('onVideosLoaded');
+            start = function() {
+                console.log('start');
+                origin = performance.now();
+                position = 0;
+                addNewClips();
+                requestAnimationFrame(draw);
+            },
+            
+            addNewClips = function() {
+                const clipdata = data.getNewClipsData(position);
+                if (clipdata && clipdata.length > 0) {
+                    clips.startClips(clipdata, resources, isCapture);
+                } 
+            },
+            
+            draw = function() {
+                clips.draw(position, ctx);
+                position = performance.now() - origin;
+                addNewClips();
+                requestAnimationFrame(draw);
             },
                 
             // setup = function() {
@@ -106,7 +126,7 @@ var WH = WH || {};
                 }
             },
 
-            draw = function() {
+            drawOld = function() {
                 ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
 
                 let isDone = false;
@@ -161,7 +181,7 @@ var WH = WH || {};
                 }
             },
 
-            checkClipData = function() {
+            checkClipDataOld = function() {
                 let isNothingToStart = true;
                 if (clipDataIndex < clipData.length && clipData[clipDataIndex].start <= video.currentTime) {
                     clips[clipIndex].start(clipData[clipDataIndex], settings.isCapture);
