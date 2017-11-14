@@ -35,7 +35,7 @@ var WH = WH || {};
             },
 
             draw = function(ctx) {
-                ctx.drawImage(video, data.x1, data.y1, data.width, data.height, data.x1, data.y1, data.width, data.height);
+                ctx.drawImage(video, data.sx, data.sy, data.sWidth, data.sHeight, data.x1, data.y1, data.width, data.height);
             },
             
             capture = function(ctx, framerate) {

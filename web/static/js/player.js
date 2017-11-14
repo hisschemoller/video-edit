@@ -46,6 +46,11 @@ var WH = WH || {};
                 canvas.width = data.get().settings.canvasWidth;
                 canvas.height = data.get().settings.canvasHeight;
                 ctx = canvas.getContext('2d');
+                ctx.mozImageSmoothingEnabled = false;
+                ctx.webkitImageSmoothingEnabled = false;
+                ctx.imageSmoothingQuality = "High";
+                ctx.msImageSmoothingEnabled = false;
+                ctx.imageSmoothingEnabled = false;
                 
                 clips = WH.createClips();
                 

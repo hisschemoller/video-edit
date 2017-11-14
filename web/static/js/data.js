@@ -12,6 +12,7 @@ var WH = WH || {};
                 data.clips = adjustClipSettings(data);
                 data.clips = convertToMilliseconds(data);
                 data.clips = addResourceDataToClips(data);
+                data.clips = addZoomData(data);
             },
             
             convertMusicTiming = function(data) {
@@ -63,7 +64,7 @@ var WH = WH || {};
                 return clipData;
             },
             
-            addResourceDataToClips = function() {
+            addResourceDataToClips = function(data) {
                 const clipData = data.clips.slice(0);
                 
                 let clip, resource;
@@ -74,7 +75,23 @@ var WH = WH || {};
                 }
                 
                 return clipData;
-            }
+            },
+            
+            addZoomData = function(data) {
+                const clipData = data.clips.slice(0);
+                
+                let clip;
+                for (let i = 0, n = clipData.length; i < n; i++) {
+                    clip = clipData[i];
+                    clip.zoom = clip.zoom || 1;
+                    clip.sx = clip.x1;
+                    clip.sy = clip.y1;
+                    clip.sWidth = clip.width / clip.zoom;
+                    clip.sHeight = clip.height / clip.zoom;
+                }
+                
+                return clipData;
+            },
             
             convertToMilliseconds = function(data) {
                 const clipData = data.clips.slice(0);
