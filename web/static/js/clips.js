@@ -15,9 +15,9 @@ var WH = WH || {};
                 }
             },
             
-            startClips = function(clipData, resources, isCapture) {
+            startClips = function(clipData, isCapture) {
                 for (let i = 0, n = clipData.length; i < n; i++) {
-                    clips[clipIndex].start(clipData[i], resources, isCapture);
+                    clips[clipIndex].start(clipData[i], isCapture);
                     clipIndex = (clipIndex + 1) % numClips;
                 }
             },

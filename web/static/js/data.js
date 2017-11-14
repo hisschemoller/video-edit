@@ -11,6 +11,7 @@ var WH = WH || {};
                 data.clips = convertMusicTiming(data);
                 data.clips = adjustClipSettings(data);
                 data.clips = convertToMilliseconds(data);
+                data.clips = addResourceDataToClips(data);
             },
             
             convertMusicTiming = function(data) {
@@ -49,18 +50,31 @@ var WH = WH || {};
                 let clip, resource;
                 for (let i = 0, n = clipData.length; i < n; i++) {
                     clip = clipData[i];
+                    clip.width = clip.x2 - clip.x1;
+                    clip.height = clip.y2 - clip.y1;
                     resource = data.resources.find(resource => resource.id === clip.resourceID);
                     if (resource.startOffset) {
                         clip.start += resource.startOffset;
                         clip.end += resource.startOffset;
                         clip.clipStart += resource.startOffset;
-                        clip.width = resource.x2 - resource.x1;
-                        clip.height = resource.y2 - resource.y1;
                     }
                 }
                 
                 return clipData;
             },
+            
+            addResourceDataToClips = function() {
+                const clipData = data.clips.slice(0);
+                
+                let clip, resource;
+                for (let i = 0, n = clipData.length; i < n; i++) {
+                    clip = clipData[i];
+                    resource = data.resources.find(resource => resource.id === clip.resourceID);
+                    clip.resource = resource;
+                }
+                
+                return clipData;
+            }
             
             convertToMilliseconds = function(data) {
                 const clipData = data.clips.slice(0);

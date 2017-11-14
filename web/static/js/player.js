@@ -49,13 +49,13 @@ var WH = WH || {};
                 
                 clips = WH.createClips();
                 
-                resources = WH.createResources({
-                    data: data.get().resources,
-                    loadedCallback: start
-                });
-            },
+                // resources = WH.createResources({
+                //     data: data.get().resources,
+                //     loadedCallback: start
+                // });
+            // },
             
-            start = function() {
+            // start = function() {
                 console.log('start');
                 origin = performance.now();
                 position = 0;
@@ -66,8 +66,8 @@ var WH = WH || {};
             addNewClips = function() {
                 const clipdata = data.getNewClipsData(position);
                 if (clipdata && clipdata.length > 0) {
-                    clips.startClips(clipdata, resources, isCapture);
-                } 
+                    clips.startClips(clipdata, data.resources, isCapture);
+                }
             },
             
             draw = function() {

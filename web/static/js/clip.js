@@ -7,19 +7,30 @@ var WH = WH || {};
         let that,
             data,
             video,
-            isPlaying = false;
+            isPlaying = false,
+            isCapture = false,
+            
+            init = function() {
+                video = document.createElement('video');
+                video.addEventListener('loadeddata', onVideoLoaded);
+            },
 
-            start = function(newData, resources, isCapture) {
+            start = function(newData, isVideoCapture) {
                 data = newData;
-                video = resources.getResourceByID(data.resourceID).video.cloneNode();
-                video.currentTime = data.clipStart;
+                isCapture = isVideoCapture;
+                // video = resources.getResourceByID(data.resourceID).video.cloneNode();
+                // video.currentTime = data.clipStart;
+                // isPlaying = true;
+                video.src = data.resource.url;
+                console.log('start clip');
+            },
+            
+            onVideoLoaded = function() {
                 isPlaying = true;
+                video.currentTime = data.clipStart + data.resource.startOffset;
                 
-                // var isPlaying = video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2;
-                console.log(video);
                 if (!isCapture) {
-                    // video.play();
-                    video.currentTime = 1;
+                    video.play();
                 }
             },
 
@@ -37,11 +48,14 @@ var WH = WH || {};
                     console.log('end clip');
                     isPlaying = false;
                     video.pause();
+                    video.src = '';
                 }
                 return isPlaying;
             };
 
         that = specs.that || {};
+        
+        init();
 
         that.start = start;
         that.draw = draw;
