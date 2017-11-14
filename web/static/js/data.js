@@ -13,6 +13,7 @@ var WH = WH || {};
                 data.clips = convertToMilliseconds(data);
                 data.clips = addResourceDataToClips(data);
                 data.clips = addZoomData(data);
+                data.endTime = getEndTime(data.clips);
             },
             
             convertMusicTiming = function(data) {
@@ -64,6 +65,20 @@ var WH = WH || {};
                 return clipData;
             },
             
+            convertToMilliseconds = function(data) {
+                const clipData = data.clips.slice(0);
+                
+                let clip, resource;
+                for (let i = 0, n = clipData.length; i < n; i++) {
+                    clip = clipData[i];
+                    clip.start *= 1000;
+                    clip.end *= 1000;
+                    clip.clipStart *= 1000;
+                }
+                
+                return clipData;
+            },
+            
             addResourceDataToClips = function(data) {
                 const clipData = data.clips.slice(0);
                 
@@ -93,18 +108,12 @@ var WH = WH || {};
                 return clipData;
             },
             
-            convertToMilliseconds = function(data) {
-                const clipData = data.clips.slice(0);
-                
-                let clip, resource;
+            getEndTime = function(clipData) {
+                let endTime = 0;
                 for (let i = 0, n = clipData.length; i < n; i++) {
-                    clip = clipData[i];
-                    clip.start *= 1000;
-                    clip.end *= 1000;
-                    clip.clipStart *= 1000;
+                    endTime = Math.max(endTime, clipData[i].end);
                 }
-                
-                return clipData;
+                return endTime;
             },
             
             get = function() {

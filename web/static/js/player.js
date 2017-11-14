@@ -79,7 +79,12 @@ var WH = WH || {};
                 clips.draw(position, ctx);
                 position = performance.now() - origin;
                 addNewClips();
-                requestAnimationFrame(draw);
+                
+                if (position < data.get().endTime) {
+                    requestAnimationFrame(draw);
+                } else {
+                    console.log('done');
+                }
             },
                 
             // setup = function() {

@@ -18,7 +18,7 @@ WH.dataBerlinerDom = {
         {
             "resourceID": "dom1",
             "start": "0:0:0", 
-            "end": "12:0:0",
+            "end": "2:0:0",
             "clipStart": "24:0:0",
             "x1": 0, "x2": 160,
             "y1": 0, "y2": 120,
@@ -26,8 +26,8 @@ WH.dataBerlinerDom = {
         },
         {
             "resourceID": "dom1",
-            "start": "10:0:0", 
-            "end": "13:1:0",
+            "start": "1:0:0", 
+            "end": "3:1:0",
             "clipStart": "12:0:0",
             "x1": 150, "x2": 250,
             "y1": 100, "y2": 200
