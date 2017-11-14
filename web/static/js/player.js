@@ -11,7 +11,7 @@ var WH = WH || {};
             canvas,
             ctx,
             clips,
-            resources,
+            // resources,
             origin,
             position,
             // clipData,
@@ -83,69 +83,69 @@ var WH = WH || {};
             //     video.addEventListener('loadeddata', onVideoLoaded);
             // },
 
-            onVideoLoaded = function() {
-                // create clips to play video fragments
-                // for (let i = 0; i < numClips; i++) {
-                //     clips.push(WH.createClip({
-                //         video: video.cloneNode()
-                //     }));
-                // }
-
-                video.currentTime = settings.startOffset;
-
-                // start later in the video (while developing)
-                if (dev.startOffset > 0) {
-                    video.currentTime += dev.startOffset;
-
-                    // adjust the clipDataIndex to skip clips
-                    let isAllSkipped = true;
-                    for (let i = 0, n = clipData.length; i < n; i++) {
-                        console.log(clipData[i].start, video.currentTime);
-                        clipDataIndex = i;
-                        if (clipData[i].start >= video.currentTime) {
-                            isAllSkipped = false;
-                            break;
-                        }
-                    }
-
-                    // if all clips skipped
-                    if (isAllSkipped && clipData.length > 0) {
-                        clipDataIndex = clipData.length;
-                    }
-                }
-
-                if (settings.isCapture === true) {
-                    socket = io.connect('http://localhost:3000');
-                    frameCounter = 0;
-                    captureCounter = 0;
-                    captureEndTime = video.currentTime + 2;
-                    capture();
-                } else {
-                    video.play();
-                    draw();
-                }
-            },
-
-            drawOld = function() {
-                ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-
-                let isDone = false;
-                while (!isDone) {
-                    isDone = checkClipData();
-                }
-
-                clips.forEach(function(clip) {
-                    if (clip.getIsPlaying(video.currentTime)) {
-                        clip.draw(ctx);
-                    }
-                });
-
-                if (dev.info) {
-                    dev.infoTimeEl.innerHTML = video.currentTime.toFixed(1);
-                }
-
-                requestAnimationFrame(draw);
-            },
+            // onVideoLoaded = function() {
+            //     // create clips to play video fragments
+            //     // for (let i = 0; i < numClips; i++) {
+            //     //     clips.push(WH.createClip({
+            //     //         video: video.cloneNode()
+            //     //     }));
+            //     // }
+            // 
+            //     video.currentTime = settings.startOffset;
+            // 
+            //     // start later in the video (while developing)
+            //     if (dev.startOffset > 0) {
+            //         video.currentTime += dev.startOffset;
+            // 
+            //         // adjust the clipDataIndex to skip clips
+            //         let isAllSkipped = true;
+            //         for (let i = 0, n = clipData.length; i < n; i++) {
+            //             console.log(clipData[i].start, video.currentTime);
+            //             clipDataIndex = i;
+            //             if (clipData[i].start >= video.currentTime) {
+            //                 isAllSkipped = false;
+            //                 break;
+            //             }
+            //         }
+            // 
+            //         // if all clips skipped
+            //         if (isAllSkipped && clipData.length > 0) {
+            //             clipDataIndex = clipData.length;
+            //         }
+            //     }
+            // 
+            //     if (settings.isCapture === true) {
+            //         socket = io.connect('http://localhost:3000');
+            //         frameCounter = 0;
+            //         captureCounter = 0;
+            //         captureEndTime = video.currentTime + 2;
+            //         capture();
+            //     } else {
+            //         video.play();
+            //         draw();
+            //     }
+            // },
+            // 
+            // drawOld = function() {
+            //     ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+            // 
+            //     let isDone = false;
+            //     while (!isDone) {
+            //         isDone = checkClipData();
+            //     }
+            // 
+            //     clips.forEach(function(clip) {
+            //         if (clip.getIsPlaying(video.currentTime)) {
+            //             clip.draw(ctx);
+            //         }
+            //     });
+            // 
+            //     if (dev.info) {
+            //         dev.infoTimeEl.innerHTML = video.currentTime.toFixed(1);
+            //     }
+            // 
+            //     requestAnimationFrame(draw);
+            // },
             
             capture = function() {
                 if (captureCounter % 30 === 0) {
@@ -179,18 +179,18 @@ var WH = WH || {};
                     captureCounter++;
                     requestAnimationFrame(capture);
                 }
-            },
-
-            checkClipDataOld = function() {
-                let isNothingToStart = true;
-                if (clipDataIndex < clipData.length && clipData[clipDataIndex].start <= video.currentTime) {
-                    clips[clipIndex].start(clipData[clipDataIndex], settings.isCapture);
-                    clipDataIndex++;
-                    clipIndex = (clipIndex + 1) % numClips;
-                    isNothingToStart = false;
-                }
-                return isNothingToStart;
             };
+
+            // checkClipDataOld = function() {
+            //     let isNothingToStart = true;
+            //     if (clipDataIndex < clipData.length && clipData[clipDataIndex].start <= video.currentTime) {
+            //         clips[clipIndex].start(clipData[clipDataIndex], settings.isCapture);
+            //         clipDataIndex++;
+            //         clipIndex = (clipIndex + 1) % numClips;
+            //         isNothingToStart = false;
+            //     }
+            //     return isNothingToStart;
+            // };
 
         that = specs.that || {};
 
