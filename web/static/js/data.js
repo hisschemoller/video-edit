@@ -52,8 +52,8 @@ var WH = WH || {};
                 let clip, resource;
                 for (let i = 0, n = clipData.length; i < n; i++) {
                     clip = clipData[i];
-                    clip.width = clip.x2 - clip.x1;
-                    clip.height = clip.y2 - clip.y1;
+                    clip.dWidth = clip.x2 - clip.x1;
+                    clip.dHeight = clip.y2 - clip.y1;
                     resource = data.resources.find(resource => resource.id === clip.resourceID);
                     if (resource.startOffset) {
                         clip.start += resource.startOffset;
@@ -99,10 +99,16 @@ var WH = WH || {};
                 for (let i = 0, n = clipData.length; i < n; i++) {
                     clip = clipData[i];
                     clip.zoom = clip.zoom || 1;
-                    clip.sx = clip.x1;
-                    clip.sy = clip.y1;
-                    clip.sWidth = clip.width / clip.zoom;
-                    clip.sHeight = clip.height / clip.zoom;
+                    clip.sx = clip.x1 / clip.zoom;
+                    clip.sy = clip.y1 / clip.zoom;
+                    clip.sWidth = clip.dWidth / clip.zoom;
+                    clip.sHeight = clip.dHeight / clip.zoom;
+
+                    clip.offsetX = clip.offsetX || 0;
+                    clip.offsetY = clip.offsetY || 0;
+                    clip.dx = clip.x1 + clip.offsetX
+                    clip.dy = clip.y1 + clip.offsetY;
+                    console.log(clip);
                 }
                 
                 return clipData;

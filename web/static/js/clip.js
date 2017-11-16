@@ -29,13 +29,14 @@ var WH = WH || {};
                 isPlaying = true;
                 video.currentTime = data.clipStart + data.resource.startOffset;
                 
+                video.muted = true;
                 if (!isCapture) {
                     video.play();
                 }
             },
 
             draw = function(ctx) {
-                ctx.drawImage(video, data.sx, data.sy, data.sWidth, data.sHeight, data.x1, data.y1, data.width, data.height);
+                ctx.drawImage(video, data.sx, data.sy, data.sWidth, data.sHeight, data.dx, data.dy, data.dWidth, data.dHeight);
             },
             
             capture = function(ctx, framerate) {
