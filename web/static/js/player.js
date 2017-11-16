@@ -48,7 +48,7 @@ var WH = WH || {};
                 ctx = canvas.getContext('2d');
                 ctx.mozImageSmoothingEnabled = false;
                 ctx.webkitImageSmoothingEnabled = false;
-                ctx.imageSmoothingQuality = "High";
+                ctx.imageSmoothingQuality = "high";
                 ctx.msImageSmoothingEnabled = false;
                 ctx.imageSmoothingEnabled = false;
                 
