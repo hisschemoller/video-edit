@@ -9,7 +9,7 @@ var WH = WH || {};
             video,
             isPlaying = false,
             isCapture = false,
-            
+
             init = function() {
                 video = document.createElement('video');
                 video.addEventListener('loadeddata', onVideoLoaded);
@@ -18,18 +18,15 @@ var WH = WH || {};
             start = function(newData, isVideoCapture) {
                 data = newData;
                 isCapture = isVideoCapture;
-                // video = resources.getResourceByID(data.resourceID).video.cloneNode();
-                // video.currentTime = data.clipStart;
-                // isPlaying = true;
                 video.src = data.resource.url;
-                console.log('start clip');
+                console.log('start clip', data);
             },
-            
+
             onVideoLoaded = function() {
                 isPlaying = true;
                 video.currentTime = data.clipStart + data.resource.startOffset;
-                
                 video.muted = true;
+
                 if (!isCapture) {
                     video.play();
                 }
@@ -38,7 +35,7 @@ var WH = WH || {};
             draw = function(ctx) {
                 ctx.drawImage(video, data.sx, data.sy, data.sWidth, data.sHeight, data.dx, data.dy, data.dWidth, data.dHeight);
             },
-            
+
             capture = function(ctx, framerate) {
                 draw(ctx);
                 video.currentTime += 1 / framerate;
@@ -55,7 +52,7 @@ var WH = WH || {};
             };
 
         that = specs.that || {};
-        
+
         init();
 
         that.start = start;

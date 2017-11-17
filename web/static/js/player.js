@@ -11,12 +11,8 @@ var WH = WH || {};
             canvas,
             ctx,
             clips,
-            // resources,
             origin,
             position,
-            // clipData,
-            // clipDataIndex = 0,
-            // clipIndex = 0,
             captureCounter,
             captureEndTime,
             frameCounter,
@@ -30,7 +26,7 @@ var WH = WH || {};
             //     startOffset: 0,
             //     isCapture: false
             // };
-            
+
         const dev = {
                 info: true,
                 infoTimeEl: document.querySelector('.info__time'),
@@ -41,7 +37,7 @@ var WH = WH || {};
                 data = WH.createData({
                     dataObject: dataObject
                 });
-                
+
                 canvas = document.getElementById('canvas');
                 canvas.width = data.get().settings.canvasWidth;
                 canvas.height = data.get().settings.canvasHeight;
@@ -51,15 +47,15 @@ var WH = WH || {};
                 ctx.imageSmoothingQuality = "high";
                 ctx.msImageSmoothingEnabled = false;
                 ctx.imageSmoothingEnabled = false;
-                
+
                 clips = WH.createClips();
-                
+
                 // resources = WH.createResources({
                 //     data: data.get().resources,
                 //     loadedCallback: start
                 // });
             // },
-            
+
             // start = function() {
                 console.log('start');
                 origin = performance.now();
@@ -67,26 +63,30 @@ var WH = WH || {};
                 addNewClips();
                 requestAnimationFrame(draw);
             },
-            
+
             addNewClips = function() {
                 const clipdata = data.getNewClipsData(position);
                 if (clipdata && clipdata.length > 0) {
                     clips.startClips(clipdata, data.resources, isCapture);
                 }
             },
-            
+
             draw = function() {
                 clips.draw(position, ctx);
                 position = performance.now() - origin;
                 addNewClips();
-                
+
+                if (dev.info) {
+                    dev.infoTimeEl.innerHTML = (position / 1000).toFixed(1);
+                }
+
                 if (position < data.get().endTime) {
                     requestAnimationFrame(draw);
                 } else {
                     console.log('done');
                 }
             },
-                
+
             // setup = function() {
             //     video = document.createElement('video');
             //     video.src = data.resources[0].url;
@@ -100,13 +100,13 @@ var WH = WH || {};
             //     //         video: video.cloneNode()
             //     //     }));
             //     // }
-            // 
+            //
             //     video.currentTime = settings.startOffset;
-            // 
+            //
             //     // start later in the video (while developing)
             //     if (dev.startOffset > 0) {
             //         video.currentTime += dev.startOffset;
-            // 
+            //
             //         // adjust the clipDataIndex to skip clips
             //         let isAllSkipped = true;
             //         for (let i = 0, n = clipData.length; i < n; i++) {
@@ -117,13 +117,13 @@ var WH = WH || {};
             //                 break;
             //             }
             //         }
-            // 
+            //
             //         // if all clips skipped
             //         if (isAllSkipped && clipData.length > 0) {
             //             clipDataIndex = clipData.length;
             //         }
             //     }
-            // 
+            //
             //     if (settings.isCapture === true) {
             //         socket = io.connect('http://localhost:3000');
             //         frameCounter = 0;
@@ -135,56 +135,56 @@ var WH = WH || {};
             //         draw();
             //     }
             // },
-            // 
+            //
             // drawOld = function() {
             //     ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-            // 
+            //
             //     let isDone = false;
             //     while (!isDone) {
             //         isDone = checkClipData();
             //     }
-            // 
+            //
             //     clips.forEach(function(clip) {
             //         if (clip.getIsPlaying(video.currentTime)) {
             //             clip.draw(ctx);
             //         }
             //     });
-            // 
+            //
             //     if (dev.info) {
             //         dev.infoTimeEl.innerHTML = video.currentTime.toFixed(1);
             //     }
-            // 
+            //
             //     requestAnimationFrame(draw);
             // },
-            
+
             capture = function() {
                 if (captureCounter % 30 === 0) {
                     ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
                     video.currentTime += 1 / settings.framerate;
-                    
+
                     let isDone = false;
                     while (!isDone) {
                         isDone = checkClipData();
                     }
-                    
+
                     clips.forEach(function(clip) {
                         if (clip.getIsPlaying(video.currentTime)) {
                             clip.capture(ctx, settings.framerate);
                         }
                     });
-                    
+
                     if (dev.info) {
                         dev.infoTimeEl.innerHTML = video.currentTime.toFixed(1);
                     }
-                    
+
                     socket.emit('render-frame', {
                         frame: frameCounter,
                         file: canvas.toDataURL()
                     });
-                    
+
                     frameCounter++;
                 }
-                
+
                 if (video.currentTime < captureEndTime) {
                     captureCounter++;
                     requestAnimationFrame(capture);

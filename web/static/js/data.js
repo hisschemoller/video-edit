@@ -1,12 +1,12 @@
 var WH = WH || {};
 
 (function(WH) {
-    
+
     WH.createData = function(specs, my) {
         let that,
             data = specs.dataObject,
             clipIndex = 0,
-            
+
             init = function() {
                 data.clips = convertMusicTiming(data);
                 data.clips = adjustClipSettings(data);
@@ -15,19 +15,19 @@ var WH = WH || {};
                 data.clips = addZoomData(data);
                 data.endTime = getEndTime(data.clips);
             },
-            
+
             convertMusicTiming = function(data) {
                 if (data.settings.timing !== 'music') {
                     return data.clips;
                 }
-                
+
                 const clipData = data.clips.slice(0),
                     pulsesPerBeat = data.settings.ppqn * (4 / data.settings.timesignature.denominator),
                     pulsesPerMeasure = pulsesPerBeat * data.settings.timesignature.denominator,
                     secondsPerBeat = 60 / data.settings.bpm,
                     secondsPerPulse = secondsPerBeat / pulsesPerBeat,
                     secondsPerMeasure = pulsesPerMeasure * secondsPerPulse;
-                
+
                 let clip;
                 for (let i = 0, n = clipData.length; i < n; i++) {
                     clip = clipData[i];
@@ -35,25 +35,23 @@ var WH = WH || {};
                     clip.end = convertMusicTimestamp(clip.end, secondsPerPulse, secondsPerBeat, secondsPerMeasure);
                     clip.clipStart = convertMusicTimestamp(clip.clipStart, secondsPerPulse, secondsPerBeat, secondsPerMeasure);
                 }
-                
+
                 return clipData;
             },
-            
+
             convertMusicTimestamp = function(timestamp, secondsPerPulse, secondsPerBeat, secondsPerMeasure) {
                 const timeArray = timestamp.split(':');
                 return (parseInt(timeArray[0]) * secondsPerMeasure) +
-                    (parseInt(timeArray[1]) * secondsPerBeat) + 
+                    (parseInt(timeArray[1]) * secondsPerBeat) +
                     (parseInt(timeArray[2]) * secondsPerPulse);
             },
-            
+
             adjustClipSettings = function(data) {
                 const clipData = data.clips.slice(0);
-                
+
                 let clip, resource;
                 for (let i = 0, n = clipData.length; i < n; i++) {
                     clip = clipData[i];
-                    clip.dWidth = clip.x2 - clip.x1;
-                    clip.dHeight = clip.y2 - clip.y1;
                     resource = data.resources.find(resource => resource.id === clip.resourceID);
                     if (resource.startOffset) {
                         clip.start += resource.startOffset;
@@ -61,59 +59,62 @@ var WH = WH || {};
                         clip.clipStart += resource.startOffset;
                     }
                 }
-                
+
                 return clipData;
             },
-            
+
             convertToMilliseconds = function(data) {
                 const clipData = data.clips.slice(0);
-                
+
                 let clip, resource;
                 for (let i = 0, n = clipData.length; i < n; i++) {
                     clip = clipData[i];
                     clip.start *= 1000;
                     clip.end *= 1000;
-                    clip.clipStart *= 1000;
+                    // clip.clipStart *= 1000;
                 }
-                
+
                 return clipData;
             },
-            
+
             addResourceDataToClips = function(data) {
                 const clipData = data.clips.slice(0);
-                
+
                 let clip, resource;
                 for (let i = 0, n = clipData.length; i < n; i++) {
                     clip = clipData[i];
                     resource = data.resources.find(resource => resource.id === clip.resourceID);
                     clip.resource = resource;
                 }
-                
+
                 return clipData;
             },
-            
+
             addZoomData = function(data) {
                 const clipData = data.clips.slice(0);
-                
+
                 let clip;
                 for (let i = 0, n = clipData.length; i < n; i++) {
                     clip = clipData[i];
-                    clip.zoom = clip.zoom || 1;
-                    clip.sx = clip.x1 / clip.zoom;
-                    clip.sy = clip.y1 / clip.zoom;
-                    clip.sWidth = clip.dWidth / clip.zoom;
-                    clip.sHeight = clip.dHeight / clip.zoom;
 
+                    clip.zoom = clip.zoom || 1;
                     clip.offsetX = clip.offsetX || 0;
                     clip.offsetY = clip.offsetY || 0;
-                    clip.dx = clip.x1 + clip.offsetX
-                    clip.dy = clip.y1 + clip.offsetY;
-                    console.log(clip);
+
+                    clip.dx = clip.x1;
+                    clip.dy = clip.y1;
+                    clip.dWidth = clip.x2 - clip.x1;
+                    clip.dHeight = clip.y2 - clip.y1;
+
+                    clip.sx = clip.offsetX / clip.zoom;
+                    clip.sy = clip.offsetY / clip.zoom;
+                    clip.sWidth = clip.dWidth / clip.zoom;
+                    clip.sHeight = clip.dHeight / clip.zoom;
                 }
-                
+
                 return clipData;
             },
-            
+
             getEndTime = function(clipData) {
                 let endTime = 0;
                 for (let i = 0, n = clipData.length; i < n; i++) {
@@ -121,30 +122,30 @@ var WH = WH || {};
                 }
                 return endTime;
             },
-            
+
             get = function() {
                 return data;
             },
-            
+
             /**
-             * 
+             *
              * @param  {Number} time Playback position in milliseconds.
-             * @return {Array} Data of clips that start 
+             * @return {Array} Data of clips that start
              */
             getNewClipsData = function(time) {
                 if (clipIndex < data.clips.length) {
                     let clipData = data.clips[clipIndex],
                         newClips = [];
-                    
+
                     while (clipData && clipData.start <= time) {
                         newClips.push(clipData);
                         clipIndex++;
                         clipData = data.clips[clipIndex];
                     }
-                    
+
                     return newClips;
                 }
-                
+
                 // let isNothingToStart = true;
                 // if (clipIndex < data.clips.length && data.clips[clipIndex].start <= time) {
                 //     clips[clipIndex].start(clipData[clipDataIndex], settings.isCapture);
@@ -154,11 +155,11 @@ var WH = WH || {};
                 // }
                 // return isNothingToStart;
             };
-        
+
         that = specs.that || {};
-        
+
         init();
-        
+
         that.get = get;
         that.getNewClipsData = getNewClipsData;
         return that;

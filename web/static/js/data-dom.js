@@ -16,34 +16,57 @@ var WH = WH || {};
             }
         },
 
-        "clips": [{
-                "resourceID": "dom1",
+        "clips": [
+            // {
+            //     "resourceID": "dom1",
+            //     "start": "0:0:0",
+            //     "end": "8:0:0",
+            //     "clipStart": "0:0:0",
+            //     "x1": 0, "x2": 640,
+            //     "y1": 0, "y2": 480,
+            //     "zoom": 1
+            // }, {
+            //     "resourceID": "dom2",
+            //     "start": "0:0:0",
+            //     "end": "8:0:0",
+            //     "clipStart": "0:0:0",
+            //     "x1": 47, "x2": 242,
+            //     "y1": 0, "y2": 344,
+            //     "offsetX": -47, "offsetY": 29,
+            //     "zoom": 0.719
+            // }
+            //
+            // ,
+            {
+                "resourceID": "dom2",
                 "start": "0:0:0",
-                "end": "24:0:0",
-                "clipStart": "0:0:0",
+                "end": "16:0:0",
+                "clipStart": "15:0:0",
                 "x1": 0, "x2": 640,
                 "y1": 0, "y2": 480,
                 "zoom": 1
-            }, {
-                "resourceID": "dom2",
-                "start": "1:0:0",
-                "end": "24:0:0",
-                "clipStart": "0:0:0",
-                "x1": 47, "x2": 242,
-                "y1": 0, "y2": 344,
-                "offsetX": -47, "offsetY": 29,
-                "zoom": 0.719
+            },
+            {
+                "resourceID": "dom1",
+                "start": "0:0:0",
+                "end": "16:0:0",
+                "clipStart": "16:0:0",
+                "x1": 0, "x2": 337,
+                "y1": 0, "y2": 421,
+                "offsetX": 346, "offsetY": 51,
+                "zoom": 1.531
             }
+
         ],
 
         "resources": [{
                 "id": "dom1",
                 "url": "static/video/dom1.mp4",
-                "startOffset": 0
+                "startOffset": 1
             }, {
                 "id": "dom2",
                 "url": "static/video/dom2.mp4",
-                "startOffset": 0
+                "startOffset": 1
             }
         ]
     };
