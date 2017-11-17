@@ -98,6 +98,7 @@ var WH = WH || {};
                     clip = clipData[i];
 
                     clip.zoom = clip.zoom || 1;
+                    clip.flipHorizontal = clip.flipHorizontal || false
                     clip.offsetX = clip.offsetX || 0;
                     clip.offsetY = clip.offsetY || 0;
 
@@ -110,6 +111,10 @@ var WH = WH || {};
                     clip.sy = clip.offsetY / clip.zoom;
                     clip.sWidth = clip.dWidth / clip.zoom;
                     clip.sHeight = clip.dHeight / clip.zoom;
+
+                    if (clip.flipHorizontal) {
+                        clip.dx -= clip.dWidth;
+                    }
                 }
 
                 return clipData;

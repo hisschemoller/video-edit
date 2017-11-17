@@ -33,7 +33,14 @@ var WH = WH || {};
             },
 
             draw = function(ctx) {
-                ctx.drawImage(video, data.sx, data.sy, data.sWidth, data.sHeight, data.dx, data.dy, data.dWidth, data.dHeight);
+                if (data.flipHorizontal) {
+                    ctx.save();
+                    ctx.scale(-1, 1);
+                    ctx.drawImage(video, data.sx, data.sy, data.sWidth, data.sHeight, data.dx, data.dy, data.dWidth, data.dHeight);
+                    ctx.restore();
+                } else {
+                    ctx.drawImage(video, data.sx, data.sy, data.sWidth, data.sHeight, data.dx, data.dy, data.dWidth, data.dHeight);
+                }
             },
 
             capture = function(ctx, framerate) {
