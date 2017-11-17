@@ -13,6 +13,8 @@ var WH = WH || {};
             clips,
             origin,
             position,
+            throttle = 2,
+            throttleCounter = 0,
             captureCounter,
             captureEndTime,
             frameCounter,
@@ -72,6 +74,12 @@ var WH = WH || {};
             },
 
             draw = function() {
+                throttleCounter++;
+                if (throttleCounter % throttle !== 0) {
+                    requestAnimationFrame(draw);
+                    return;
+                }
+
                 clips.draw(position, ctx);
                 position = performance.now() - origin;
                 addNewClips();
