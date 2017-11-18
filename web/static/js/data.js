@@ -138,6 +138,24 @@ var WH = WH || {};
                 return endTime;
             },
 
+            skipToTime = function(time) {
+                // adjust the clipDataIndex to skip clips
+                let isAllSkipped = true;
+                for (let i = 0, n = data.clips.length; i < n; i++) {
+                    console.log(data.clips[i].start, time);
+                    clipIndex = i;
+                    if (data.clips[i].start >= time) {
+                        isAllSkipped = false;
+                        break;
+                    }
+                }
+
+                // if all clips skipped
+                if (isAllSkipped && clipData.length > 0) {
+                    clipDataIndex = clipData.length;
+                }
+            },
+
             get = function() {
                 return data;
             },
@@ -175,8 +193,9 @@ var WH = WH || {};
 
         init();
 
-        that.convertMusicTiming = convertMusicTiming;
+        that.convertMusicTimestamp = convertMusicTimestamp;
         that.get = get;
+        that.skipToTime = skipToTime;
         that.getNewClipsData = getNewClipsData;
         return that;
     };

@@ -5,7 +5,8 @@ var WH = WH || {};
     WH.createPlayer = function(specs = {}, my = {}) {
         let that,
             dataObject = specs.dataObject,
-            isCapture = specs.isCapture,
+            isCapture = specs.isCapture || false,
+            startOffset = specs.startOffset || 0,
             data,
             video,
             canvas,
@@ -31,8 +32,8 @@ var WH = WH || {};
 
         const dev = {
                 info: true,
-                infoTimeEl: document.querySelector('.info__time'),
-                startOffset: 0
+                infoTimeEl: document.querySelector('.info__time')
+                // startOffset: 0
             },
 
             init = function() {
@@ -62,6 +63,15 @@ var WH = WH || {};
                 console.log('start');
                 origin = performance.now();
                 position = 0;
+
+                startOffset = data.convertMusicTimestamp(startOffset);
+
+                if (startOffset > 0) {
+                    origin -= (startOffset * 1000);
+                    position = performance.now() - origin;
+                    data.skipToTime(position);
+                }
+
                 addNewClips();
                 requestAnimationFrame(draw);
             },
