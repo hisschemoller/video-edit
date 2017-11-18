@@ -58,6 +58,53 @@ var WH = WH || {};
                 "flipHorizontal": true
             }
 
+
+            ,
+            {
+                "resourceID": "dom2",
+                "start": "16:0:0",
+                "end": "24:0:0",
+                "clipStart": "16:0:0",
+                "x1": 0, "x2": 640,
+                "y1": 0, "y2": 480 - 59,
+                "offsetX": 3, "offsetY": 55,
+                "zoom": 1.035
+            },
+            {
+                "resourceID": "dom1",
+                "start": "16:0:0",
+                "end": "24:0:0",
+                "clipStart": "16:0:0",
+                "x1": 186, "x2": 640,
+                "y1": 0, "y2": 480,
+                "offsetX": 80, "offsetY": 10,
+                "zoom": 1.31
+            }
+
+
+            ,
+            {
+                "resourceID": "dom1",
+                "start": "24:0:0",
+                "end": "32:0:0",
+                "clipStart": "24:0:0",
+                "x1": 0, "x2": 640,
+                "y1": 0, "y2": 480,
+                "offsetX": 31, "offsetY": 80,
+                "zoom": 1059 / 640
+            },
+            {
+                "resourceID": "dom2",
+                "start": "24:0:0",
+                "end": "32:0:0",
+                "clipStart": "24:0:0",
+                "x1": 0, "x2": 337,
+                "y1": 0, "y2": 480,
+                "offsetX": 280, "offsetY": 0,
+                "zoom": 1.035,
+                "flipHorizontal": true
+            }
+
         ],
 
         "resources": [{
