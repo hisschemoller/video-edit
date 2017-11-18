@@ -6,6 +6,9 @@ var WH = WH || {};
         let that,
             data = specs.dataObject,
             clipIndex = 0,
+            secondsPerPulse,
+            secondsPerBeat,
+            secondsPerMeasure,
 
             init = function() {
                 data.clips = convertMusicTiming(data);
@@ -23,27 +26,34 @@ var WH = WH || {};
 
                 const clipData = data.clips.slice(0),
                     pulsesPerBeat = data.settings.ppqn * (4 / data.settings.timesignature.denominator),
-                    pulsesPerMeasure = pulsesPerBeat * data.settings.timesignature.denominator,
-                    secondsPerBeat = 60 / data.settings.bpm,
-                    secondsPerPulse = secondsPerBeat / pulsesPerBeat,
-                    secondsPerMeasure = pulsesPerMeasure * secondsPerPulse;
+                    pulsesPerMeasure = pulsesPerBeat * data.settings.timesignature.denominator;
+
+                secondsPerBeat = 60 / data.settings.bpm,
+                secondsPerPulse = secondsPerBeat / pulsesPerBeat,
+                secondsPerMeasure = pulsesPerMeasure * secondsPerPulse;
 
                 let clip;
                 for (let i = 0, n = clipData.length; i < n; i++) {
                     clip = clipData[i];
-                    clip.start = convertMusicTimestamp(clip.start, secondsPerPulse, secondsPerBeat, secondsPerMeasure);
-                    clip.end = convertMusicTimestamp(clip.end, secondsPerPulse, secondsPerBeat, secondsPerMeasure);
-                    clip.clipStart = convertMusicTimestamp(clip.clipStart, secondsPerPulse, secondsPerBeat, secondsPerMeasure);
+                    clip.start = convertMusicTimestamp(clip.start);
+                    clip.end = convertMusicTimestamp(clip.end);
+                    clip.clipStart = convertMusicTimestamp(clip.clipStart);
                 }
 
                 return clipData;
             },
 
-            convertMusicTimestamp = function(timestamp, secondsPerPulse, secondsPerBeat, secondsPerMeasure) {
-                const timeArray = timestamp.split(':');
-                return (parseInt(timeArray[0]) * secondsPerMeasure) +
-                    (parseInt(timeArray[1]) * secondsPerBeat) +
-                    (parseInt(timeArray[2]) * secondsPerPulse);
+            convertMusicTimestamp = function(timestamp) {
+                if (typeof timestamp === 'string') {
+                    const timeArray = timestamp.split(':');
+                    return (parseInt(timeArray[0]) * secondsPerMeasure) +
+                        (parseInt(timeArray[1]) * secondsPerBeat) +
+                        (parseInt(timeArray[2]) * secondsPerPulse);
+                } else if(typeof timestamp === 'number') {
+                    return timestamp;
+                }
+
+                return 0;
             },
 
             adjustClipSettings = function(data) {
@@ -165,6 +175,7 @@ var WH = WH || {};
 
         init();
 
+        that.convertMusicTiming = convertMusicTiming;
         that.get = get;
         that.getNewClipsData = getNewClipsData;
         return that;
