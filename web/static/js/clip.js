@@ -24,7 +24,7 @@ var WH = WH || {};
 
             onVideoLoaded = function() {
                 isPlaying = true;
-                video.currentTime = data.clipStart + data.resource.startOffset;
+                video.currentTime = data.clipStart;
                 video.muted = true;
 
                 if (!isCapture) {

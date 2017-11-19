@@ -21,7 +21,7 @@ var WH = WH || {};
                 "resourceID": "dom1",
                 "start": "0:0:0",
                 "end": "8:0:0",
-                "clipStart": "0:0:0",
+                "clipStart": "0:2:0",
                 "x1": 0, "x2": 640,
                 "y1": 0, "y2": 480,
                 "zoom": 1
@@ -29,7 +29,7 @@ var WH = WH || {};
                 "resourceID": "dom2",
                 "start": "0:0:0",
                 "end": "8:0:0",
-                "clipStart": "0:0:0",
+                "clipStart": "0:2:0",
                 "x1": 0, "x2": 195,
                 "y1": 29, "y2": 373,
                 "offsetX": 47, "offsetY": -5,
@@ -160,12 +160,10 @@ var WH = WH || {};
 
         "resources": [{
                 "id": "dom1",
-                "url": "static/video/dom1.mp4",
-                "startOffset": 1
+                "url": "static/video/dom1.mp4"
             }, {
                 "id": "dom2",
-                "url": "static/video/dom2.mp4",
-                "startOffset": 1
+                "url": "static/video/dom2.mp4"
             }
         ]
     };

@@ -12,7 +12,7 @@ var WH = WH || {};
 
             init = function() {
                 data.clips = convertMusicTiming(data);
-                data.clips = adjustClipSettings(data);
+                // data.clips = adjustClipSettings(data);
                 data.clips = convertToMilliseconds(data);
                 data.clips = addResourceDataToClips(data);
                 data.clips = addZoomData(data);
@@ -56,22 +56,22 @@ var WH = WH || {};
                 return 0;
             },
 
-            adjustClipSettings = function(data) {
-                const clipData = data.clips.slice(0);
-
-                let clip, resource;
-                for (let i = 0, n = clipData.length; i < n; i++) {
-                    clip = clipData[i];
-                    resource = data.resources.find(resource => resource.id === clip.resourceID);
-                    if (resource.startOffset) {
-                        clip.start += resource.startOffset;
-                        clip.end += resource.startOffset;
-                        clip.clipStart += resource.startOffset;
-                    }
-                }
-
-                return clipData;
-            },
+            // adjustClipSettings = function(data) {
+            //     const clipData = data.clips.slice(0);
+            //
+            //     let clip, resource;
+            //     for (let i = 0, n = clipData.length; i < n; i++) {
+            //         clip = clipData[i];
+            //         resource = data.resources.find(resource => resource.id === clip.resourceID);
+            //         if (resource.startOffset) {
+            //             clip.start += resource.startOffset;
+            //             clip.end += resource.startOffset;
+            //             clip.clipStart += resource.startOffset;
+            //         }
+            //     }
+            //
+            //     return clipData;
+            // },
 
             convertToMilliseconds = function(data) {
                 const clipData = data.clips.slice(0);
