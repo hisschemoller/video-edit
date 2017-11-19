@@ -36,6 +36,7 @@ var WH = WH || {};
                 "zoom": 0.719
             }
 
+// B
             ,
             {
                 "resourceID": "dom2",
@@ -58,6 +59,7 @@ var WH = WH || {};
                 "flipHorizontal": true
             }
 
+// C
 
             ,
             {
@@ -81,6 +83,7 @@ var WH = WH || {};
                 "zoom": 1.31
             }
 
+// D
 
             ,
             {
@@ -103,6 +106,54 @@ var WH = WH || {};
                 "offsetX": 280, "offsetY": 0,
                 "zoom": 1.035,
                 "flipHorizontal": true
+            }
+
+// E
+
+            ,
+            {
+                "resourceID": "dom2",
+                "start": "32:0:0",
+                "end": "40:0:0",
+                "clipStart": "32:0:0",
+                "x1": 0, "x2": 640,
+                "y1": 0, "y2": 480,
+                "offsetX": 0, "offsetY": 0,
+                "zoom": 1
+            },
+            {
+                "resourceID": "dom1",
+                "start": "32:0:0",
+                "end": "40:0:0",
+                "clipStart": "32:0:0",
+                "x1": 227, "x2": 227 + 362,
+                "y1": 0, "y2": 302,
+                "offsetX": 149, "offsetY": 3,
+                "zoom": 1.138
+            }
+
+// F
+
+            ,
+            {
+                "resourceID": "dom1",
+                "start": "40:0:0",
+                "end": "48:0:0",
+                "clipStart": "40:0:0",
+                "x1": 0, "x2": 640,
+                "y1": 0, "y2": 480,
+                "offsetX": 0, "offsetY": 0,
+                "zoom": 678 / 640
+            },
+            {
+                "resourceID": "dom2",
+                "start": "40:0:0",
+                "end": "48:0:0",
+                "clipStart": "40:0:0",
+                "x1": 39, "x2": 39 + 229,
+                "y1": 0, "y2": 305,
+                "offsetX": 128, "offsetY": 2,
+                "zoom": 0.789
             }
 
         ],
