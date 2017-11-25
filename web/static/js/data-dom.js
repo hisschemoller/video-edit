@@ -21,7 +21,7 @@ var WH = WH || {};
                 "resourceID": "dom1",
                 "start": "0:0:0",
                 "end": "8:0:0",
-                "clipStart": "0:2:0",
+                "clipStart": 200,
                 "x1": 0, "x2": 640,
                 "y1": 0, "y2": 480,
                 "zoom": 1
@@ -29,12 +29,59 @@ var WH = WH || {};
                 "resourceID": "dom2",
                 "start": "0:0:0",
                 "end": "8:0:0",
-                "clipStart": "0:2:0",
+                "clipStart": 100,
                 "x1": 0, "x2": 195,
                 "y1": 29, "y2": 373,
                 "offsetX": 47, "offsetY": -5,
                 "zoom": 0.719
             }
+
+                , {
+                    "resourceID": "dom1",
+                    "start": "0:0:0",
+                    "end": "1:0:0",
+                    "clipStart": 100,
+                    "x1": 440, "x2": 540,
+                    "y1": 0, "y2": 480,
+                    "offsetX": 440, "offsetY": 0,
+                    "zoom": 1
+                }, {
+                    "resourceID": "dom1",
+                    "start": "1:0:0",
+                    "end": "2:0:0",
+                    "clipStart": 220,
+                    "x1": 440, "x2": 540,
+                    "y1": 0, "y2": 480,
+                    "offsetX": 440, "offsetY": 0,
+                    "zoom": 1
+                }, {
+                    "resourceID": "dom1",
+                    "start": "2:0:0",
+                    "end": "3:0:0",
+                    "clipStart": 300,
+                    "x1": 440, "x2": 540,
+                    "y1": 0, "y2": 480,
+                    "offsetX": 440, "offsetY": 0,
+                    "zoom": 1
+                }, {
+                    "resourceID": "dom1",
+                    "start": "4:0:0",
+                    "end": "5:0:0",
+                    "clipStart": 30,
+                    "x1": 440, "x2": 540,
+                    "y1": 0, "y2": 480,
+                    "offsetX": 440, "offsetY": 0,
+                    "zoom": 1
+                }, {
+                    "resourceID": "dom1",
+                    "start": "5:0:0",
+                    "end": "6:0:0",
+                    "clipStart": 10,
+                    "x1": 440, "x2": 540,
+                    "y1": 0, "y2": 480,
+                    "offsetX": 440, "offsetY": 0,
+                    "zoom": 1
+                }
 
 // B
             ,
