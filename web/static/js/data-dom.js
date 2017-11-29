@@ -39,49 +39,69 @@ var WH = WH || {};
                 , {
                     "resourceID": "dom1",
                     "start": "0:0:0",
-                    "end": "1:0:0",
-                    "clipStart": 100,
-                    "x1": 440, "x2": 540,
+                    "end": "8:0:0",
+                    "clipStart": 201,
+                    "x1": 195, "x2": 245,
                     "y1": 0, "y2": 480,
-                    "offsetX": 440, "offsetY": 0,
+                    "offsetX": 195, "offsetY": 0,
                     "zoom": 1
                 }, {
                     "resourceID": "dom1",
-                    "start": "1:0:0",
-                    "end": "2:0:0",
-                    "clipStart": 220,
-                    "x1": 440, "x2": 540,
+                    "start": "0:0:0",
+                    "end": "8:0:0",
+                    "clipStart": 202,
+                    "x1": 245, "x2": 295,
                     "y1": 0, "y2": 480,
-                    "offsetX": 440, "offsetY": 0,
+                    "offsetX": 245, "offsetY": 0,
                     "zoom": 1
                 }, {
                     "resourceID": "dom1",
-                    "start": "2:0:0",
-                    "end": "3:0:0",
-                    "clipStart": 300,
-                    "x1": 440, "x2": 540,
+                    "start": "0:0:0",
+                    "end": "8:0:0",
+                    "clipStart": 203,
+                    "x1": 295, "x2": 345,
                     "y1": 0, "y2": 480,
-                    "offsetX": 440, "offsetY": 0,
+                    "offsetX": 295, "offsetY": 0,
                     "zoom": 1
                 }, {
                     "resourceID": "dom1",
-                    "start": "4:0:0",
-                    "end": "5:0:0",
-                    "clipStart": 30,
-                    "x1": 440, "x2": 540,
+                    "start": "0:0:0",
+                    "end": "8:0:0",
+                    "clipStart": 204,
+                    "x1": 345, "x2": 395,
                     "y1": 0, "y2": 480,
-                    "offsetX": 440, "offsetY": 0,
-                    "zoom": 1
-                }, {
-                    "resourceID": "dom1",
-                    "start": "5:0:0",
-                    "end": "6:0:0",
-                    "clipStart": 10,
-                    "x1": 440, "x2": 540,
-                    "y1": 0, "y2": 480,
-                    "offsetX": 440, "offsetY": 0,
+                    "offsetX": 345, "offsetY": 0,
                     "zoom": 1
                 }
+
+                // , {
+                //     "resourceID": "dom1",
+                //     "start": "2:0:0",
+                //     "end": "3:0:0",
+                //     "clipStart": 300,
+                //     "x1": 440, "x2": 540,
+                //     "y1": 0, "y2": 480,
+                //     "offsetX": 440, "offsetY": 0,
+                //     "zoom": 1
+                // }, {
+                //     "resourceID": "dom1",
+                //     "start": "4:0:0",
+                //     "end": "5:0:0",
+                //     "clipStart": 30,
+                //     "x1": 440, "x2": 540,
+                //     "y1": 0, "y2": 480,
+                //     "offsetX": 440, "offsetY": 0,
+                //     "zoom": 1
+                // }, {
+                //     "resourceID": "dom1",
+                //     "start": "5:0:0",
+                //     "end": "6:0:0",
+                //     "clipStart": 10,
+                //     "x1": 440, "x2": 540,
+                //     "y1": 0, "y2": 480,
+                //     "offsetX": 440, "offsetY": 0,
+                //     "zoom": 1
+                // }
 
 // B
             ,
