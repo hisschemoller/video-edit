@@ -29,17 +29,18 @@ var WH = WH || {};
     let clips = [];
 
     // scene A
-    let clipStart = 100,
+    let clipStart = 102,
         getClipStart = () => {
             clipStart += 1;
             return clipStart;
         }
         start = "0:0:0",
+        start2 = "8:0:0",
         end = "32:0:0";
     clips = clips.concat([
         {
             "resourceID": "dom1",
-            "start": "0:0:0",
+            "start": start,
             "end": end,
             "clipStart": clipStart,
             "x1": 0, "x2": 640,
@@ -58,7 +59,7 @@ var WH = WH || {};
 
             , {
                 "resourceID": "dom1",
-                "start": start,
+                "start": start2,
                 "end": end,
                 "clipStart": getClipStart(),
                 "x1": 195, "x2": 245,
@@ -67,7 +68,7 @@ var WH = WH || {};
                 "zoom": 1
             }, {
                 "resourceID": "dom1",
-                "start": start,
+                "start": start2,
                 "end": end,
                 "clipStart": getClipStart(),
                 "x1": 245, "x2": 295,
@@ -76,7 +77,7 @@ var WH = WH || {};
                 "zoom": 1
             }, {
                 "resourceID": "dom1",
-                "start": start,
+                "start": start2,
                 "end": end,
                 "clipStart": getClipStart(),
                 "x1": 295, "x2": 345,
@@ -85,7 +86,7 @@ var WH = WH || {};
                 "zoom": 1
             }, {
                 "resourceID": "dom1",
-                "start": start,
+                "start": start2,
                 "end": end,
                 "clipStart": getClipStart(),
                 "x1": 345, "x2": 395,
@@ -93,35 +94,6 @@ var WH = WH || {};
                 "offsetX": 345, "offsetY": 0,
                 "zoom": 1
             }]);
-
-            // , {
-            //     "resourceID": "dom1",
-            //     "start": "2:0:0",
-            //     "end": "3:0:0",
-            //     "clipStart": 300,
-            //     "x1": 440, "x2": 540,
-            //     "y1": 0, "y2": 480,
-            //     "offsetX": 440, "offsetY": 0,
-            //     "zoom": 1
-            // }, {
-            //     "resourceID": "dom1",
-            //     "start": "4:0:0",
-            //     "end": "5:0:0",
-            //     "clipStart": 30,
-            //     "x1": 440, "x2": 540,
-            //     "y1": 0, "y2": 480,
-            //     "offsetX": 440, "offsetY": 0,
-            //     "zoom": 1
-            // }, {
-            //     "resourceID": "dom1",
-            //     "start": "5:0:0",
-            //     "end": "6:0:0",
-            //     "clipStart": 10,
-            //     "x1": 440, "x2": 540,
-            //     "y1": 0, "y2": 480,
-            //     "offsetX": 440, "offsetY": 0,
-            //     "zoom": 1
-            // }
 
     // B
     start = "32:0:0";
