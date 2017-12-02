@@ -6,6 +6,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
     WH.createPlayer({
         dataObject: WH.dataBerlinerDom,
         isCapture: false,
-        startOffset: '0:0:0'
+        startOffset: '32:0:0'
     });
 });
