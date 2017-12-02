@@ -29,12 +29,13 @@ var WH = WH || {};
     let clips = [];
 
     // scene A
-    let clipStart = 300,
+    let clipStart = 100,
         getClipStart = () => {
             clipStart += 1;
             return clipStart;
         }
-        end = "16:0:0";
+        start = "0:0:0",
+        end = "32:0:0";
     clips = clips.concat([
         {
             "resourceID": "dom1",
@@ -46,7 +47,7 @@ var WH = WH || {};
             "zoom": 1
         }, {
             "resourceID": "dom2",
-            "start": "0:0:0",
+            "start": start,
             "end": end,
             "clipStart": clipStart,
             "x1": 0, "x2": 195,
@@ -57,7 +58,7 @@ var WH = WH || {};
 
             , {
                 "resourceID": "dom1",
-                "start": "0:0:0",
+                "start": start,
                 "end": end,
                 "clipStart": getClipStart(),
                 "x1": 195, "x2": 245,
@@ -66,7 +67,7 @@ var WH = WH || {};
                 "zoom": 1
             }, {
                 "resourceID": "dom1",
-                "start": "0:0:0",
+                "start": start,
                 "end": end,
                 "clipStart": getClipStart(),
                 "x1": 245, "x2": 295,
@@ -75,7 +76,7 @@ var WH = WH || {};
                 "zoom": 1
             }, {
                 "resourceID": "dom1",
-                "start": "0:0:0",
+                "start": start,
                 "end": end,
                 "clipStart": getClipStart(),
                 "x1": 295, "x2": 345,
@@ -84,7 +85,7 @@ var WH = WH || {};
                 "zoom": 1
             }, {
                 "resourceID": "dom1",
-                "start": "0:0:0",
+                "start": start,
                 "end": end,
                 "clipStart": getClipStart(),
                 "x1": 345, "x2": 395,
@@ -123,11 +124,13 @@ var WH = WH || {};
             // }
 
     // B
+    start = "32:0:0";
+    end = "48:0:0";
     clips = clips.concat([
         {
             "resourceID": "dom2",
-            "start": "8:0:0",
-            "end": "16:0:0",
+            "start": start,
+            "end": end,
             "clipStart": "15:0:0",
             "x1": 0, "x2": 640,
             "y1": 0, "y2": 480,
@@ -135,8 +138,8 @@ var WH = WH || {};
         },
         {
             "resourceID": "dom1",
-            "start": "8:0:0",
-            "end": "16:0:0",
+            "start": start,
+            "end": end,
             "clipStart": "16:0:0",
             "x1": 0, "x2": 337,
             "y1": 0, "y2": 421,
@@ -146,11 +149,13 @@ var WH = WH || {};
         }]);
 
     // C
+    start = "48:0:0";
+    end = "64:0:0";
     clips = clips.concat([
         {
             "resourceID": "dom2",
-            "start": "16:0:0",
-            "end": "24:0:0",
+            "start": start,
+            "end": end,
             "clipStart": "16:0:0",
             "x1": 0, "x2": 640,
             "y1": 0, "y2": 480 - 59,
@@ -159,8 +164,8 @@ var WH = WH || {};
         },
         {
             "resourceID": "dom1",
-            "start": "16:0:0",
-            "end": "24:0:0",
+            "start": start,
+            "end": end,
             "clipStart": "16:0:0",
             "x1": 186, "x2": 640,
             "y1": 0, "y2": 480,
@@ -169,11 +174,13 @@ var WH = WH || {};
         }]);
 
     // D
+    start = "64:0:0";
+    end = "80:0:0";
     clips = clips.concat([
         {
             "resourceID": "dom1",
-            "start": "24:0:0",
-            "end": "32:0:0",
+            "start": start,
+            "end": end,
             "clipStart": "24:0:0",
             "x1": 0, "x2": 640,
             "y1": 0, "y2": 480,
@@ -193,11 +200,13 @@ var WH = WH || {};
         }]);
 
     // E
+    start = "80:0:0";
+    end = "96:0:0";
     clips = clips.concat([
         {
             "resourceID": "dom2",
-            "start": "32:0:0",
-            "end": "40:0:0",
+            "start": start,
+            "end": end,
             "clipStart": "32:0:0",
             "x1": 0, "x2": 640,
             "y1": 0, "y2": 480,
@@ -206,8 +215,8 @@ var WH = WH || {};
         },
         {
             "resourceID": "dom1",
-            "start": "32:0:0",
-            "end": "40:0:0",
+            "start": start,
+            "end": end,
             "clipStart": "32:0:0",
             "x1": 227, "x2": 227 + 362,
             "y1": 0, "y2": 302,
@@ -216,11 +225,13 @@ var WH = WH || {};
         }]);
 
     // F
+    start = "96:0:0";
+    end = "112:0:0";
     clips = clips.concat([
         {
             "resourceID": "dom1",
-            "start": "40:0:0",
-            "end": "48:0:0",
+            "start": start,
+            "end": end,
             "clipStart": "40:0:0",
             "x1": 0, "x2": 640,
             "y1": 0, "y2": 480,
@@ -229,8 +240,8 @@ var WH = WH || {};
         },
         {
             "resourceID": "dom2",
-            "start": "40:0:0",
-            "end": "48:0:0",
+            "start": start,
+            "end": end,
             "clipStart": "40:0:0",
             "x1": 39, "x2": 39 + 229,
             "y1": 0, "y2": 305,
