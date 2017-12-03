@@ -4,7 +4,7 @@ var WH = WH || {};
 
     WH.createPlayer = function(specs = {}, my = {}) {
         let that,
-            dataObject = specs.dataObject,
+            dataObject = specs.dataObject || {},
             isCapture = specs.isCapture || false,
             startOffset = specs.startOffset || 0,
             data,

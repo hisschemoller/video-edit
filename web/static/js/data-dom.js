@@ -2,7 +2,7 @@ var WH = WH || {};
 
 (function(WH) {
 
-    WH.dataBerlinerDom = {
+    const data = {
         "settings": {
             "framerate": 30,
             "canvasHeight": 480,
@@ -37,12 +37,13 @@ var WH = WH || {};
         start = "0:0:0",
         start2 = "8:0:0",
         end = "32:0:0";
+
     clips = clips.concat([
         {
             "resourceID": "dom1",
             "start": start,
             "end": end,
-            "clipStart": clipStart,
+            "clipStart": ['add', clipStart, start2],
             "x1": 0, "x2": 640,
             "y1": 0, "y2": 480,
             "zoom": 1
@@ -103,7 +104,7 @@ var WH = WH || {};
             "resourceID": "dom2",
             "start": start,
             "end": end,
-            "clipStart": "15:0:0",
+            "clipStart": 350,
             "x1": 0, "x2": 640,
             "y1": 0, "y2": 480,
             "zoom": 1
@@ -112,9 +113,9 @@ var WH = WH || {};
             "resourceID": "dom1",
             "start": start,
             "end": end,
-            "clipStart": "16:0:0",
+            "clipStart": 70,
             "x1": 0, "x2": 337,
-            "y1": 0, "y2": 421,
+            "y1": 0, "y2": 412,
             "offsetX": 300, "offsetY": 58,
             "zoom": 1.531,
             "flipHorizontal": true
@@ -221,6 +222,14 @@ var WH = WH || {};
             "zoom": 0.789
         }]);
 
-    WH.dataBerlinerDom.clips = clips;
+    // WH.dataBerlinerDom.clips = clips;
+
+    const createData = function() {
+        WH.util.setTiming(data.settings);
+        data.clips = clips;
+        return data;
+    };
+
+    WH.createBerlinerDomData = createData;
 
 })(WH);

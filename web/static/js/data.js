@@ -81,7 +81,7 @@ var WH = WH || {};
                     clip = clipData[i];
                     clip.start *= 1000;
                     clip.end *= 1000;
-                    // clip.clipStart *= 1000;
+                    //clip.clipStart *= 1000;
                 }
 
                 return clipData;
@@ -142,7 +142,7 @@ var WH = WH || {};
                 // adjust the clipDataIndex to skip clips
                 let isAllSkipped = true;
                 for (let i = 0, n = data.clips.length; i < n; i++) {
-                    console.log(data.clips[i].start, time);
+                    console.log('skip', data.clips[i].start);
                     clipIndex = i;
                     if (data.clips[i].start >= time) {
                         isAllSkipped = false;
