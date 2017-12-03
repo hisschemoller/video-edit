@@ -24,37 +24,37 @@ var WH = WH || {};
                     return data.clips;
                 }
 
-                const clipData = data.clips.slice(0),
-                    pulsesPerBeat = data.settings.ppqn * (4 / data.settings.timesignature.denominator),
-                    pulsesPerMeasure = pulsesPerBeat * data.settings.timesignature.denominator;
-
-                secondsPerBeat = 60 / data.settings.bpm,
-                secondsPerPulse = secondsPerBeat / pulsesPerBeat,
-                secondsPerMeasure = pulsesPerMeasure * secondsPerPulse;
+                const clipData = data.clips.slice(0);
+                //     pulsesPerBeat = data.settings.ppqn * (4 / data.settings.timesignature.denominator),
+                //     pulsesPerMeasure = pulsesPerBeat * data.settings.timesignature.denominator;
+                //
+                // secondsPerBeat = 60 / data.settings.bpm,
+                // secondsPerPulse = secondsPerBeat / pulsesPerBeat,
+                // secondsPerMeasure = pulsesPerMeasure * secondsPerPulse;
 
                 let clip;
                 for (let i = 0, n = clipData.length; i < n; i++) {
                     clip = clipData[i];
-                    clip.start = convertMusicTimestamp(clip.start);
-                    clip.end = convertMusicTimestamp(clip.end);
-                    clip.clipStart = convertMusicTimestamp(clip.clipStart);
+                    clip.start = WH.util.musicToTime(clip.start);
+                    clip.end = WH.util.musicToTime(clip.end);
+                    clip.clipStart = WH.util.musicToTime(clip.clipStart);
                 }
 
                 return clipData;
             },
 
-            convertMusicTimestamp = function(timestamp) {
-                if (typeof timestamp === 'string') {
-                    const timeArray = timestamp.split(':');
-                    return (parseInt(timeArray[0]) * secondsPerMeasure) +
-                        (parseInt(timeArray[1]) * secondsPerBeat) +
-                        (parseInt(timeArray[2]) * secondsPerPulse);
-                } else if(typeof timestamp === 'number') {
-                    return timestamp;
-                }
-
-                return 0;
-            },
+            // convertMusicTimestamp = function(timestamp) {
+            //     if (typeof timestamp === 'string') {
+            //         const timeArray = timestamp.split(':');
+            //         return (parseInt(timeArray[0]) * secondsPerMeasure) +
+            //             (parseInt(timeArray[1]) * secondsPerBeat) +
+            //             (parseInt(timeArray[2]) * secondsPerPulse);
+            //     } else if(typeof timestamp === 'number') {
+            //         return timestamp;
+            //     }
+            //
+            //     return 0;
+            // },
 
             // adjustClipSettings = function(data) {
             //     const clipData = data.clips.slice(0);
@@ -193,7 +193,7 @@ var WH = WH || {};
 
         init();
 
-        that.convertMusicTimestamp = convertMusicTimestamp;
+        // that.convertMusicTimestamp = convertMusicTimestamp;
         that.get = get;
         that.skipToTime = skipToTime;
         that.getNewClipsData = getNewClipsData;

@@ -64,7 +64,7 @@ var WH = WH || {};
                 origin = performance.now();
                 position = 0;
 
-                startOffset = data.convertMusicTimestamp(startOffset);
+                // startOffset = data.convertMusicTimestamp(startOffset);
 
                 if (startOffset > 0) {
                     position = startOffset * 1000;
