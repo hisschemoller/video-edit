@@ -14,7 +14,7 @@ var WH = WH || {};
             clips,
             origin,
             position,
-            throttle = 2,
+            throttle = 8,
             throttleCounter = 0,
             captureCounter,
             captureEndTime,

@@ -50,8 +50,7 @@ var WH = WH || {};
                     "end": end,
                     "clipStart": clipStart - WH.util.musicToTime(start2),
                     "x1": 0, "x2": 640,
-                    "y1": 0, "y2": 480,
-                    "zoom": 1
+                    "y1": 0, "y2": 480
                 }, {
                     "resourceID": "dom2",
                     "start": start,
@@ -70,8 +69,7 @@ var WH = WH || {};
                         "clipStart": getClipStart(),
                         "x1": 195, "x2": 245,
                         "y1": 0, "y2": 480,
-                        "offsetX": 195, "offsetY": 0,
-                        "zoom": 1
+                        "offsetX": 195, "offsetY": 0
                     }, {
                         "resourceID": "dom1",
                         "start": start2,
@@ -79,8 +77,7 @@ var WH = WH || {};
                         "clipStart": getClipStart(),
                         "x1": 245, "x2": 295,
                         "y1": 0, "y2": 480,
-                        "offsetX": 245, "offsetY": 0,
-                        "zoom": 1
+                        "offsetX": 245, "offsetY": 0
                     }, {
                         "resourceID": "dom1",
                         "start": start2,
@@ -88,8 +85,7 @@ var WH = WH || {};
                         "clipStart": getClipStart(),
                         "x1": 295, "x2": 345,
                         "y1": 0, "y2": 480,
-                        "offsetX": 295, "offsetY": 0,
-                        "zoom": 1
+                        "offsetX": 295, "offsetY": 0
                     }, {
                         "resourceID": "dom1",
                         "start": start2,
@@ -97,8 +93,23 @@ var WH = WH || {};
                         "clipStart": getClipStart(),
                         "x1": 345, "x2": 395,
                         "y1": 0, "y2": 480,
-                        "offsetX": 345, "offsetY": 0,
-                        "zoom": 1
+                        "offsetX": 345, "offsetY": 0
+                    }, {
+                        "resourceID": "dom1",
+                        "start": start2,
+                        "end": end,
+                        "clipStart": getClipStart(),
+                        "x1": 395, "x2": 445,
+                        "y1": 0, "y2": 480,
+                        "offsetX": 395, "offsetY": 0
+                    }, {
+                        "resourceID": "dom1",
+                        "start": start2,
+                        "end": end,
+                        "clipStart": getClipStart(),
+                        "x1": 445, "x2": 495,
+                        "y1": 0, "y2": 480,
+                        "offsetX": 445, "offsetY": 0
                     }]);
 
 
@@ -125,7 +136,64 @@ var WH = WH || {};
                     "offsetX": 300, "offsetY": 58,
                     "zoom": 1.531,
                     "flipHorizontal": true
-                }]);
+                },
+
+
+                    {
+                        "resourceID": "dom2",
+                        "start": start,
+                        "end": end,
+                        "clipStart": 300,
+                        "offsetX": 500, "offsetY": 400,
+                        "x1": 500, "x2": 600,
+                        "y1": 400, "y2": 480
+                    },
+                    {
+                        "resourceID": "dom2",
+                        "start": start,
+                        "end": end,
+                        "clipStart": 300,
+                        "offsetX": 100, "offsetY": 300,
+                        "x1": 100, "x2": 200,
+                        "y1": 300, "y2": 480
+                    },
+                    // {
+                    //     "resourceID": "dom2",
+                    //     "start": start,
+                    //     "end": end,
+                    //     "clipStart": 100,
+                    //     "offsetX": 400, "offsetY": 380,
+                    //     "x1": 400, "x2": 500,
+                    //     "y1": 380, "y2": 480
+                    // },
+                    {
+                        "resourceID": "dom2",
+                        "start": start,
+                        "end": '40:0:0', // end,
+                        "clipStart": 156,
+                        "offsetX": 300, "offsetY": 200,
+                        "x1": 200, "x2": 300,
+                        "y1": 200, "y2": 400
+                    },
+                    {
+                        "resourceID": "dom2",
+                        "start": start,
+                        "end": end,
+                        "clipStart": 328,
+                        "offsetX": 400, "offsetY": 420,
+                        "x1": 400, "x2": 450,
+                        "y1": 420, "y2": 480
+                    },
+                    {
+                        "resourceID": "dom2",
+                        "start": start,
+                        "end": end,
+                        "clipStart": 247,
+                        "offsetX": 350, "offsetY": 350,
+                        "x1": 350, "x2": 400,
+                        "y1": 350, "y2": 480
+                    }
+                ]);
 
             // C
             start = "48:0:0";
@@ -168,8 +236,8 @@ var WH = WH || {};
                 },
                 {
                     "resourceID": "dom2",
-                    "start": "24:0:0",
-                    "end": "32:0:0",
+                    "start": start,
+                    "end": end,
                     "clipStart": "24:0:0",
                     "x1": 0, "x2": 337,
                     "y1": 0, "y2": 480,
