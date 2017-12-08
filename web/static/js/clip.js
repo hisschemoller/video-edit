@@ -46,15 +46,18 @@ var WH = WH || {};
             capture = function(ctx, framerate) {
                 draw(ctx);
                 video.currentTime += 1 / framerate;
-            }
+            },
 
-            getIsPlaying = function(time) {
+            update = function(time) {
                 if (isPlaying && time >= data.end) {
                     console.log('end clip');
                     isPlaying = false;
                     video.pause();
                     video.src = '';
                 }
+            },
+
+            getIsPlaying = function() {
                 return isPlaying;
             };
 
@@ -65,6 +68,7 @@ var WH = WH || {};
         that.start = start;
         that.draw = draw;
         that.capture = capture;
+        that.update = update;
         that.getIsPlaying = getIsPlaying;
         return that;
     };

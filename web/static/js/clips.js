@@ -1,3 +1,13 @@
+/**
+ * Manages the video clips.
+ *
+ * A fixed amount of video clip objects are available.
+ * If a video should start an available clip object is taken from idleClips.
+ * The clip is started and pushed to activeClips.
+ * Clips are played from old to new.
+ * When a clip stops it is moved back to idleClips.
+ */
+
 var WH = WH || {};
 
 (function(WH) {
@@ -6,31 +16,46 @@ var WH = WH || {};
 
         let that,
             numClips = 8,
-            clips = [],
-            clipIndex = 0,
+            idleClips = [],
+            activeClips = [],
+            stoppedClips = [],
 
             init = function() {
                 for (var i = 0; i < numClips; i++) {
-                    clips.push(WH.createClip());
+                    idleClips.push(WH.createClip());
                 }
             },
 
             startClips = function(clipData, isCapture) {
+                let clip;
                 for (let i = 0, n = clipData.length; i < n; i++) {
-                    clips[clipIndex].start(clipData[i], isCapture);
-                    clipIndex = (clipIndex + 1) % numClips;
+                    if (idleClips.length) {
+                        clip = idleClips.pop();
+                        clip.start(clipData[i], isCapture);
+                        activeClips.push(clip);
+                    }
                 }
             },
 
+            stopClips = function() {
+                idleClips.concat(stoppedClips);
+                stoppedClips.length = 0;
+            },
+
             draw = function(time, ctx) {
-                let clip,
-                    renderIndex = clipIndex;
-                for (let i = 0, n = numClips; i < n; i++) {
-                    clip = clips[renderIndex];
-                    if (clip.getIsPlaying(time)) {
+                let clip;
+                for (let i = 0, n = activeClips.length; i < n; i++) {
+                    clip = activeClips[i];
+                    clip.update(time);
+                    if (clip.getIsPlaying()) {
                         clip.draw(ctx);
+                    } else {
+                        stoppedClips.push(clip);
                     }
-                    renderIndex = (renderIndex + 1) %numClips;
+                }
+
+                if (stoppedClips.length) {
+                    stopClips();
                 }
             };
 
