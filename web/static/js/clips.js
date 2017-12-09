@@ -33,13 +33,16 @@ var WH = WH || {};
                         clip = idleClips.pop();
                         clip.start(clipData[i], isCapture);
                         activeClips.push(clip);
+                        console.log('startClips', idleClips.length);
                     }
                 }
             },
 
             stopClips = function() {
-                idleClips.concat(stoppedClips);
-                stoppedClips.length = 0;
+                console.log('stopClips stoppedClips', stoppedClips.length);
+                idleClips = idleClips.concat(stoppedClips);
+                stoppedClips = [];
+                console.log('stopClips idleClips', idleClips.length);
             },
 
             draw = function(time, ctx) {
