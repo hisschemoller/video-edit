@@ -220,8 +220,10 @@ var WH = WH || {};
                     "zoom": 1.31
                 }]);
 
-                // D
-                start = "64:0:0";
+
+
+                // scene D
+                start = WH.util.musicToTime('64:0:0');
                 end = "96:0:0";
                 clips = clips.concat([
                     {
@@ -255,8 +257,28 @@ var WH = WH || {};
                             "offsetX": 0, "offsetY": 355,
                             "zoom": 1.138
                         }
-
                 ]);
+
+            let startInterval = WH.util.musicToTime('1:0:0'),
+                duration = WH.util.musicToTime('4:0:0'),
+                width = 50,
+                clip, clipGlobalStart, clipX;
+            for (let i = 0, n = 8; i < n; i++) {
+                clipGlobalStart = start + (i * startInterval);
+                clipX = 440 + (Math.floor(Math.random() * 5) * width);
+                console.log(clipX, clipGlobalStart, clipGlobalStart + duration);
+                clip = {
+                    "resourceID": "dom2",
+                    "start": clipGlobalStart,
+                    "end": clipGlobalStart + duration,
+                    "clipStart": 150 + Math.floor(Math.random() * 200),
+                    "x1": clipX, "x2": clipX + width,
+                    "y1": 302, "y2": 480,
+                    "offsetX": clipX, "offsetY": 302
+                };
+                clips.push(clip);
+            }
+
 
             // E
             start = "96:0:0";
