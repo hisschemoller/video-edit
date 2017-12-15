@@ -25,12 +25,6 @@ var WH = WH || {};
                 }
 
                 const clipData = data.clips.slice(0);
-                //     pulsesPerBeat = data.settings.ppqn * (4 / data.settings.timesignature.denominator),
-                //     pulsesPerMeasure = pulsesPerBeat * data.settings.timesignature.denominator;
-                //
-                // secondsPerBeat = 60 / data.settings.bpm,
-                // secondsPerPulse = secondsPerBeat / pulsesPerBeat,
-                // secondsPerMeasure = pulsesPerMeasure * secondsPerPulse;
 
                 let clip;
                 for (let i = 0, n = clipData.length; i < n; i++) {
@@ -43,36 +37,6 @@ var WH = WH || {};
                 return clipData;
             },
 
-            // convertMusicTimestamp = function(timestamp) {
-            //     if (typeof timestamp === 'string') {
-            //         const timeArray = timestamp.split(':');
-            //         return (parseInt(timeArray[0]) * secondsPerMeasure) +
-            //             (parseInt(timeArray[1]) * secondsPerBeat) +
-            //             (parseInt(timeArray[2]) * secondsPerPulse);
-            //     } else if(typeof timestamp === 'number') {
-            //         return timestamp;
-            //     }
-            //
-            //     return 0;
-            // },
-
-            // adjustClipSettings = function(data) {
-            //     const clipData = data.clips.slice(0);
-            //
-            //     let clip, resource;
-            //     for (let i = 0, n = clipData.length; i < n; i++) {
-            //         clip = clipData[i];
-            //         resource = data.resources.find(resource => resource.id === clip.resourceID);
-            //         if (resource.startOffset) {
-            //             clip.start += resource.startOffset;
-            //             clip.end += resource.startOffset;
-            //             clip.clipStart += resource.startOffset;
-            //         }
-            //     }
-            //
-            //     return clipData;
-            // },
-
             convertToMilliseconds = function(data) {
                 const clipData = data.clips.slice(0);
 
@@ -81,7 +45,6 @@ var WH = WH || {};
                     clip = clipData[i];
                     clip.start *= 1000;
                     clip.end *= 1000;
-                    //clip.clipStart *= 1000;
                 }
 
                 return clipData;
@@ -178,22 +141,12 @@ var WH = WH || {};
 
                     return newClips;
                 }
-
-                // let isNothingToStart = true;
-                // if (clipIndex < data.clips.length && data.clips[clipIndex].start <= time) {
-                //     clips[clipIndex].start(clipData[clipDataIndex], settings.isCapture);
-                //     clipDataIndex++;
-                //     clipIndex = (clipIndex + 1) % numClips;
-                //     isNothingToStart = false;
-                // }
-                // return isNothingToStart;
             };
 
         that = specs.that || {};
 
         init();
-
-        // that.convertMusicTimestamp = convertMusicTimestamp;
+        
         that.get = get;
         that.skipToTime = skipToTime;
         that.getNewClipsData = getNewClipsData;
