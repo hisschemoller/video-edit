@@ -15,7 +15,7 @@ var WH = WH || {};
     WH.createClips = function(specs = {}, my = {}) {
 
         let that,
-            numClips = 8,
+            numClips = 30,
             idleClips = [],
             activeClips = [],
             stoppedClips = [],
