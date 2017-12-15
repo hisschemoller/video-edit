@@ -17,13 +17,13 @@ var WH = WH || {};
 
             start = function(newData, isVideoCapture) {
                 data = newData;
+                isPlaying = true;
                 isCapture = isVideoCapture;
                 video.src = data.resource.url;
                 console.log('start clip', data);
             },
 
             onVideoLoaded = function() {
-                isPlaying = true;
                 video.currentTime = data.clipStart;
                 video.muted = true;
 
