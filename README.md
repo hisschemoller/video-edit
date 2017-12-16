@@ -1,5 +1,6 @@
 # Video Edit
 Scripts to render video fragments on a canvas element.
+A node app captures the canvas frames and saves them to a PNG image sequence.
 
 ## FFMPEG
 
