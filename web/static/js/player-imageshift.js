@@ -1,5 +1,5 @@
 /**
- * ffmpeg -ss 140 -i 'dom2.avi' -c copy -t 60 'dom2a_sliced.avi'
+ * ffmpeg -ss 110 -i 'dom2.avi' -c copy -t 120 'dom2a_sliced.avi'
  * ffmpeg -i dom2a_sliced.avi -filter:v "crop=600:100:40:380" dom2b_cropped.avi
  * ffmpeg -i dom2b_cropped.avi dom2fietsers_%04d.png
  */
@@ -13,20 +13,22 @@ var WH = WH || {};
         let images = [],
             imgCount = 600,
             imgIndex = 0,
-            imgIndexStep = 5,
+            imgIndexStep = specs.imgIndexStep || 0,
+            imgStepForward = typeof specs.imgStepForward == 'boolean' ? specs.imgStepForward : true,
             imgWidth = 600,
             imgHeight = 100,
             imgSliceWidth = 10,
-            imgURLPrefix = 'static/tmp_dom2_fietsers/dom2fietsers_',
+            imgSliceCount = Math.ceil(imgWidth / imgSliceWidth),
+            imgURLPrefix = 'static/seq/tmp_dom2_fietsers/dom2fietsers_',
             imgURLSuffix = '.png',
             imgURLIndex = 1,
             imgUrlIndexStep = 1,
-            imgURLLastIndex = 1836,
+            imgURLLastIndex = 3636,
             canvas,
             ctx,
-            captureEnabled = true,
+            captureEnabled = false,
             captureCounter = 0,
-            captureThrottle = 20,
+            captureThrottle = 1,
             captureFrameCounter = 0,
             socket,
 
@@ -69,8 +71,12 @@ var WH = WH || {};
                 }
 
                 let img;
-                for (let i = 0; i < imgCount; i++) {
-                    img = images[(imgIndex + (i * imgIndexStep)) % imgCount];
+                for (let i = 0; i < imgSliceCount; i++) {
+                    if (imgStepForward) {
+                        img = images[(imgIndex + (i * imgIndexStep)) % imgCount];
+                    } else {
+                        img = images[(imgIndex + imgCount - (i * imgIndexStep)) % imgCount];
+                    }
                     ctx.drawImage(img, i * imgSliceWidth, 0, imgSliceWidth, imgHeight, i * imgSliceWidth, 0, imgSliceWidth, imgHeight);
                 }
 
@@ -85,7 +91,6 @@ var WH = WH || {};
                 setNextImage();
 
                 if (imgURLIndex < imgURLLastIndex) {
-                    console.log(imgURLIndex);
                     requestAnimationFrame(capture);
                 } else {
                     console.log('done');

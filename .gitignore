@@ -1,3 +1,4 @@
 node_modules
 tmp
-web/static/video/
+web/static/seq
+web/static/video

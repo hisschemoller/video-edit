@@ -9,5 +9,16 @@ document.addEventListener('DOMContentLoaded', function(e) {
     //     startOffset: WH.util.musicToTime('0:0:0')
     // });
 
-    WH.createPlayerImageShift();
+    // WH.createPlayerImageShift({
+    //     imgStepForward: false,
+    //     imgIndexStep: 10
+    // });
+
+    // WH.createPlayerImageShift({
+    //     imgIndexStep: 10
+    // });
+
+    WH.createPlayerImageShift({
+        imgIndexStep: 5
+    });
 });
