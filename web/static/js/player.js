@@ -8,7 +8,6 @@ var WH = WH || {};
             isCapture = specs.isCapture || false,
             startOffset = specs.startOffset || 0,
             data,
-            video,
             canvas,
             ctx,
             clips,
@@ -77,6 +76,7 @@ var WH = WH || {};
 
                 clips.draw(position, ctx);
                 position = performance.now() - origin;
+                clips.updatePosition();
                 addNewClips();
 
                 if (dev.info) {

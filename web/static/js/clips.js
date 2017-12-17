@@ -42,6 +42,14 @@ var WH = WH || {};
                 stoppedClips = [];
                 activeClips = activeClips.filter(clip => clip.getIsPlaying());
             },
+            
+            updatePosition = function() {
+                let clip;
+                for (let i = 0, n = activeClips.length; i < n; i++) {
+                    clip = activeClips[i];
+                    
+                }
+            },
 
             draw = function(time, ctx) {
                 let clip;
@@ -82,6 +90,7 @@ var WH = WH || {};
         init();
 
         that.startClips = startClips;
+        that.updatePosition = updatePosition;
         that.draw = draw;
         that.capture = capture;
         return that;

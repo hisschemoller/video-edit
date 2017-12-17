@@ -6,31 +6,31 @@ var WH = WH || {};
 
         let that,
             data,
-            video,
+            // video,
             isPlaying = false,
             isCapture = false,
 
             init = function() {
-                video = document.createElement('video');
-                video.addEventListener('loadeddata', onVideoLoaded);
+                // video = document.createElement('video');
+                // video.addEventListener('loadeddata', onVideoLoaded);
             },
 
             start = function(newData, isVideoCapture) {
                 data = newData;
                 isPlaying = true;
                 isCapture = isVideoCapture;
-                video.src = data.resource.url;
+                // video.src = data.resource.url;
                 console.log('start clip', data);
             },
 
-            onVideoLoaded = function() {
-                video.currentTime = data.clipStart;
-                video.muted = true;
-
-                if (!isCapture) {
-                    video.play();
-                }
-            },
+            // onVideoLoaded = function() {
+            //     video.currentTime = data.clipStart;
+            //     video.muted = true;
+            // 
+            //     if (!isCapture) {
+            //         video.play();
+            //     }
+            // },
 
             draw = function(ctx) {
                 if (data.flipHorizontal) {
