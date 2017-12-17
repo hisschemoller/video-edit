@@ -18,7 +18,18 @@ document.addEventListener('DOMContentLoaded', function(e) {
     //     imgIndexStep: 10
     // });
 
-    WH.createPlayerImageShift({
-        imgIndexStep: 5
+    // WH.createPlayerImageShift({
+    //     imgIndexStep: 5
+    // });
+    
+    WH.createPlayerImageShiftDom({
+        imgIndexStep: 5,
+        imgStepForward: false,
+        imgURLPrefix: 'static/seq/dom1/frame_',
+        imgURLLastIndex: 12732,
+        imgHeight: 150,
+        imgWidth: 200,
+        imgX: 40,
+        imgY: 180
     });
 });
