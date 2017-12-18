@@ -5,41 +5,40 @@ var WH = WH || {};
     WH.createClip = function(specs = {}, my = {}) {
 
         let that,
+            framerate = specs.framerate,
             data,
-            // video,
+            img,
+            imgURLPrefix,
+            imgURLSuffix = '.png',
+            imgURLNr,
+            globalStartPosition,
             isPlaying = false,
             isCapture = false,
 
             init = function() {
-                // video = document.createElement('video');
-                // video.addEventListener('loadeddata', onVideoLoaded);
+                img = new Image();
             },
 
-            start = function(newData, isVideoCapture) {
+            start = function(newData, isVideoCapture, position) {
                 data = newData;
                 isPlaying = true;
                 isCapture = isVideoCapture;
-                // video.src = data.resource.url;
+                globalStartPosition = position;
+                
+                imgURLPrefix = data.resource.url;
+                imgURLNr = (data.clipStart * framerate) + 1;
+                img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + imgURLNr).slice(-5) : '99999') + imgURLSuffix;
                 console.log('start clip', data);
             },
-
-            // onVideoLoaded = function() {
-            //     video.currentTime = data.clipStart;
-            //     video.muted = true;
-            // 
-            //     if (!isCapture) {
-            //         video.play();
-            //     }
-            // },
 
             draw = function(ctx) {
                 if (data.flipHorizontal) {
                     ctx.save();
                     ctx.scale(-1, 1);
-                    ctx.drawImage(video, data.sx, data.sy, data.sWidth, data.sHeight, data.dx, data.dy, data.dWidth, data.dHeight);
+                    ctx.drawImage(img, data.sx, data.sy, data.sWidth, data.sHeight, data.dx, data.dy, data.dWidth, data.dHeight);
                     ctx.restore();
                 } else {
-                    ctx.drawImage(video, data.sx, data.sy, data.sWidth, data.sHeight, data.dx, data.dy, data.dWidth, data.dHeight);
+                    ctx.drawImage(img, data.sx, data.sy, data.sWidth, data.sHeight, data.dx, data.dy, data.dWidth, data.dHeight);
                 }
             },
 
@@ -48,12 +47,20 @@ var WH = WH || {};
                 video.currentTime += 1 / framerate;
             },
 
-            update = function(time) {
-                if (isPlaying && time >= data.end) {
-                    console.log('end clip');
-                    isPlaying = false;
-                    video.pause();
-                    video.src = '';
+            update = function(position) {
+                if (isPlaying) {
+                    if (position < data.end) {
+                        let localPosition = ((position - globalStartPosition) / 1000) + data.clipStart;
+                        let newImgURLNr = Math.floor(localPosition * framerate) + 1;
+                        if (newImgURLNr !== imgURLNr) {
+                            imgURLNr = newImgURLNr;
+                            img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + imgURLNr).slice(-5) : '99999') + imgURLSuffix;
+                        }
+                    } else {
+                        console.log('end clip');
+                        isPlaying = false;
+                        imgURLPrefix = '';
+                    }
                 }
             },
 

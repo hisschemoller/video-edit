@@ -12,7 +12,6 @@ var WH = WH || {};
 
             init = function() {
                 data.clips = convertMusicTiming(data);
-                // data.clips = adjustClipSettings(data);
                 data.clips = convertToMilliseconds(data);
                 data.clips = addResourceDataToClips(data);
                 data.clips = addZoomData(data);

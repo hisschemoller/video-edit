@@ -22,16 +22,18 @@ var WH = WH || {};
 
             init = function() {
                 for (var i = 0; i < numClips; i++) {
-                    idleClips.push(WH.createClip());
+                    idleClips.push(WH.createClip({
+                        framerate: specs.framerate
+                    }));
                 }
             },
 
-            startClips = function(clipData, isCapture) {
+            startClips = function(clipData, isCapture, position) {
                 let clip;
                 for (let i = 0, n = clipData.length; i < n; i++) {
                     if (idleClips.length) {
                         clip = idleClips.pop();
-                        clip.start(clipData[i], isCapture);
+                        clip.start(clipData[i], isCapture, position);
                         activeClips.push(clip);
                     }
                 }
@@ -42,22 +44,14 @@ var WH = WH || {};
                 stoppedClips = [];
                 activeClips = activeClips.filter(clip => clip.getIsPlaying());
             },
-            
-            updatePosition = function() {
-                let clip;
-                for (let i = 0, n = activeClips.length; i < n; i++) {
-                    clip = activeClips[i];
-                    
-                }
-            },
 
             draw = function(time, ctx) {
                 let clip;
                 for (let i = 0, n = activeClips.length; i < n; i++) {
                     clip = activeClips[i];
-                    clip.update(time);
                     if (clip.getIsPlaying()) {
                         clip.draw(ctx);
+                        clip.update(time);
                     } else {
                         stoppedClips.push(clip);
                     }
@@ -72,9 +66,9 @@ var WH = WH || {};
                 let clip;
                 for (let i = 0, n = activeClips.length; i < n; i++) {
                     clip = activeClips[i];
-                    clip.update(time);
                     if (clip.getIsPlaying()) {
                         clip.capture(ctx, framerate);
+                        clip.update(time);
                     } else {
                         stoppedClips.push(clip);
                     }
@@ -90,7 +84,6 @@ var WH = WH || {};
         init();
 
         that.startClips = startClips;
-        that.updatePosition = updatePosition;
         that.draw = draw;
         that.capture = capture;
         return that;

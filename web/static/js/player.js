@@ -13,7 +13,7 @@ var WH = WH || {};
             clips,
             origin,
             position,
-            throttle = 8,
+            throttle = 1,
             throttleCounter = 0,
             captureCounter = 0,
             frameCounter = 0,
@@ -39,7 +39,9 @@ var WH = WH || {};
                 ctx.msImageSmoothingEnabled = false;
                 ctx.imageSmoothingEnabled = false;
 
-                clips = WH.createClips();
+                clips = WH.createClips({
+                    framerate: data.get().settings.framerate
+                });
 
                 console.log('start');
                 origin = performance.now();
@@ -63,7 +65,7 @@ var WH = WH || {};
             addNewClips = function() {
                 const clipdata = data.getNewClipsData(position);
                 if (clipdata && clipdata.length > 0) {
-                    clips.startClips(clipdata, isCapture);
+                    clips.startClips(clipdata, isCapture, position);
                 }
             },
 
@@ -76,7 +78,6 @@ var WH = WH || {};
 
                 clips.draw(position, ctx);
                 position = performance.now() - origin;
-                clips.updatePosition();
                 addNewClips();
 
                 if (dev.info) {
