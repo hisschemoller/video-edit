@@ -30,19 +30,22 @@ var WH = WH || {};
             end = specs.end,
             canvas,
             ctx,
-            framerate = 30,
+            framerate = specs.framerate || 30,
             millisecondsPerFrame,
             then,
             now,
             elapsed,
             
-            captureEnabled = false,
-            captureCounter = 0,
-            captureThrottle = 1,
+            captureEnabled = specs.captureEnabled || false,
             captureFrameCounter = 0,
+            captureFramerate = specs.captureFramerate || 10,
             socket,
 
             init = function() {
+                console.log('start: ', start);
+                console.log('end: ', end);
+                console.log('number of frames: ', (end - start) * framerate);
+                
                 canvas = document.getElementById('canvas');
                 canvas.width = imgWidth;
                 canvas.height = imgHeight;
@@ -53,7 +56,7 @@ var WH = WH || {};
                 ctx.msImageSmoothingEnabled = false;
                 ctx.imageSmoothingEnabled = false;
                 
-                millisecondsPerFrame = 1000 / framerate;
+                millisecondsPerFrame = 1000 / (captureEnabled ? captureFramerate : framerate);
                 imgURLIndex = Math.max(imgURLIndex, start * framerate);
                 imgURLLastIndex = Math.min(imgURLLastIndex, (end * framerate) + imgCount);
 
@@ -65,7 +68,7 @@ var WH = WH || {};
                 if (captureEnabled === true) {
                     socket = io.connect('http://localhost:3000');
                     captureFrameCounter = 0;
-                    setTimeout(initRun, 2000);
+                    setTimeout(initRun, 10000);
                 } else {
                     initRun();
                 }
@@ -78,13 +81,6 @@ var WH = WH || {};
             },
 
             run = function() {
-                // throttle playback 
-                // captureCounter++;
-                // if (captureCounter % captureThrottle !== 0) {
-                //     requestAnimationFrame(capture);
-                //     return;
-                // }
-                
                 // wait for next frame
                 now = performance.now();
                 elapsed = now - then;
