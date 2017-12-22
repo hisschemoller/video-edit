@@ -28,6 +28,12 @@ var WH = WH || {};
             imgURLLastIndex = specs.imgURLLastIndex,
             canvas,
             ctx,
+            framerate = 30,
+            millisecondsPerFrame,
+            then,
+            now,
+            elapsed,
+            
             captureEnabled = false,
             captureCounter = 0,
             captureThrottle = 1,
@@ -53,9 +59,70 @@ var WH = WH || {};
                 if (captureEnabled === true) {
                     socket = io.connect('http://localhost:3000');
                     captureFrameCounter = 0;
-                    setTimeout(capture, 2000);
+                    setTimeout(initRun, 2000);
                 } else {
-                    capture();
+                    initRun();
+                }
+            },
+            
+            initRun = function() {
+                millisecondsPerFrame = 1000 / framerate;
+                then = performance.now();
+                now = then;
+                run();
+            },
+
+            run = function() {
+                // throttle playback 
+                // captureCounter++;
+                // if (captureCounter % captureThrottle !== 0) {
+                //     requestAnimationFrame(capture);
+                //     return;
+                // }
+                
+                // wait for next frame
+                now = performance.now();
+                elapsed = now - then;
+                if (elapsed > millisecondsPerFrame) {
+                    then = now - (elapsed % millisecondsPerFrame);
+                    
+                    // draw all images on canvas
+                    let img;
+                    for (let i = 0; i < imgSliceCount; i++) {
+                        if (imgStepForward) {
+                            img = images[(imgIndex + (i * imgIndexStep)) % imgCount];
+                        } else {
+                            img = images[(imgIndex + imgCount - (i * imgIndexStep)) % imgCount];
+                        }
+                        ctx.drawImage(
+                            img, 
+                            imgX + (i * imgSliceWidth), 
+                            imgY, 
+                            imgSliceWidth, 
+                            imgHeight, 
+                            i * imgSliceWidth, 
+                            0, 
+                            imgSliceWidth, 
+                            imgHeight);
+                    }
+                    
+                    // save image to file
+                    if (captureEnabled) {
+                        socket.emit('render-frame', {
+                            frame: captureFrameCounter,
+                            file: canvas.toDataURL()
+                        });
+                        captureFrameCounter++;
+                    }
+                    
+                    setNextImage();
+                }
+                
+                // request next frame if not reached the end
+                if (imgURLIndex < imgURLLastIndex) {
+                    requestAnimationFrame(run);
+                } else {
+                    console.log('done');
                 }
             },
 
@@ -63,49 +130,6 @@ var WH = WH || {};
                 images[imgIndex].src = imgURLPrefix + ((imgURLIndex <= 99999) ? ('0000' + imgURLIndex).slice(-5) : '99999') + imgURLSuffix;
                 imgURLIndex += imgUrlIndexStep;
                 imgIndex = (imgIndex + 1) % imgCount;
-            },
-
-            capture = function() {
-                captureCounter++;
-                if (captureCounter % captureThrottle !== 0) {
-                    requestAnimationFrame(capture);
-                    return;
-                }
-
-                let img;
-                for (let i = 0; i < imgSliceCount; i++) {
-                    if (imgStepForward) {
-                        img = images[(imgIndex + (i * imgIndexStep)) % imgCount];
-                    } else {
-                        img = images[(imgIndex + imgCount - (i * imgIndexStep)) % imgCount];
-                    }
-                    ctx.drawImage(
-                        img, 
-                        imgX + (i * imgSliceWidth), 
-                        imgY, 
-                        imgSliceWidth, 
-                        imgHeight, 
-                        i * imgSliceWidth, 
-                        0, 
-                        imgSliceWidth, 
-                        imgHeight);
-                }
-
-                if (captureEnabled) {
-                    socket.emit('render-frame', {
-                        frame: captureFrameCounter,
-                        file: canvas.toDataURL()
-                    });
-                    captureFrameCounter++;
-                }
-
-                setNextImage();
-
-                if (imgURLIndex < imgURLLastIndex) {
-                    requestAnimationFrame(capture);
-                } else {
-                    console.log('done');
-                }
             };
 
         that = specs.that || {};
