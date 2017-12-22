@@ -33,9 +33,21 @@ document.addEventListener('DOMContentLoaded', function(e) {
     //     imgY: 180
     // });
     
-    WH.createPlayer({
-        dataObject: WH.createTestData(),
-        isCapture: false,
-        startOffset: WH.util.musicToTime('0:0:0')
+    WH.createPlayerImageShiftDom({
+        imgIndexStep: 20,
+        imgSliceWidth: 50,
+        imgStepForward: true,
+        imgURLPrefix: 'static/seq/dom1/frame_',
+        imgURLLastIndex: 12732,
+        imgHeight: 280,
+        imgWidth: 440,
+        imgX: 100,
+        imgY: 200
     });
+    
+    // WH.createPlayer({
+    //     dataObject: WH.createDom2Data(),
+    //     isCapture: false,
+    //     startOffset: WH.util.musicToTime('0:0:0')
+    // });
 });
