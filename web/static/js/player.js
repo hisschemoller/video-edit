@@ -13,7 +13,7 @@ var WH = WH || {};
             clips,
             origin,
             position,
-            throttle = 1,
+            throttle = specs.throttle || 1,
             throttleCounter = 0,
             captureCounter = 0,
             frameCounter = 0,
