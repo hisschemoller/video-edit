@@ -30,6 +30,12 @@ var WH = WH || {};
                 img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + imgURLNr).slice(-5) : '99999') + imgURLSuffix;
                 console.log('start clip', data);
             },
+            
+            end = () => {
+                console.log('end clip');
+                isPlaying = false;
+                imgURLPrefix = '';
+            }
 
             draw = function(ctx) {
                 if (data.flipHorizontal) {
@@ -53,13 +59,15 @@ var WH = WH || {};
                         let localPosition = ((position - globalStartPosition) / 1000) + data.clipStart;
                         let newImgURLNr = Math.floor(localPosition * framerate) + 1;
                         if (newImgURLNr !== imgURLNr) {
-                            imgURLNr = newImgURLNr;
-                            img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + imgURLNr).slice(-5) : '99999') + imgURLSuffix;
+                            if (imgURLNr <= data.resource.frames) {
+                                imgURLNr = newImgURLNr;
+                                img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + imgURLNr).slice(-5) : '99999') + imgURLSuffix;
+                            } else {
+                                end();
+                            }
                         }
                     } else {
-                        console.log('end clip');
-                        isPlaying = false;
-                        imgURLPrefix = '';
+                        end();
                     }
                 }
             },
