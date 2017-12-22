@@ -97,7 +97,7 @@ var WH = WH || {};
                         if (imgStepForward) {
                             img = images[(imgIndex + (i * imgIndexStep)) % imgCount];
                         } else {
-                            img = images[(imgIndex + imgCount - (i * imgIndexStep)) % imgCount];
+                            img = images[(imgIndex + imgCount - 1 - (i * imgIndexStep)) % imgCount];
                         }
                         ctx.drawImage(
                             img, 
