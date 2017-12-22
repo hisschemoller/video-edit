@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     //     imgY: 180
     // });
     
-    WH.createPlayerImageShiftDom({
+    WH.createPlayerTimeShift({
         imgIndexStep: 20,
         imgSliceWidth: 50,
         imgStepForward: true,

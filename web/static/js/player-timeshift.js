@@ -1,8 +1,14 @@
+/**
+ * @type {Number} imgIndexStep
+ * Number of frames to jump each slice, 
+ * so a time difference of (imgIndexStep / framerate) seconds.
+ * 
+ */
+
 var WH = WH || {};
 
 (function(WH) {
-
-    WH.createPlayerImageShiftDom = function(specs = {}, my = {}) {
+    WH.createPlayerTimeShift = function(specs = {}, my = {}) {
 
         let images = [],
             imgCount = 600,
@@ -13,7 +19,7 @@ var WH = WH || {};
             imgWidth = specs.imgWidth,
             imgX = specs.imgX,
             imgY = specs.imgY,
-            imgSliceWidth = 10,
+            imgSliceWidth = specs.imgSliceWidth || 10,
             imgSliceCount = Math.ceil(imgWidth / imgSliceWidth),
             imgURLPrefix = specs.imgURLPrefix,
             imgURLSuffix = '.png',
