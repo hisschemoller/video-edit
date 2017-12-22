@@ -17,13 +17,16 @@ var WH = WH || {};
             },
             resources: [{
                     id: 'dom1',
-                    url: 'static/seq/dom1/frame_'
+                    url: 'static/seq/dom1/frame_',
+                    frames: 12732
                 }, {
                     id: 'dom2',
-                    url: 'static/seq/dom2/frame_'
+                    url: 'static/seq/dom2/frame_',
+                    frames: 12382
                 }, {
                     id: 'dom1_w50',
-                    url: 'static/seq/dom1_w50_m32_x100_y200_w440_h280/frame-'
+                    url: 'static/seq/dom1_w50_m32_x100_y200_w440_h280/frame-',
+                    frames: 2214
                 }
             ],
             clips: []
@@ -66,26 +69,26 @@ var WH = WH || {};
                     zoom: 0.719
                 }]);
                 
-            // start = '32:0:0';
-            // end = '48:0:0';
-            // clips = clips.concat([
-            //     {
-            //         resourceID: 'dom2',
-            //         start: start,
-            //         end: end,
-            //         clipStart: 120,
-            //         x1: 0, x2: 320,
-            //         y1: 0, y2: 480
-            //     }, {
-            //         resourceID: 'dom1',
-            //         start: start,
-            //         end: end,
-            //         clipStart: 100,
-            //         x1: 320, x2: 640,
-            //         y1: 0, y2: 480,
-            //         offsetX: 0, offsetY: 0,
-            //         zoom: 1
-            //     }]);
+            start = '32:0:0';
+            end = '48:0:0';
+            clips = clips.concat([
+                {
+                    resourceID: 'dom2',
+                    start: start,
+                    end: end,
+                    clipStart: 120,
+                    x1: 0, x2: 320,
+                    y1: 0, y2: 480
+                }, {
+                    resourceID: 'dom1',
+                    start: start,
+                    end: end,
+                    clipStart: 100,
+                    x1: 320, x2: 640,
+                    y1: 0, y2: 480,
+                    offsetX: 0, offsetY: 0,
+                    zoom: 1
+                }]);
 
             return clips;
         },
