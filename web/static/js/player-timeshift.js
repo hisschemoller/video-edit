@@ -26,6 +26,8 @@ var WH = WH || {};
             imgURLIndex = 1,
             imgUrlIndexStep = 1,
             imgURLLastIndex = specs.imgURLLastIndex,
+            start = specs.start,
+            end = specs.end,
             canvas,
             ctx,
             framerate = 30,
@@ -50,6 +52,10 @@ var WH = WH || {};
                 ctx.imageSmoothingQuality = "high";
                 ctx.msImageSmoothingEnabled = false;
                 ctx.imageSmoothingEnabled = false;
+                
+                millisecondsPerFrame = 1000 / framerate;
+                imgURLIndex = Math.max(imgURLIndex, start * framerate);
+                imgURLLastIndex = Math.min(imgURLLastIndex, (end * framerate) + imgCount);
 
                 for (let i = 0; i < imgCount; i++) {
                     images.push(new Image());
@@ -66,7 +72,6 @@ var WH = WH || {};
             },
             
             initRun = function() {
-                millisecondsPerFrame = 1000 / framerate;
                 then = performance.now();
                 now = then;
                 run();

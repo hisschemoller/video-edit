@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', function(e) {
         imgStepForward: true,
         imgURLPrefix: 'static/seq/dom1/frame_',
         imgURLLastIndex: 12732,
+        start: 10,
+        end: 20,
         imgHeight: 280,
         imgWidth: 440,
         imgX: 100,
