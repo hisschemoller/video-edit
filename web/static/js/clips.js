@@ -39,7 +39,6 @@ var WH = WH || {};
                 }
                 
                 activeClips.sort((a, b) => {
-                    console.log(a.getZIndex(), b.getZIndex());
                     return a.getZIndex() - b.getZIndex();
                 });
             },

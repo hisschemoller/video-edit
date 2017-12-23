@@ -26,7 +26,7 @@ var WH = WH || {};
                 globalStartPosition = position;
                 
                 imgURLPrefix = data.resource.url;
-                imgURLNr = (data.clipStart * framerate) + 1;
+                imgURLNr = Math.round(data.clipStart * framerate) + 1;
                 img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + imgURLNr).slice(-5) : '99999') + imgURLSuffix;
                 console.log('start clip', data);
             },
