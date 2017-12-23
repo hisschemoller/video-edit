@@ -27,6 +27,10 @@ var WH = WH || {};
                     id: 'dom1_w50',
                     url: 'static/seq/dom1_w50_l32_s0_x195_y150_w450_h330/frame_',
                     frames: 2283
+                }, {
+                    id: 'dom1_w50h',
+                    url: 'static/seq/dom1_w50_l32_s10_x195_y150_w450_h330_h/frame_',
+                    frames: 1683
                 }
             ],
             clips: []
@@ -37,8 +41,8 @@ var WH = WH || {};
             let clips = [];
 
             // scene A
-            let start = '0:0:0',
-                end = '32:0:0';
+            let start = WH.util.musicToTime('0:0:0'),
+                end = WH.util.musicToTime('32:0:0');
 
             clips = [...clips, 
                 {
@@ -52,11 +56,12 @@ var WH = WH || {};
                 {
                     resourceID: 'dom1_w50',
                     start: start,
-                    end: end,
+                    end: start + WH.util.musicToTime('24:0:0'),
                     clipStart: 0,
                     x1: 0, x2: 640,
                     y1: 0, y2: 480,
-                    offsetX: -195, offsetY: -150
+                    offsetX: -195, offsetY: -150,
+                    zIndex: 1
                 }, 
                 {
                     resourceID: 'dom2',
@@ -66,8 +71,30 @@ var WH = WH || {};
                     x1: 0, x2: 195,
                     y1: 29, y2: 373,
                     offsetX: 45, offsetY: -5,
-                    zoom: 0.719
-                }];
+                    zoom: 0.719,
+                    zIndex: 2
+                }, 
+                {
+                    resourceID: 'dom1_w50h',
+                    start: start + WH.util.musicToTime('16:0:0'),
+                    end: start + WH.util.musicToTime('24:0:0'),
+                    clipStart: WH.util.musicToTime('16:0:0') - (600 / 30),
+                    x1: 0, x2: 640,
+                    y1: 0, y2: 480,
+                    offsetX: -195, offsetY: -150,
+                    zIndex: 1
+                }, 
+                {
+                    resourceID: 'dom1_w50h',
+                    start: start + WH.util.musicToTime('24:0:0'),
+                    end: end,
+                    clipStart: WH.util.musicToTime('24:0:0') - (600 / 30),
+                    x1: 0, x2: 640,
+                    y1: 0, y2: 480,
+                    offsetX: -195, offsetY: -150,
+                    zIndex: 1
+                }
+            ];
             
             // scene B
             start = '32:0:0';
