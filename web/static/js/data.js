@@ -15,6 +15,7 @@ var WH = WH || {};
                 data.clips = convertToMilliseconds(data);
                 data.clips = addResourceDataToClips(data);
                 data.clips = addZoomData(data);
+                data.clips = addDefaultValues(data);
                 data.endTime = getEndTime(data.clips);
             },
 
@@ -87,6 +88,17 @@ var WH = WH || {};
                     if (clip.flipHorizontal) {
                         clip.dx -= clip.dWidth;
                     }
+                }
+
+                return clipData;
+            },
+            
+            addDefaultValues = (data) => {
+                const clipData = [...data.clips];
+                let clip;
+                for (let i = 0, n = clipData.length; i < n; i++) {
+                    clip = clipData[i];
+                    clip.zIndex = clip.zIndex || 0;
                 }
 
                 return clipData;

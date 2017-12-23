@@ -37,6 +37,11 @@ var WH = WH || {};
                         activeClips.push(clip);
                     }
                 }
+                
+                activeClips.sort((a, b) => {
+                    console.log(a.getZIndex(), b.getZIndex());
+                    return a.getZIndex() - b.getZIndex();
+                });
             },
 
             stopClips = function() {

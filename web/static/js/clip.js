@@ -74,6 +74,10 @@ var WH = WH || {};
 
             getIsPlaying = function() {
                 return isPlaying;
+            },
+
+            getZIndex = function() {
+                return data.zIndex;;
             };
 
         that = specs.that || {};
@@ -85,6 +89,7 @@ var WH = WH || {};
         that.capture = capture;
         that.update = update;
         that.getIsPlaying = getIsPlaying;
+        that.getZIndex = getZIndex;
         return that;
     };
 

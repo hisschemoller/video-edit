@@ -40,7 +40,7 @@ var WH = WH || {};
             let start = '0:0:0',
                 end = '32:0:0';
 
-            clips = clips.concat([
+            clips = [...clips, 
                 {
                     resourceID: 'dom1',
                     start: start,
@@ -67,7 +67,7 @@ var WH = WH || {};
                     y1: 29, y2: 373,
                     offsetX: 45, offsetY: -5,
                     zoom: 0.719
-                }]);
+                }];
             
             // scene B
             start = '32:0:0';
@@ -87,7 +87,7 @@ var WH = WH || {};
                     clipStart: 78,
                     x1: 0, x2: 337,
                     y1: 0, y2: 412,
-                    offsetX: 300, offsetY: 58,
+                    offsetX: 300, offsetY: 55,
                     zoom: 1.531,
                     flipHorizontal: true
                 }]);
