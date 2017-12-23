@@ -15,12 +15,13 @@ var WH = WH || {};
             imgIndex = 0,
             imgIndexStep = specs.imgIndexStep || 0,
             imgStepForward = typeof specs.imgStepForward == 'boolean' ? specs.imgStepForward : true,
-            imgHeight = specs.imgHeight,
-            imgWidth = specs.imgWidth,
-            imgX = specs.imgX,
-            imgY = specs.imgY,
-            imgSliceWidth = specs.imgSliceWidth || 10,
-            imgSliceCount = Math.ceil(imgWidth / imgSliceWidth),
+            imgHeight = specs.imgHeight || 100,
+            imgWidth = specs.imgWidth || 100,
+            imgX = specs.imgX || 0,
+            imgY = specs.imgY || 0,
+            imgSliceSize = specs.imgSliceSize || 10,
+            imgSliceDirection = specs.imgSliceDirection || 'column',
+            imgSliceCount = Math.ceil((imgSliceDirection === 'column' ? imgWidth : imgHeight) / imgSliceSize),
             imgURLPrefix = specs.imgURLPrefix,
             imgURLSuffix = '.png',
             imgURLIndex = 1,
@@ -95,16 +96,29 @@ var WH = WH || {};
                         } else {
                             img = images[(imgIndex + imgCount - 1 - (i * imgIndexStep)) % imgCount];
                         }
-                        ctx.drawImage(
-                            img, 
-                            imgX + (i * imgSliceWidth), 
-                            imgY, 
-                            imgSliceWidth, 
-                            imgHeight, 
-                            i * imgSliceWidth, 
-                            0, 
-                            imgSliceWidth, 
-                            imgHeight);
+                        if (imgSliceDirection === 'row') {
+                            ctx.drawImage(
+                                img, 
+                                imgX, 
+                                imgY + (i * imgSliceSize), 
+                                imgWidth, 
+                                imgSliceSize, 
+                                0, 
+                                i * imgSliceSize, 
+                                imgWidth, 
+                                imgSliceSize);
+                        } else {
+                            ctx.drawImage(
+                                img, 
+                                imgX + (i * imgSliceSize), 
+                                imgY, 
+                                imgSliceSize, 
+                                imgHeight, 
+                                i * imgSliceSize, 
+                                0, 
+                                imgSliceSize, 
+                                imgHeight);
+                        }
                     }
                     
                     // save image to file
