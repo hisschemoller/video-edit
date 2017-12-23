@@ -25,8 +25,8 @@ var WH = WH || {};
                     frames: 12382
                 }, {
                     id: 'dom1_w50',
-                    url: 'static/seq/dom1_w50_m32_x100_y200_w440_h280/frame-',
-                    frames: 2214
+                    url: 'static/seq/dom1_w50_l32_s0_x195_y150_w450_h330/frame_',
+                    frames: 2283
                 }
             ],
             clips: []
@@ -56,7 +56,7 @@ var WH = WH || {};
                     clipStart: 0,
                     x1: 0, x2: 640,
                     y1: 0, y2: 480,
-                    offsetX: -100, offsetY: -200
+                    offsetX: -195, offsetY: -150
                 }, 
                 {
                     resourceID: 'dom2',
@@ -68,7 +68,8 @@ var WH = WH || {};
                     offsetX: 45, offsetY: -5,
                     zoom: 0.719
                 }]);
-                
+            
+            // scene B
             start = '32:0:0';
             end = '48:0:0';
             clips = clips.concat([
@@ -76,18 +77,19 @@ var WH = WH || {};
                     resourceID: 'dom2',
                     start: start,
                     end: end,
-                    clipStart: 120,
-                    x1: 0, x2: 320,
+                    clipStart: 350,
+                    x1: 0, x2: 640,
                     y1: 0, y2: 480
                 }, {
                     resourceID: 'dom1',
                     start: start,
                     end: end,
-                    clipStart: 100,
-                    x1: 320, x2: 640,
-                    y1: 0, y2: 480,
-                    offsetX: 0, offsetY: 0,
-                    zoom: 1
+                    clipStart: 78,
+                    x1: 0, x2: 337,
+                    y1: 0, y2: 412,
+                    offsetX: 300, offsetY: 58,
+                    zoom: 1.531,
+                    flipHorizontal: true
                 }]);
 
             return clips;
