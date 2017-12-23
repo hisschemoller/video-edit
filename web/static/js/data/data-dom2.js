@@ -74,21 +74,21 @@ var WH = WH || {};
                     zoom: 0.719,
                     zIndex: 2
                 }, 
+                // {
+                //     resourceID: 'dom1_w50h',
+                //     start: start + WH.util.musicToTime('16:0:0'),
+                //     end: start + WH.util.musicToTime('24:0:0'),
+                //     clipStart: WH.util.musicToTime('16:0:0') - (600 / 30) + 1,
+                //     x1: 195 + 150, x2: 640,
+                //     y1: 150, y2: 480,
+                //     offsetX: 150, offsetY: 0,
+                //     zIndex: 1
+                // }, 
                 {
                     resourceID: 'dom1_w50h',
                     start: start + WH.util.musicToTime('16:0:0'),
-                    end: start + WH.util.musicToTime('24:0:0'),
-                    clipStart: WH.util.musicToTime('16:0:0') - (600 / 30) + 0,
-                    x1: 195 + 150, x2: 640,
-                    y1: 150, y2: 480,
-                    offsetX: 150, offsetY: 0,
-                    zIndex: 1
-                }, 
-                {
-                    resourceID: 'dom1_w50h',
-                    start: start + WH.util.musicToTime('24:0:0'),
                     end: end,
-                    clipStart: WH.util.musicToTime('24:0:0') - (600 / 30) + 0,
+                    clipStart: WH.util.musicToTime('16:0:0') - (600 / 30) + 2,
                     x1: 195, x2: 640,
                     y1: 150, y2: 480,
                     zIndex: 1
