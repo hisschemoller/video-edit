@@ -42,15 +42,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
         }
     });
     
-    let createPlayer = () => {
-        WH.createPlayer({
-            dataObject: WH.createDom2Data(),
-            isCapture: false,
-            startOffset: WH.util.musicToTime('0:0:0'),
-            throttle: 5
-        });
-    }
-    
     let createTimeShiftPlayerSceneA1 = () => {
         // scene A - 1
         WH.createPlayerTimeShift({
@@ -91,6 +82,15 @@ document.addEventListener('DOMContentLoaded', function(e) {
             framerate: 30,
             captureFramerate: 8,
             captureEnabled: true
+        });
+    }
+    
+    let createPlayer = () => {
+        WH.createPlayer({
+            dataObject: WH.createDom2Data(),
+            isCapture: false,
+            startOffset: WH.util.musicToTime('0:0:0'),
+            throttle: 5
         });
     }
     

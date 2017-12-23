@@ -42,14 +42,15 @@ var WH = WH || {};
 
             // scene A
             let start = WH.util.musicToTime('0:0:0'),
-                end = WH.util.musicToTime('32:0:0');
+                end = WH.util.musicToTime('32:0:0'),
+                dom1ClipStart = 10;
 
             clips = [...clips, 
                 {
                     resourceID: 'dom1',
                     start: start,
                     end: end,
-                    clipStart: 10,
+                    clipStart: dom1ClipStart,
                     x1: 0, x2: 640,
                     y1: 0, y2: 480
                 }, 
@@ -58,9 +59,8 @@ var WH = WH || {};
                     start: start,
                     end: start + WH.util.musicToTime('24:0:0'),
                     clipStart: 0,
-                    x1: 0, x2: 640,
-                    y1: 0, y2: 480,
-                    offsetX: -195, offsetY: -150,
+                    x1: 195, x2: 640,
+                    y1: 150, y2: 480,
                     zIndex: 1
                 }, 
                 {
@@ -78,20 +78,19 @@ var WH = WH || {};
                     resourceID: 'dom1_w50h',
                     start: start + WH.util.musicToTime('16:0:0'),
                     end: start + WH.util.musicToTime('24:0:0'),
-                    clipStart: WH.util.musicToTime('16:0:0') - (600 / 30),
-                    x1: 0, x2: 640,
-                    y1: 0, y2: 480,
-                    offsetX: -195, offsetY: -150,
+                    clipStart: WH.util.musicToTime('16:0:0') - (600 / 30) + 0,
+                    x1: 195 + 150, x2: 640,
+                    y1: 150, y2: 480,
+                    offsetX: 150, offsetY: 0,
                     zIndex: 1
                 }, 
                 {
                     resourceID: 'dom1_w50h',
                     start: start + WH.util.musicToTime('24:0:0'),
                     end: end,
-                    clipStart: WH.util.musicToTime('24:0:0') - (600 / 30),
-                    x1: 0, x2: 640,
-                    y1: 0, y2: 480,
-                    offsetX: -195, offsetY: -150,
+                    clipStart: WH.util.musicToTime('24:0:0') - (600 / 30) + 0,
+                    x1: 195, x2: 640,
+                    y1: 150, y2: 480,
                     zIndex: 1
                 }
             ];
