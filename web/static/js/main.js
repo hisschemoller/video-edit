@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
         WH.createPlayer({
             dataObject: WH.createDom2Data(),
             isCapture: false,
-            startOffset: WH.util.musicToTime('32:0:0'),
+            startOffset: WH.util.musicToTime('48:0:0'),
             throttle: 5
         });
     }

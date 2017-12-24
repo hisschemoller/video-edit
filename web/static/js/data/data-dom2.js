@@ -130,6 +130,32 @@ var WH = WH || {};
                     zoom: 1.531,
                     flipHorizontal: true
                 }]);
+            
+            
+            // C
+            start = '48:0:0';
+            end = '64:0:0';
+            clips = clips.concat([
+                {
+                    resourceID: 'dom2',
+                    start: start,
+                    end: end,
+                    clipStart: 18,
+                    x1: 0, x2: 640,
+                    y1: 0, y2: 480 - 59,
+                    offsetX: 3, offsetY: 55,
+                    zoom: 1.035
+                },
+                {
+                    resourceID: 'dom1',
+                    start: start,
+                    end: end,
+                    clipStart: 86, // 160,
+                    x1: 186, x2: 640,
+                    y1: 0, y2: 480,
+                    offsetX: 80, offsetY: 10,
+                    zoom: 1.31
+                }]);
 
             return clips;
         },
