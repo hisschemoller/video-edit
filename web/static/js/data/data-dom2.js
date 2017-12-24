@@ -31,6 +31,10 @@ var WH = WH || {};
                     id: 'dom1_w50h',
                     url: 'static/seq/dom1_w50_l32_s10_x195_y150_w450_h330_h/frame_',
                     frames: 1683
+                }, {
+                    id: 'dom2_w8h',
+                    url: 'static/seq/dom2_w8_l16_s3_x0_y320_w640_h160/frame_',
+                    frames: 1176
                 }
             ],
             clips: []
@@ -106,7 +110,16 @@ var WH = WH || {};
                     clipStart: 350,
                     x1: 0, x2: 640,
                     y1: 0, y2: 480
-                }, {
+                }, 
+                {
+                    resourceID: 'dom2_w8h',
+                    start: start,
+                    end: end,
+                    clipStart: 0,
+                    x1: 0, x2: 640,
+                    y1: 320, y2: 480
+                }, 
+                {
                     resourceID: 'dom1',
                     start: start,
                     end: end,

@@ -69,7 +69,7 @@ var WH = WH || {};
                 if (captureEnabled === true) {
                     socket = io.connect('http://localhost:3000');
                     captureFrameCounter = 0;
-                    setTimeout(initRun, 10000);
+                    setTimeout(initRun, 12000);
                 } else {
                     initRun();
                 }
