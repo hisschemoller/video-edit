@@ -36,6 +36,7 @@ var WH = WH || {};
             then,
             now,
             elapsed,
+            infoTimeEl = document.querySelector('.info__time'),
             
             captureEnabled = specs.captureEnabled || false,
             captureFrameCounter = 0,
@@ -60,7 +61,7 @@ var WH = WH || {};
                 
                 millisecondsPerFrame = 1000 / (captureEnabled ? captureFramerate : framerate);
                 imgURLIndex = Math.max(imgURLIndex, start * framerate);
-                imgURLLastIndex = Math.min(imgURLLastIndex, (end * framerate) + imgCount);
+                imgURLLastIndex = Math.floor(Math.min(imgURLLastIndex, (end * framerate) + imgCount));
 
                 for (let i = 0; i < imgCount; i++) {
                     images.push(new Image());
@@ -132,6 +133,9 @@ var WH = WH || {};
                     }
                     
                     setNextImage();
+
+                    let position = (((imgURLIndex - imgCount) / framerate) - start).toFixed(1);
+                    infoTimeEl.innerHTML = `${imgURLIndex} / ${imgURLLastIndex} frames, ${position} sec.`;
                 }
                 
                 // request next frame if not reached the end
