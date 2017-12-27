@@ -150,7 +150,8 @@ var WH = WH || {};
             setNextImage = function() {
                 let localImgURLIndex = imgURLIndex;
                 if (direction === 'reverse') {
-                    localImgURLIndex = Math.max(imgURLLastIndex + (start * framerate) - imgURLIndex, 1);
+                    localImgURLIndex = imgURLLastIndex + (start * framerate) - imgURLIndex;
+                    localImgURLIndex = Math.max(1, Math.min(localImgURLIndex, imgURLLastIndex));
                 }
                 images[imgIndex].src = imgURLPrefix + ((localImgURLIndex <= 99999) ? ('0000' + localImgURLIndex).slice(-5) : '99999') + imgURLSuffix;
                 imgURLIndex += imgUrlIndexStep;

@@ -219,7 +219,7 @@ var WH = WH || {};
                         resourceID: 'dom2_d2',
                         start:  start + WH.util.musicToTime('16:0:0'),
                         end: end,
-                        clipStart: 4,
+                        clipStart: 3.5,
                         x1: 40, x2: 640,
                         y1: 380, y2: 480,
                         offsetX: 0, offsetY: 0
@@ -237,6 +237,32 @@ var WH = WH || {};
                     //     zIndex: 2
                     // }
             ]);
+
+            // E
+            start = "96:0:0";
+            end = "112:0:0";
+            clips = clips.concat([
+                {
+                    "resourceID": "dom1",
+                    "start": start,
+                    "end": end,
+                    "clipStart": "24:0:0",
+                    "x1": 0, "x2": 640,
+                    "y1": 0, "y2": 480,
+                    "offsetX": 31, "offsetY": 80,
+                    "zoom": 1059 / 640
+                },
+                {
+                    "resourceID": "dom2",
+                    "start": start,
+                    "end": end,
+                    "clipStart": "24:0:0",
+                    "x1": 0, "x2": 337,
+                    "y1": 0, "y2": 480,
+                    "offsetX": 280, "offsetY": 0,
+                    "zoom": 1.035,
+                    "flipHorizontal": true
+                }]);
 
             return clips;
         },
