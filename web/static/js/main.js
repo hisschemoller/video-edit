@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     }
 
     let createTimeShiftPlayerSceneLater = () => {
-        let start = 214; // 330; // 210; // 83 - 20 - 2;
+        let start = 194; // 214; // 330; // 210; // 83 - 20 - 2;
         WH.createPlayerTimeShift({
             imgIndexStep: 1,
             imgSliceSize: 4,
@@ -126,11 +126,11 @@ document.addEventListener('DOMContentLoaded', function(e) {
             imgURLPrefix: 'static/seq/dom1/frame_',
             imgURLLastIndex: 12732,
             start: start,
-            end: start + WH.util.musicToTime('17:0:0'),
+            end: start + WH.util.musicToTime('17:0:0') + 15.5,
             imgHeight: 480 - 220, // = 260
-            imgWidth: 640 - 186, // = 454
-            imgX: 186,
-            imgY: 0,
+            imgWidth: 640 - 0, // = 454
+            imgX: 0,
+            imgY: 220,
         
             framerate: 30,
             captureFramerate: 4,
@@ -182,22 +182,46 @@ document.addEventListener('DOMContentLoaded', function(e) {
             captureEnabled: true
         });
     }
+
+    let createTimeShiftPlayerSceneE = () => {
+        let start = 30 - 40;
+        WH.createPlayerTimeShift({
+            start: start,
+            end: start + WH.util.musicToTime('17:0:0'),
+            direction: 'forward',
+            imgIndexStep: 0.1,
+            imgSliceSize: 1,
+            imgSliceDirection: 'row',
+            imgStepForward: false,
+            imgURLPrefix: 'static/seq/dom1_e_raw/frame_',
+            imgURLLastIndex: 12732,
+            imgHeight: 180,
+            imgWidth: 190,
+            imgX: 0,
+            imgY: 0,
+        
+            framerate: 30,
+            captureFramerate: 4,
+            captureEnabled: false
+        });
+    }
     
     let createPlayer = () => {
         WH.createPlayer({
             dataObject: WH.createDom2Data(),
             isCapture: false,
-            startOffset: WH.util.musicToTime('0:0:0'),
+            startOffset: WH.util.musicToTime('96:0:0'),
             throttle: 4
         });
     }
     
-    createPlayer();
+    // createPlayer();
     // createTimeShiftPlayerSceneA1();
     // createTimeShiftPlayerSceneA2();
     // createTimeShiftPlayerSceneB();
     // createTimeShiftPlayerSceneC();
     // createTimeShiftPlayerSceneD1();
     // createTimeShiftPlayerSceneD2();
-    // createTimeShiftPlayerSceneLater();
+    // createTimeShiftPlayerSceneE();
+    createTimeShiftPlayerSceneLater();
 });
