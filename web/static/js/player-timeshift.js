@@ -46,6 +46,7 @@ var WH = WH || {};
                 console.log('start: ', start);
                 console.log('end: ', end);
                 console.log('number of frames: ', (end - start) * framerate);
+                console.log('number of slices: ', imgSliceCount);
                 
                 canvas = document.getElementById('canvas');
                 canvas.width = imgWidth;

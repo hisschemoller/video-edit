@@ -104,13 +104,57 @@ document.addEventListener('DOMContentLoaded', function(e) {
             captureEnabled: true
         });
     }
+
+    let createTimeShiftPlayerSceneC = () => {
+        let start = 114 - 33;
+        WH.createPlayerTimeShift({
+            imgIndexStep: 2,
+            imgSliceSize: 5,
+            imgSliceDirection: 'column',
+            imgStepForward: false,
+            imgURLPrefix: 'static/seq/dom1/frame_',
+            imgURLLastIndex: 12732,
+            start: start,
+            end: start + WH.util.musicToTime('17:0:0'),
+            imgHeight: 392 - 0, // =
+            imgWidth: 416 - 60, // = 
+            imgX: 60,
+            imgY: 0,
+        
+            framerate: 30,
+            captureFramerate: 3,
+            captureEnabled: true
+        });
+    }
+
+    let createTimeShiftPlayerSceneLater = () => {
+        let start = 214; // 330; // 210; // 83 - 20 - 2;
+        WH.createPlayerTimeShift({
+            imgIndexStep: 1,
+            imgSliceSize: 4,
+            imgSliceDirection: 'row',
+            imgStepForward: false,
+            imgURLPrefix: 'static/seq/dom1/frame_',
+            imgURLLastIndex: 12732,
+            start: start,
+            end: start + WH.util.musicToTime('17:0:0'),
+            imgHeight: 480 - 220, // = 260
+            imgWidth: 640 - 186, // = 454
+            imgX: 186,
+            imgY: 0,
+        
+            framerate: 30,
+            captureFramerate: 4,
+            captureEnabled: false
+        });
+    }
     
     let createPlayer = () => {
         WH.createPlayer({
             dataObject: WH.createDom2Data(),
             isCapture: false,
-            startOffset: WH.util.musicToTime('48:0:0'),
-            throttle: 5
+            startOffset: WH.util.musicToTime('64:0:0'),
+            throttle: 4
         });
     }
     
@@ -118,4 +162,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
     // createTimeShiftPlayerSceneA1();
     // createTimeShiftPlayerSceneA2();
     // createTimeShiftPlayerSceneB();
+    // createTimeShiftPlayerSceneC();
+    // createTimeShiftPlayerSceneLater();
 });

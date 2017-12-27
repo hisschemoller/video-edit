@@ -28,11 +28,11 @@ var WH = WH || {};
                 imgURLPrefix = data.resource.url;
                 imgURLNr = Math.round(data.clipStart * framerate) + 1;
                 img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + imgURLNr).slice(-5) : '99999') + imgURLSuffix;
-                console.log('start clip', data);
+                console.log('start clip', data.resourceID);
             },
             
             end = () => {
-                console.log('end clip');
+                console.log('end clip', data.resourceID);
                 isPlaying = false;
                 imgURLPrefix = '';
             }

@@ -35,6 +35,10 @@ var WH = WH || {};
                     id: 'dom2_w8h',
                     url: 'static/seq/dom2_w8_l16_s3_x0_y320_w640_h160/frame_',
                     frames: 1176
+                }, {
+                    id: 'dom1_c',
+                    url: 'static/seq/dom1_c/frame_',
+                    frames: 1176
                 }
             ],
             clips: []
@@ -150,12 +154,60 @@ var WH = WH || {};
                     resourceID: 'dom1',
                     start: start,
                     end: end,
-                    clipStart: 86, // 160,
+                    clipStart: 83, // 160,
                     x1: 186, x2: 640,
-                    y1: 0, y2: 480,
+                    y1: 0, y2: 150,
                     offsetX: 80, offsetY: 10,
                     zoom: 1.31
-                }]);
+                },
+                {
+                    resourceID: 'dom1_c',
+                    start: start,
+                    end: end,
+                    clipStart: 0,
+                    x1: 186, x2: 640,
+                    y1: 150, y2: 480,
+                    offsetX: 3, offsetY: 10 + 150,
+                    zoom: 1.31
+                }
+            ]);
+
+            // scene D
+            start = WH.util.musicToTime('64:0:0');
+            end = "96:0:0";
+            clips = clips.concat([
+                {
+                    "resourceID": "dom2",
+                    "start": start,
+                    "end": end,
+                    "clipStart": 140,
+                    "x1": 0, "x2": 640,
+                    "y1": 0, "y2": 480,
+                    "offsetX": 0, "offsetY": 0
+                },
+                {
+                    "resourceID": "dom1",
+                    "start": start,
+                    "end": end,
+                    "clipStart": "32:0:0",
+                    "x1": 227, "x2": 227 + 362,
+                    "y1": 0, "y2": 302,
+                    "offsetX": 149, "offsetY": 3,
+                    "zoom": 1.138
+                }
+
+                    ,
+                    {
+                        "resourceID": "dom1",
+                        "start": start,
+                        "end": end,
+                        "clipStart": 300,
+                        "x1": 0, "x2": 250,
+                        "y1": 355, "y2": 445,
+                        "offsetX": 0, "offsetY": 355,
+                        "zoom": 1.138
+                    }
+            ]);
 
             return clips;
         },
