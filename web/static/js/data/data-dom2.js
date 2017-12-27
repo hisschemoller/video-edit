@@ -39,6 +39,14 @@ var WH = WH || {};
                     id: 'dom1_c',
                     url: 'static/seq/dom1_c/frame_',
                     frames: 1176
+                }, {
+                    id: 'dom2_d1',
+                    url: 'static/seq/dom2_d1/frame_',
+                    frames: 1175
+                }, {
+                    id: 'dom2_d2',
+                    url: 'static/seq/dom2_d2/frame_',
+                    frames: 1175
                 }
             ],
             clips: []
@@ -184,7 +192,8 @@ var WH = WH || {};
                     x1: 0, x2: 640,
                     y1: 0, y2: 480,
                     offsetX: 0, offsetY: 0
-                },
+                }
+                ,
                 {
                     resourceID: 'dom1',
                     start: start,
@@ -195,19 +204,38 @@ var WH = WH || {};
                     offsetX: 149, offsetY: 3,
                     zoom: 1.138
                 }
-
                     ,
                     {
-                        resourceID: 'dom1',
+                        resourceID: 'dom2_d1',
                         start: start,
-                        end: end,
-                        clipStart: 300,
-                        x1: 0, x2: 250,
-                        y1: 355, y2: 445,
-                        offsetX: 0, offsetY: 355,
-                        zoom: 1.138,
-                        zIndex: 2
+                        end: start + WH.util.musicToTime('16:0:0'),
+                        clipStart: 0,
+                        x1: 40, x2: 640,
+                        y1: 380, y2: 480,
+                        offsetX: 0, offsetY: 0
                     }
+                    ,
+                    {
+                        resourceID: 'dom2_d2',
+                        start:  start + WH.util.musicToTime('16:0:0'),
+                        end: end,
+                        clipStart: 4,
+                        x1: 40, x2: 640,
+                        y1: 380, y2: 480,
+                        offsetX: 0, offsetY: 0
+                    }
+                    // ,
+                    // {
+                    //     resourceID: 'dom1',
+                    //     start: start,
+                    //     end: end,
+                    //     clipStart: 300,
+                    //     x1: 0, x2: 250,
+                    //     y1: 355, y2: 445,
+                    //     offsetX: 0, offsetY: 355,
+                    //     zoom: 1.138,
+                    //     zIndex: 2
+                    // }
             ]);
 
             return clips;

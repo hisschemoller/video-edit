@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
         
             framerate: 30,
             captureFramerate: 4,
-            captureEnabled: false
+            captureEnabled: true
         });
     }
     
@@ -192,12 +192,12 @@ document.addEventListener('DOMContentLoaded', function(e) {
         });
     }
     
-    // createPlayer();
+    createPlayer();
     // createTimeShiftPlayerSceneA1();
     // createTimeShiftPlayerSceneA2();
     // createTimeShiftPlayerSceneB();
     // createTimeShiftPlayerSceneC();
-    createTimeShiftPlayerSceneD1();
+    // createTimeShiftPlayerSceneD1();
     // createTimeShiftPlayerSceneD2();
     // createTimeShiftPlayerSceneLater();
 });
