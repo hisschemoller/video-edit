@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     }
 
     let createTimeShiftPlayerSceneD1 = () => {
-        let start = 125;
+        let start = 130;
         WH.createPlayerTimeShift({
             start: start,
             end: start + WH.util.musicToTime('17:0:0'),
@@ -155,18 +155,19 @@ document.addEventListener('DOMContentLoaded', function(e) {
             imgY: 0,
         
             framerate: 30,
-            captureFramerate: 4,
-            captureEnabled: false
+            captureFramerate: 6,
+            captureEnabled: true
         });
     }
 
-    let createTimeShiftPlayerSceneD = () => {
-        let start = 125 - 20;
+    let createTimeShiftPlayerSceneD2 = () => {
+        let start = 125; // 132;
         WH.createPlayerTimeShift({
             start: start,
             end: start + WH.util.musicToTime('17:0:0'),
-            imgIndexStep: 3,
-            imgSliceSize: 5,
+            direction: 'reverse',
+            imgIndexStep: 3, // 4,
+            imgSliceSize: 2, // 5,
             imgSliceDirection: 'column',
             imgStepForward: false,
             imgURLPrefix: 'static/seq/dom2_fietsers/frame_',
@@ -196,6 +197,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     // createTimeShiftPlayerSceneA2();
     // createTimeShiftPlayerSceneB();
     // createTimeShiftPlayerSceneC();
-    createTimeShiftPlayerSceneD();
+    createTimeShiftPlayerSceneD1();
+    // createTimeShiftPlayerSceneD2();
     // createTimeShiftPlayerSceneLater();
 });
