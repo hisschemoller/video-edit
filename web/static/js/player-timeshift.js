@@ -29,6 +29,7 @@ var WH = WH || {};
             imgURLLastIndex = specs.imgURLLastIndex,
             start = specs.start,
             end = specs.end,
+            direction = specs.direction || 'forward',
             canvas,
             ctx,
             framerate = specs.framerate || 30,
@@ -147,7 +148,11 @@ var WH = WH || {};
             },
 
             setNextImage = function() {
-                images[imgIndex].src = imgURLPrefix + ((imgURLIndex <= 99999) ? ('0000' + imgURLIndex).slice(-5) : '99999') + imgURLSuffix;
+                let localImgURLIndex = imgURLIndex;
+                if (direction === 'reverse') {
+                    localImgURLIndex = Math.max(imgURLLastIndex + (start * framerate) - imgURLIndex, 1);
+                }
+                images[imgIndex].src = imgURLPrefix + ((localImgURLIndex <= 99999) ? ('0000' + localImgURLIndex).slice(-5) : '99999') + imgURLSuffix;
                 imgURLIndex += imgUrlIndexStep;
                 imgIndex = (imgIndex + 1) % imgCount;
             };
