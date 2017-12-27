@@ -95,9 +95,9 @@ var WH = WH || {};
                     let img;
                     for (let i = 0; i < imgSliceCount; i++) {
                         if (imgStepForward) {
-                            img = images[(imgIndex + (i * imgIndexStep)) % imgCount];
+                            img = images[Math.round(imgIndex + (i * imgIndexStep)) % imgCount];
                         } else {
-                            img = images[(imgIndex + imgCount - 1 - (i * imgIndexStep)) % imgCount];
+                            img = images[Math.round(imgIndex + imgCount - 1 - (i * imgIndexStep)) % imgCount];
                         }
                         if (imgSliceDirection === 'row') {
                             ctx.drawImage(
