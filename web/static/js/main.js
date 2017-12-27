@@ -22,17 +22,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
     //     imgIndexStep: 5
     // });
     
-    // WH.createPlayerImageShiftDom({
-    //     imgIndexStep: 5,
-    //     imgStepForward: false,
-    //     imgURLPrefix: 'static/seq/dom1/frame_',
-    //     imgURLLastIndex: 12732,
-    //     imgHeight: 150,
-    //     imgWidth: 200,
-    //     imgX: 440,
-    //     imgY: 180
-    // });
-    
     WH.util.setTiming({
         ppqn: 24,
         bpm: 104,
@@ -148,6 +137,50 @@ document.addEventListener('DOMContentLoaded', function(e) {
             captureEnabled: false
         });
     }
+
+    let createTimeShiftPlayerSceneD1 = () => {
+        let start = 125;
+        WH.createPlayerTimeShift({
+            start: start,
+            end: start + WH.util.musicToTime('17:0:0'),
+            imgIndexStep: 3,
+            imgSliceSize: 5,
+            imgSliceDirection: 'column',
+            imgStepForward: true,
+            imgURLPrefix: 'static/seq/dom2_fietsers/frame_',
+            imgURLLastIndex: 12382,
+            imgHeight: 100,
+            imgWidth: 600,
+            imgX: 0,
+            imgY: 0,
+        
+            framerate: 30,
+            captureFramerate: 4,
+            captureEnabled: false
+        });
+    }
+
+    let createTimeShiftPlayerSceneD = () => {
+        let start = 125 - 20;
+        WH.createPlayerTimeShift({
+            start: start,
+            end: start + WH.util.musicToTime('17:0:0'),
+            imgIndexStep: 3,
+            imgSliceSize: 5,
+            imgSliceDirection: 'column',
+            imgStepForward: false,
+            imgURLPrefix: 'static/seq/dom2_fietsers/frame_',
+            imgURLLastIndex: 12382,
+            imgHeight: 100,
+            imgWidth: 600,
+            imgX: 0,
+            imgY: 0,
+        
+            framerate: 30,
+            captureFramerate: 4,
+            captureEnabled: false
+        });
+    }
     
     let createPlayer = () => {
         WH.createPlayer({
@@ -158,10 +191,11 @@ document.addEventListener('DOMContentLoaded', function(e) {
         });
     }
     
-    createPlayer();
+    // createPlayer();
     // createTimeShiftPlayerSceneA1();
     // createTimeShiftPlayerSceneA2();
     // createTimeShiftPlayerSceneB();
     // createTimeShiftPlayerSceneC();
+    createTimeShiftPlayerSceneD();
     // createTimeShiftPlayerSceneLater();
 });

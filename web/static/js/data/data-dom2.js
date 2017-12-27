@@ -174,38 +174,39 @@ var WH = WH || {};
 
             // scene D
             start = WH.util.musicToTime('64:0:0');
-            end = "96:0:0";
+            end = '96:0:0';
             clips = clips.concat([
                 {
-                    "resourceID": "dom2",
-                    "start": start,
-                    "end": end,
-                    "clipStart": 140,
-                    "x1": 0, "x2": 640,
-                    "y1": 0, "y2": 480,
-                    "offsetX": 0, "offsetY": 0
+                    resourceID: 'dom2',
+                    start: start,
+                    end: end,
+                    clipStart: 140,
+                    x1: 0, x2: 640,
+                    y1: 0, y2: 480,
+                    offsetX: 0, offsetY: 0
                 },
                 {
-                    "resourceID": "dom1",
-                    "start": start,
-                    "end": end,
-                    "clipStart": "32:0:0",
-                    "x1": 227, "x2": 227 + 362,
-                    "y1": 0, "y2": 302,
-                    "offsetX": 149, "offsetY": 3,
-                    "zoom": 1.138
+                    resourceID: 'dom1',
+                    start: start,
+                    end: end,
+                    clipStart: '32:0:0',
+                    x1: 227, x2: 227 + 362,
+                    y1: 0, y2: 302,
+                    offsetX: 149, offsetY: 3,
+                    zoom: 1.138
                 }
 
                     ,
                     {
-                        "resourceID": "dom1",
-                        "start": start,
-                        "end": end,
-                        "clipStart": 300,
-                        "x1": 0, "x2": 250,
-                        "y1": 355, "y2": 445,
-                        "offsetX": 0, "offsetY": 355,
-                        "zoom": 1.138
+                        resourceID: 'dom1',
+                        start: start,
+                        end: end,
+                        clipStart: 300,
+                        x1: 0, x2: 250,
+                        y1: 355, y2: 445,
+                        offsetX: 0, offsetY: 355,
+                        zoom: 1.138,
+                        zIndex: 2
                     }
             ]);
 
