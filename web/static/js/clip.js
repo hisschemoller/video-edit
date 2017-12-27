@@ -57,9 +57,9 @@ var WH = WH || {};
                 if (isPlaying) {
                     if (position < data.end) {
                         let localPosition = ((position - globalStartPosition) / 1000) + data.clipStart;
-                        let newImgURLNr = Math.floor(localPosition * framerate) + 1;
+                        let newImgURLNr = (Math.floor(localPosition * framerate) + 1) % data.resource.frames;
                         if (newImgURLNr !== imgURLNr) {
-                            if (imgURLNr <= data.resource.frames) {
+                            if (newImgURLNr <= data.resource.frames) {
                                 imgURLNr = newImgURLNr;
                                 img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + imgURLNr).slice(-5) : '99999') + imgURLSuffix;
                             } else {
