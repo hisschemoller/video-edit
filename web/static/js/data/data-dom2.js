@@ -47,6 +47,10 @@ var WH = WH || {};
                     id: 'dom2_d2',
                     url: 'static/seq/dom2_d2/frame_',
                     frames: 1175
+                }, {
+                    id: 'dom1_e',
+                    url: 'static/seq/dom1_e/frame_',
+                    frames: 1175
                 }
             ],
             clips: []
@@ -262,7 +266,20 @@ var WH = WH || {};
                     offsetX: 280, offsetY: 0,
                     zoom: 1.035,
                     flipHorizontal: true
-                }]);
+                },
+
+                {
+                    resourceID: 'dom1_e',
+                    start: start,
+                    end: end,
+                    clipStart: 0,
+                    x1: 339, x2: 640,
+                    y1: 200, y2: 480,
+                    offsetX: 10, offsetY: 0,
+                    zoom: 1059 / 640
+                }
+            
+            ]);
 
             return clips;
         },

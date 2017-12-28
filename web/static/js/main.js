@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     }
 
     let createTimeShiftPlayerSceneE = () => {
-        let start = 30 - 40;
+        let start = 3; // 18;
         WH.createPlayerTimeShift({
             start: start,
             end: start + WH.util.musicToTime('17:0:0'),
@@ -201,8 +201,8 @@ document.addEventListener('DOMContentLoaded', function(e) {
             imgY: 0,
         
             framerate: 30,
-            captureFramerate: 4,
-            captureEnabled: false
+            captureFramerate: 8,
+            captureEnabled: true
         });
     }
     
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
         });
     }
     
-    // createPlayer();
+    createPlayer();
     // createTimeShiftPlayerSceneA1();
     // createTimeShiftPlayerSceneA2();
     // createTimeShiftPlayerSceneB();
@@ -223,5 +223,5 @@ document.addEventListener('DOMContentLoaded', function(e) {
     // createTimeShiftPlayerSceneD1();
     // createTimeShiftPlayerSceneD2();
     // createTimeShiftPlayerSceneE();
-    createTimeShiftPlayerSceneLater();
+    // createTimeShiftPlayerSceneLater();
 });

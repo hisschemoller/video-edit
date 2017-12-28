@@ -11,7 +11,7 @@ var WH = WH || {};
     WH.createPlayerTimeShift = function(specs = {}, my = {}) {
 
         let images = [],
-            imgCount = 1200,
+            imgCount = 600,
             imgIndex = 0,
             imgIndexStep = specs.imgIndexStep || 0,
             imgStepForward = typeof specs.imgStepForward == 'boolean' ? specs.imgStepForward : true,
