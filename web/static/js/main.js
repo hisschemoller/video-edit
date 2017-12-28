@@ -3,24 +3,6 @@
 var WH = WH || {};
 
 document.addEventListener('DOMContentLoaded', function(e) {
-    // WH.createPlayer({
-    //     dataObject: WH.createBerlinerDomData(),
-    //     isCapture: true,
-    //     startOffset: WH.util.musicToTime('0:0:0')
-    // });
-
-    // WH.createPlayerImageShift({
-    //     imgStepForward: false,
-    //     imgIndexStep: 10
-    // });
-
-    // WH.createPlayerImageShift({
-    //     imgIndexStep: 10
-    // });
-
-    // WH.createPlayerImageShift({
-    //     imgIndexStep: 5
-    // });
     
     WH.util.setTiming({
         ppqn: 24,
@@ -210,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
         WH.createPlayer({
             dataObject: WH.createDom2Data(),
             isCapture: false,
-            startOffset: WH.util.musicToTime('112:0:0'),
+            startOffset: WH.util.musicToTime('0:0:0'),
             throttle: 4
         });
     }

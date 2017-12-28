@@ -3,6 +3,9 @@
  * Number of frames to jump each slice, 
  * so a time difference of (imgIndexStep / framerate) seconds.
  * 
+ * ffmpeg -ss 110 -i 'dom2.avi' -c copy -t 120 'dom2a_sliced.avi'
+ * ffmpeg -i dom2a_sliced.avi -filter:v "crop=600:100:40:380" dom2b_cropped.avi
+ * ffmpeg -i dom2b_cropped.avi dom2fietsers_%04d.png
  */
 
 var WH = WH || {};
