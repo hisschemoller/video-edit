@@ -51,6 +51,10 @@ var WH = WH || {};
                     id: 'dom1_e',
                     url: 'static/seq/dom1_e/frame_',
                     frames: 1175
+                }, {
+                    id: 'dom1_f',
+                    url: 'static/seq/dom1_f/frame_',
+                    frames: 1640
                 }
             ],
             clips: []
@@ -280,6 +284,79 @@ var WH = WH || {};
                 }
             
             ]);
+
+            // F
+            start = '112:0:0';
+            end = WH.util.musicToTime('128:0:0') + WH.util.musicToTime('1:0:0') + 15.5;
+            clips = clips.concat([
+                {
+                    resourceID: 'dom1',
+                    start: start,
+                    end: end,
+                    clipStart: '40:0:0',
+                    x1: 0, x2: 640,
+                    y1: 0, y2: 480,
+                    offsetX: 0, offsetY: 0,
+                    zoom: 678 / 640
+                },
+                {
+                    resourceID: 'dom1_f',
+                    start: start,
+                    end: end,
+                    clipStart: 0,
+                    x1: 0, x2: 640,
+                    y1: 190, y2: 480,
+                    offsetX: 0, offsetY: 0,
+                    zoom: 678 / 640
+                },
+                {
+                    resourceID: 'dom2',
+                    start: start,
+                    end: end,
+                    clipStart: '40:0:0',
+                    x1: 39, x2: 39 + 229,
+                    y1: 0, y2: 305,
+                    offsetX: 128, offsetY: 2,
+                    zoom: 0.789,
+                    zIndex: 1
+                }]);
+            
+            // // F
+            // start = '112:0:0';
+            // end = '128:0:0';
+            // clips = clips.concat([
+            //     {
+            //         resourceID: 'dom1',
+            //         start: start,
+            //         end: end,
+            //         clipStart: '40:0:0',
+            //         x1: 0, x2: 640,
+            //         y1: 0, y2: 480,
+            //         offsetX: 0, offsetY: 0,
+            //         zoom: 1 // 678 / 640
+            //     },
+            //     {
+            //         resourceID: 'dom1_f',
+            //         start: start,
+            //         end: end,
+            //         clipStart: 0,
+            //         x1: 0, x2: 640,
+            //         y1: 190, y2: 480,
+            //         offsetX: 0, offsetY: 0,
+            //         zoom: 1 // 678 / 640
+            //     },
+            //     {
+            //         resourceID: 'dom2',
+            //         start: start,
+            //         end: end,
+            //         clipStart: '40:0:0',
+            //         x1: 39 / (678 / 640), x2: (39 + 229) / (678 / 640),
+            //         y1: 0, y2: 305 / (678 / 640),
+            //         offsetX: 128 / (678 / 640), offsetY: 2 / (678 / 640),
+            //         zoom: 0.789 / (678 / 640),
+            //         zIndex: 1
+            //     }]);
+
 
             return clips;
         },
