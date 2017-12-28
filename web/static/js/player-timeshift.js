@@ -57,7 +57,6 @@ var WH = WH || {};
                 canvas.width = imgWidth;
                 canvas.height = imgHeight;
                 ctx = canvas.getContext('2d');
-                ctx.mozImageSmoothingEnabled = false;
                 ctx.webkitImageSmoothingEnabled = false;
                 ctx.imageSmoothingQuality = "high";
                 ctx.msImageSmoothingEnabled = false;
