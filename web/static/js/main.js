@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
         });
     }
 
-    let createTimeShiftPlayerSceneE = () => {
+    let createTimeShiftPlayerSceneE1 = () => {
         let start = 3; // 18;
         WH.createPlayerTimeShift({
             start: start,
@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     // createTimeShiftPlayerSceneC();
     // createTimeShiftPlayerSceneD1();
     // createTimeShiftPlayerSceneD2();
-    // createTimeShiftPlayerSceneE();
+    // createTimeShiftPlayerSceneE1();
     // createTimeShiftPlayerSceneE2();
     // createTimeShiftPlayerSceneF();
 });
