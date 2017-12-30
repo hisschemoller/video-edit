@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
         
             framerate: 30,
             captureFramerate: 6,
-            captureEnabled: true
+            captureEnabled: false
         });
     }
 
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
         
             framerate: 30,
             captureFramerate: 4,
-            captureEnabled: true
+            captureEnabled: false
         });
     }
 
@@ -162,7 +162,30 @@ document.addEventListener('DOMContentLoaded', function(e) {
         
             framerate: 30,
             captureFramerate: 8,
-            captureEnabled: true
+            captureEnabled: false
+        });
+    }
+
+    let createTimeShiftPlayerSceneE2 = () => {
+        let start = 0;
+        WH.createPlayerTimeShift({
+            start: start,
+            end: start + WH.util.musicToTime('33:0:0'),
+            direction: 'forward',
+            imgIndexStep: 1,
+            imgSliceSize: 2,
+            imgSliceDirection: 'row',
+            imgStepForward: false,
+            imgURLPrefix: 'static/seq/dom2_fietsers/frame_',
+            imgURLLastIndex: 12382,
+            imgHeight: 100,
+            imgWidth: 400,
+            imgX: 240,
+            imgY: 0,
+        
+            framerate: 30,
+            captureFramerate: 6,
+            captureEnabled: false
         });
     }
 
@@ -192,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
         WH.createPlayer({
             dataObject: WH.createDom2Data(),
             isCapture: false,
-            startOffset: WH.util.musicToTime('0:0:0'),
+            startOffset: WH.util.musicToTime('96:0:0'),
             throttle: 4
         });
     }
@@ -205,5 +228,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
     // createTimeShiftPlayerSceneD1();
     // createTimeShiftPlayerSceneD2();
     // createTimeShiftPlayerSceneE();
+    // createTimeShiftPlayerSceneE2();
     // createTimeShiftPlayerSceneF();
 });

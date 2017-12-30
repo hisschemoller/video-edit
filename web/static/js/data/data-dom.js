@@ -52,6 +52,14 @@ var WH = WH || {};
                     url: 'static/seq/dom1_e/frame_',
                     frames: 1175
                 }, {
+                    id: 'dom1_e2',
+                    url: 'static/seq/dom1_e2/frame_',
+                    frames: 1175
+                }, {
+                    id: 'dom2_e2',
+                    url: 'static/seq/dom2_e2/frame_',
+                    frames: 2282
+                }, {
                     id: 'dom1_f',
                     url: 'static/seq/dom1_f/frame_',
                     frames: 1640
@@ -112,7 +120,7 @@ var WH = WH || {};
                     resourceID: 'dom1_a2',
                     start: start + WH.util.musicToTime('16:0:0'),
                     end: end,
-                    clipStart: WH.util.musicToTime('16:0:0') - (600 / 30) + 2,
+                    clipStart: WH.util.musicToTime('16:0:0') - (600 / 30),
                     x1: 195, x2: 640,
                     y1: 150, y2: 480,
                     zIndex: 1
@@ -256,7 +264,7 @@ var WH = WH || {};
                     end: end,
                     clipStart: 370, // 44,
                     x1: 337, x2: 640,
-                    y1: 0, y2: 480,
+                    y1: 0, y2: 200,
                     offsetX: 31 + 337, offsetY: 80,
                     zoom: 1059 / 640
                 },
@@ -271,16 +279,37 @@ var WH = WH || {};
                     zoom: 1.035,
                     flipHorizontal: true
                 },
-
                 {
-                    resourceID: 'dom1_e',
+                    resourceID: 'dom2_e2',
+                    start: start,
+                    end: start + WH.util.musicToTime('16:0:0'),
+                    clipStart: 0,
+                    x1: 0, x2: 337,
+                    y1: 380, y2: 480,
+                    offsetX: 0, offsetY: 0,
+                    zoom: 1.035,
+                    flipHorizontal: true
+                },
+                {
+                    resourceID: 'dom1_e2',
                     start: start,
                     end: end,
                     clipStart: 0,
-                    x1: 339, x2: 640,
+                    x1: 337, x2: 640,
                     y1: 200, y2: 480,
                     offsetX: 10, offsetY: 0,
                     zoom: 1059 / 640
+                },
+                {
+                    resourceID: 'dom2_e2',
+                    start: start + WH.util.musicToTime('16:0:0'),
+                    end: end,
+                    clipStart: 40,
+                    x1: 0, x2: 337,
+                    y1: 380, y2: 480,
+                    offsetX: 0, offsetY: 0,
+                    zoom: 1.035,
+                    flipHorizontal: true
                 }
             
             ]);

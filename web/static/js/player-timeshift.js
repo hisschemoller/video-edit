@@ -14,7 +14,7 @@ var WH = WH || {};
     WH.createPlayerTimeShift = function(specs = {}, my = {}) {
 
         let images = [],
-            imgCount = 1200,
+            imgCount = 600,
             imgIndex = 0,
             imgIndexStep = specs.imgIndexStep || 0,
             imgStepForward = typeof specs.imgStepForward == 'boolean' ? specs.imgStepForward : true,
@@ -104,7 +104,7 @@ var WH = WH || {};
                         if (imgSliceDirection === 'row') {
                             ctx.drawImage(
                                 img, 
-                                imgX, 
+                                imgX, // - (Math.floor((i - 6) / 10) * 3) + (i * 0.25),
                                 imgY + (i * imgSliceSize), 
                                 imgWidth, 
                                 imgSliceSize, 
