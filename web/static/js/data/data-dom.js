@@ -89,7 +89,7 @@ var WH = WH || {};
                 {
                     resourceID: 'dom1_a1',
                     start: start,
-                    end: start + WH.util.musicToTime('24:0:0'),
+                    end: end,
                     clipStart: 0,
                     x1: 195, x2: 640,
                     y1: 150, y2: 480,
@@ -104,28 +104,24 @@ var WH = WH || {};
                     y1: 29, y2: 373,
                     offsetX: 45, offsetY: -5,
                     zoom: 0.719,
-                    zIndex: 2
-                }, 
-                // {
-                //     resourceID: 'dom1_a2',
-                //     start: start + WH.util.musicToTime('16:0:0'),
-                //     end: start + WH.util.musicToTime('24:0:0'),
-                //     clipStart: WH.util.musicToTime('16:0:0') - (600 / 30) + 1,
-                //     x1: 195 + 150, x2: 640,
-                //     y1: 150, y2: 480,
-                //     offsetX: 150, offsetY: 0,
-                //     zIndex: 1
-                // }, 
-                {
-                    resourceID: 'dom1_a2',
-                    start: start + WH.util.musicToTime('16:0:0'),
-                    end: end,
-                    clipStart: WH.util.musicToTime('16:0:0') - (600 / 30),
-                    x1: 195, x2: 640,
-                    y1: 150, y2: 480,
-                    zIndex: 1
+                    zIndex: 3
                 }
             ];
+
+            const measure = WH.util.musicToTime('1:0:0');
+            for (let i = 0; i < 8; i++) {
+                let localStart = start + ((16 + i) * measure);
+                clips.push({
+                    resourceID: 'dom1_a2',
+                    start: localStart,
+                    end: (i === 7 ? end : localStart + measure),
+                    clipStart: localStart,
+                    x1: 195, x2: 245 + (i * 50),
+                    y1: 150, y2: 480,
+                    zIndex: 2
+                });
+            }
+
             
             // scene B
             start = '32:0:0';

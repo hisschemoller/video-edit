@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
         WH.createPlayer({
             dataObject: WH.createDom2Data(),
             isCapture: false,
-            startOffset: WH.util.musicToTime('96:0:0'),
+            startOffset: WH.util.musicToTime('0:0:0'),
             throttle: 4
         });
     }
