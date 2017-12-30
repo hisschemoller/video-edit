@@ -251,8 +251,8 @@ var WH = WH || {};
             ]);
 
             // E
-            start = '96:0:0';
-            end = '112:0:0';
+            start = WH.util.musicToTime('96:0:0');
+            end = WH.util.musicToTime('112:0:0');
             clips = clips.concat([
                 {
                     resourceID: 'dom1',
@@ -276,6 +276,16 @@ var WH = WH || {};
                     flipHorizontal: true
                 },
                 {
+                    resourceID: 'dom1_e2',
+                    start: start,
+                    end: end,
+                    clipStart: 0,
+                    x1: 337, x2: 640,
+                    y1: 200, y2: 480,
+                    offsetX: 10, offsetY: 0,
+                    zoom: 1059 / 640
+                },
+                {
                     resourceID: 'dom2_e2',
                     start: start,
                     end: start + WH.util.musicToTime('16:0:0'),
@@ -285,16 +295,6 @@ var WH = WH || {};
                     offsetX: 0, offsetY: 0,
                     zoom: 1.035,
                     flipHorizontal: true
-                },
-                {
-                    resourceID: 'dom1_e2',
-                    start: start,
-                    end: end,
-                    clipStart: 0,
-                    x1: 337, x2: 640,
-                    y1: 200, y2: 480,
-                    offsetX: 10, offsetY: 0,
-                    zoom: 1059 / 640
                 },
                 {
                     resourceID: 'dom2_e2',
