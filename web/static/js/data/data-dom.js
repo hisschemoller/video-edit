@@ -115,7 +115,7 @@ var WH = WH || {};
                     resourceID: 'dom1_a2',
                     start: localStart,
                     end: (i === 7 ? end : localStart + measure),
-                    clipStart: localStart,
+                    clipStart: (8 + i) * measure,
                     x1: 195, x2: 245 + (i * 50),
                     y1: 150, y2: 480,
                     zIndex: 2
