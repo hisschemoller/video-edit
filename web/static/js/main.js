@@ -213,8 +213,8 @@ document.addEventListener('DOMContentLoaded', function(e) {
     
     let createPlayer = () => {
         WH.createPlayer({
-            dataObject: WH.createDom2Data(),
-            isCapture: false,
+            dataObject: WH.createBerlinerDomData(),
+            isCapture: true,
             startOffset: WH.util.musicToTime('0:0:0'),
             throttle: 4
         });

@@ -288,7 +288,7 @@ var WH = WH || {};
                 {
                     resourceID: 'dom2_e2',
                     start: start,
-                    end: start + WH.util.musicToTime('16:0:0'),
+                    end: start + WH.util.musicToTime('8:0:0'),
                     clipStart: 0,
                     x1: 0, x2: 337,
                     y1: 380, y2: 480,
@@ -298,7 +298,7 @@ var WH = WH || {};
                 },
                 {
                     resourceID: 'dom2_e2',
-                    start: start + WH.util.musicToTime('16:0:0'),
+                    start: start + WH.util.musicToTime('8:0:0'),
                     end: end,
                     clipStart: 40,
                     x1: 0, x2: 337,
@@ -392,6 +392,6 @@ var WH = WH || {};
             return data;
         };
 
-    WH.createDom2Data = createData;
+    WH.createBerlinerDomData = createData;
 
 })(WH);
