@@ -64,23 +64,6 @@ var WH = WH || {};
                 if (stoppedClips.length) {
                     stopClips();
                 }
-            },
-
-            capture = function(time, ctx, framerate) {
-                let clip;
-                for (let i = 0, n = activeClips.length; i < n; i++) {
-                    clip = activeClips[i];
-                    if (clip.getIsPlaying()) {
-                        clip.capture(ctx, framerate);
-                        clip.update(time);
-                    } else {
-                        stoppedClips.push(clip);
-                    }
-                }
-
-                if (stoppedClips.length) {
-                    stopClips();
-                }
             };
 
         that = specs.that || {};
@@ -89,7 +72,6 @@ var WH = WH || {};
 
         that.startClips = startClips;
         that.draw = draw;
-        that.capture = capture;
         return that;
     };
 

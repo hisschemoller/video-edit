@@ -92,12 +92,12 @@ var WH = WH || {};
 
             capture = function() {
                 captureCounter++;
-                if (captureCounter % 30 !== 0) {
+                if (captureCounter % 8 !== 0) {
                     requestAnimationFrame(capture);
                     return;
                 }
 
-                clips.capture(position, ctx, data.get().settings.framerate);
+                clips.draw(position, ctx);
                 position += 1000 / data.get().settings.framerate;
                 addNewClips();
 
