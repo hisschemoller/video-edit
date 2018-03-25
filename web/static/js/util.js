@@ -18,7 +18,7 @@ var WH = WH || {};
 
             const pulsesPerBeat = ppqn * (4 / denominator),
                 pulsesPerMeasure = pulsesPerBeat * denominator;
-
+ 
             secondsPerBeat = 60 / bpm,
             secondsPerPulse = secondsPerBeat / pulsesPerBeat,
             secondsPerMeasure = pulsesPerMeasure * secondsPerPulse;
