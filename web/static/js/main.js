@@ -213,21 +213,12 @@ document.addEventListener('DOMContentLoaded', function(e) {
     
     let createPlayer = () => {
         WH.createPlayer({
-            dataObject: WH.createBerlinerDomData(),
-            isCapture: true,
+            dataObject: WH.createCalleMayorData(),
+            isCapture: false,
             startOffset: WH.util.musicToTime('0:0:0'),
             throttle: 4
         });
     }
     
     createPlayer();
-    // createTimeShiftPlayerSceneA1();
-    // createTimeShiftPlayerSceneA2();
-    // createTimeShiftPlayerSceneB();
-    // createTimeShiftPlayerSceneC();
-    // createTimeShiftPlayerSceneD1();
-    // createTimeShiftPlayerSceneD2();
-    // createTimeShiftPlayerSceneE1();
-    // createTimeShiftPlayerSceneE2();
-    // createTimeShiftPlayerSceneF();
 });
