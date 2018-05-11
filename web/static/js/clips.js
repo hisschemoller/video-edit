@@ -28,6 +28,12 @@ var WH = WH || {};
                 }
             },
 
+            /**
+             * Start new clips.
+             * @param {Array} Data of clips to add and start.
+             * @param {Boolean} isCapture True if the video is being recorded.
+             * @param {Number} position Playback position on the main video timeline.
+             */
             startClips = function(clipData, isCapture, position) {
                 let clip;
                 for (let i = 0, n = clipData.length; i < n; i++) {
@@ -49,6 +55,11 @@ var WH = WH || {};
                 activeClips = activeClips.filter(clip => clip.getIsPlaying());
             },
 
+            /**
+             * Draw the video clip frames on canvas.
+             * @param {Number} time Playback position on the main video timeline.
+             * @param {Object} ctx Canvas drawing context.
+             */
             draw = function(time, ctx) {
                 let clip;
                 for (let i = 0, n = activeClips.length; i < n; i++) {

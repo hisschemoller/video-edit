@@ -57,14 +57,18 @@ var WH = WH || {};
                     frameCounter = 0;
                 }
 
-                addNewClips();
+                addNewClips(position);
                 requestAnimationFrame(isCapture ? capture : draw);
             },
 
-            addNewClips = function() {
-                const clipdata = data.getNewClipsData(position);
+            /**
+             * Add and start new clips, if any.
+             * @param {Number} playerPosition Playback position on the main video timeline.
+             */
+            addNewClips = function(playerPosition) {
+                const clipdata = data.getNewClipsData(playerPosition);
                 if (clipdata && clipdata.length > 0) {
-                    clips.startClips(clipdata, isCapture, position);
+                    clips.startClips(clipdata, isCapture, playerPosition);
                 }
             },
 
@@ -77,7 +81,7 @@ var WH = WH || {};
 
                 clips.draw(position, ctx);
                 position = performance.now() - origin;
-                addNewClips();
+                addNewClips(position);
 
                 if (dev.info) {
                     dev.infoTimeEl.innerHTML = (position / 1000).toFixed(1);
@@ -99,7 +103,7 @@ var WH = WH || {};
 
                 clips.draw(position, ctx);
                 position += 1000 / data.get().settings.framerate;
-                addNewClips();
+                addNewClips(position);
 
                 if (dev.info) {
                     dev.infoTimeEl.innerHTML = (position / 1000).toFixed(1);

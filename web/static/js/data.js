@@ -137,7 +137,7 @@ var WH = WH || {};
             /**
              *
              * @param  {Number} time Playback position in milliseconds.
-             * @return {Array} Data of clips that start
+             * @return {Array} Data of clips that start.
              */
             getNewClipsData = function(time) {
                 if (clipIndex < data.clips.length) {

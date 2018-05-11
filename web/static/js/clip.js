@@ -37,6 +37,10 @@ var WH = WH || {};
                 imgURLPrefix = '';
             }
 
+            /**
+             * Draw the video clip frame on canvas.
+             * @param {Object} ctx Canvas drawing context.
+             */
             draw = function(ctx) {
                 if (data.flipHorizontal) {
                     ctx.save();
