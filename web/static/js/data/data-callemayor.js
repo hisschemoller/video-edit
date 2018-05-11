@@ -46,27 +46,19 @@ var WH = WH || {};
           resourceID: 'cmayor1',
           start: start,
           end: end,
-          clipStart: 6,
-          x1: 0, x2: 210,
-          y1: 0, y2: 480
+          clipStart: 6
         },
         {
           resourceID: 'cmayor2',
           start: start,
           end: end,
-          clipStart: 46,
-          x1: 210, x2: 430,
-          y1: 0, y2: 480,
-          offsetX: 210, offsetY: 0
+          clipStart: 46
         },
         {
           resourceID: 'cmayor3a',
           start: start,
           end: end,
-          clipStart: 51,
-          x1: 430, x2: 640,
-          y1: 0, y2: 480,
-          offsetX: 430, offsetY: 0
+          clipStart: 51
         }
       ];
 

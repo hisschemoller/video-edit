@@ -39,7 +39,9 @@ var WH = WH || {};
                 ctx.imageSmoothingEnabled = false;
 
                 clips = WH.createClips({
-                    framerate: data.get().settings.framerate
+                    framerate: data.get().settings.framerate,
+                    canvasHeight: data.get().settings.canvasHeight,
+                    canvasWidth: data.get().settings.canvasWidth
                 });
 
                 console.log('start');
