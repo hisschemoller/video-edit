@@ -43,7 +43,7 @@ var WH = WH || {};
         {
           resourceID: 'cmayor1',
           start: 0,
-          end: WH.util.musicToTime('2:0:0'),
+          end: WH.util.musicToTime('8:0:0'),
           clipStart: 6
         },
         {
@@ -54,8 +54,8 @@ var WH = WH || {};
         },
         {
           resourceID: 'cmayor3a',
-          start: 0,
-          end: WH.util.musicToTime('2:0:0'),
+          start: WH.util.musicToTime('1:0:0'),
+          end: WH.util.musicToTime('8:0:0'),
           clipStart: 51
         }
       ];

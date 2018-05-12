@@ -25,7 +25,9 @@ var WH = WH || {};
             canvasHeight = specs.canvasHeight,
             canvasWidth = specs.canvasWidth,
             measure = WH.util.musicToTime('1:0:0') * 1000,
+            tweenInDuration = measure * 0.6,
             tweenOutDuration = measure,
+            isFirstRun = true,
 
             init = function() {
                 for (var i = 0; i < numClips; i++) {
@@ -34,6 +36,9 @@ var WH = WH || {};
                         canvasHeight: specs.canvasHeight
                     }));
                 }
+
+                borders.push({ value: 0 });
+                borders.push({ value: canvasWidth});
             },
 
             /**
@@ -43,33 +48,48 @@ var WH = WH || {};
              * @param {Number} position Playback position on the main video timeline.
              */
             startClips = function(clipData, isCapture, position) {
-                let clip;
                 for (let i = 0, n = clipData.length; i < n; i++) {
+
+                    // select a random position for the new clip
+                    const index = Math.round(Math.random() * activeClips.length);
+
+                    // add the new clip
                     if (idleClips.length) {
-                        clip = idleClips.pop();
+                        const clip = idleClips.pop();
                         clip.start(clipData[i], isCapture, position);
-                        activeClips.push(clip);
+                        activeClips.splice(index, 0, clip);
+                        
+                        if (!isFirstRun) {
+                            clip.setIsTweeningIn(true);
+                        }
                     }
+
+                    // add the border at the right of the new clip
+                    borders.splice(index + 1, 0, {
+                        value: borders[index].value,
+                        isTweening: false
+                    });
                 }
-                
-                activeClips.sort((a, b) => {
-                    return a.getZIndex() - b.getZIndex();
-                });
 
-                // init tweens if these are the first clips started
-                if (!borders.length) {
-                    borders.push({ value: 0 });
+                if (isFirstRun) {
+                    isFirstRun = false;
 
-                    // equally divide canvas width over clips
+                    // set borders to equal width
                     for (let i = 1, n = clipData.length; i < n; i++) {
-                        borders.push({
-                            value: (i / n) * canvasWidth,
-                            isTweening: false
-                        });
+                        borders[i].value = (i / n) * canvasWidth;
                     }
-                    borders.push({ value: canvasWidth});
+
+                    // remove the last added border because there's one
+                    // less dividing border than there are clips
+                    borders.splice(borders.length - 2, 1);
                 } else {
+                    setTweenIns(borders, position, tweenInDuration);
                 }
+
+                // sort the clips by z-index
+                // activeClips.sort((a, b) => {
+                //     return a.getZIndex() - b.getZIndex();
+                // });
 
                 // setTweenDestinations(borderTweens, canvasWidth, position, true);
             },
@@ -90,7 +110,7 @@ var WH = WH || {};
                 for (let i = 0, n = activeClips.length; i < n; i++) {
                     clip = activeClips[i];
                     if (clip.getIsPlaying()) {
-                        setTweenOutValues(borders, time);
+                        setTweenValues(borders, time);
                         x1 = borders[i].value; // (i === 0) ? 0 : borderTweens[i - 1].value;
                         x2 = borders[i + 1].value; // (i === n - 1) ? ctx.canvas.width : borderTweens[i].value;
                         clip.draw(ctx, x1, x2);
@@ -100,6 +120,11 @@ var WH = WH || {};
                         if (clip.getEnd() - tweenOutDuration <= time && !clip.getIsTweeningOut()) {
                             clip.setIsTweeningOut(true);
                             tweenOutClipIndexes.push(i);
+                        }
+
+                        // check if clip is finished tweening in
+                        if (clip.getStart() + tweenInDuration <= time && clip.getIsTweeningIn()) {
+                            stopTweenIns(borders, activeClips);
                         }
                     } else {
                         stoppedClips.push(clip);
@@ -115,6 +140,20 @@ var WH = WH || {};
                 if (stoppedClips.length) {
                     stopTweenOuts(borders, activeClips);
                     stopClips();
+                }
+            },
+
+            setTweenIns = function(borders, time, duration) {
+                const newClipWidth = canvasWidth / activeClips.length;
+                let x = 0;
+                for (let i = 1, n = borders.length - 1; i < n; i++) {
+                    const border = borders[i];
+                    border.fromValue = border.value;
+                    border.toValue = x + newClipWidth;
+                    border.fromTime = time;
+                    border.toTime = time + duration;
+                    border.isTweening = true;
+                    x = border.toValue;
                 }
             },
 
@@ -135,7 +174,7 @@ var WH = WH || {};
                 }
             },
 
-            setTweenOutValues = function(borders, currentTime) {
+            setTweenValues = function(borders, currentTime) {
                 for (let i = 1, n = borders.length - 1; i < n; i++) {
                     const border = borders[i];
                     if (border.isTweening) {
@@ -143,6 +182,17 @@ var WH = WH || {};
                         border.value = border.fromValue + ((border.toValue - border.fromValue) * normalized);
                     }
                 }
+            },
+
+            stopTweenIns = function(borders, activeClips) {
+                for (let i = 1, n = borders.length - 1; i < n; i++) {
+                    const border = borders[i];
+                    border.isTweening = false;
+                    border.value = border.toValue;
+                }
+                activeClips.forEach(clip => {
+                    clip.setIsTweeningIn(false);
+                });
             },
 
             stopTweenOuts = function(borders, activeClips) {

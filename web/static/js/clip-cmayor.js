@@ -14,6 +14,7 @@ var WH = WH || {};
             globalStartPosition,
             isPlaying = false,
             isCapture = false,
+            isTweeningIn = false,
             isTweeningOut = false,
 
             init = function() {
@@ -85,8 +86,20 @@ var WH = WH || {};
                 return data.zIndex;;
             },
             
+            getStart = function() {
+                return data.start;
+            },
+            
             getEnd = function() {
                 return data.end;
+            },
+            
+            getIsTweeningIn = function() {
+                return isTweeningIn;
+            },
+            
+            setIsTweeningIn = function(value) {
+                isTweeningIn = value;
             },
             
             getIsTweeningOut = function() {
@@ -107,7 +120,10 @@ var WH = WH || {};
         that.update = update;
         that.getIsPlaying = getIsPlaying;
         that.getZIndex = getZIndex;
+        that.getStart = getStart;
         that.getEnd = getEnd;
+        that.getIsTweeningIn = getIsTweeningIn;
+        that.setIsTweeningIn = setIsTweeningIn;
         that.getIsTweeningOut = getIsTweeningOut;
         that.setIsTweeningOut = setIsTweeningOut;
         return that;
