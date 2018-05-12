@@ -16,48 +16,46 @@ var WH = WH || {};
         }
       },
       resources: [{
-        id: 'cmayor1',
-        url: 'static/seq/cmayor1/frame_',
-        frames: 14996
-      },{
-        id: 'cmayor2',
-        url: 'static/seq/cmayor2/frame_',
-        frames: 15483
-      },{
-        id: 'cmayor3a',
-        url: 'static/seq/cmayor3a/frame_',
-        frames: 13852
-      },{
-        id: 'cmayor3b',
-        url: 'static/seq/cmayor3b/frame_',
-        frames: 3881
-      }],
+          id: 'cmayor1',
+          url: 'static/seq/cmayor1/frame_',
+          frames: 14996
+        },{
+          id: 'cmayor2',
+          url: 'static/seq/cmayor2/frame_',
+          frames: 15483
+        },{
+          id: 'cmayor3a',
+          url: 'static/seq/cmayor3a/frame_',
+          frames: 13852
+        },{
+          id: 'cmayor3b',
+          url: 'static/seq/cmayor3b/frame_',
+          frames: 3881
+        }
+      ],
       clips: []
     },
 
     createClips = function() {
       let clips = [];
 
-      let start = WH.util.musicToTime('0:0:0'),
-        end = WH.util.musicToTime('64:0:0');
-
       clips = [...clips,
         {
           resourceID: 'cmayor1',
-          start: start,
-          end: end,
+          start: 0,
+          end: WH.util.musicToTime('2:0:0'),
           clipStart: 6
         },
         {
           resourceID: 'cmayor2',
-          start: start,
-          end: end,
+          start: 0,
+          end: WH.util.musicToTime('8:0:0'),
           clipStart: 46
         },
         {
           resourceID: 'cmayor3a',
-          start: start,
-          end: end,
+          start: 0,
+          end: WH.util.musicToTime('2:0:0'),
           clipStart: 51
         }
       ];

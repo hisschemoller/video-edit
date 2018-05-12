@@ -14,6 +14,7 @@ var WH = WH || {};
             globalStartPosition,
             isPlaying = false,
             isCapture = false,
+            isTweeningOut = false,
 
             init = function() {
                 img = new Image();
@@ -82,6 +83,18 @@ var WH = WH || {};
 
             getZIndex = function() {
                 return data.zIndex;;
+            },
+            
+            getEnd = function() {
+                return data.end;
+            },
+            
+            getIsTweeningOut = function() {
+                return isTweeningOut;
+            },
+            
+            setIsTweeningOut = function(value) {
+                isTweeningOut = value;
             };
 
         that = specs.that || {};
@@ -94,6 +107,9 @@ var WH = WH || {};
         that.update = update;
         that.getIsPlaying = getIsPlaying;
         that.getZIndex = getZIndex;
+        that.getEnd = getEnd;
+        that.getIsTweeningOut = getIsTweeningOut;
+        that.setIsTweeningOut = setIsTweeningOut;
         return that;
     };
 
