@@ -34,7 +34,7 @@ var WH = WH || {};
                 canvas.height = data.get().settings.canvasHeight;
                 ctx = canvas.getContext('2d');
                 ctx.webkitImageSmoothingEnabled = false;
-                ctx.imageSmoothingQuality = "high";
+                ctx.imageSmoothingQuality = 'high';
                 ctx.msImageSmoothingEnabled = false;
                 ctx.imageSmoothingEnabled = false;
 
@@ -68,9 +68,9 @@ var WH = WH || {};
              * @param {Number} playerPosition Playback position on the main video timeline.
              */
             addNewClips = function(playerPosition) {
-                const clipdata = data.getNewClipsData(playerPosition);
-                if (clipdata && clipdata.length > 0) {
-                    clips.startClips(clipdata, isCapture, playerPosition);
+                const scoreData = data.getNewScoreData(playerPosition);
+                if (scoreData && scoreData.length > 0) {
+                    clips.addNewScoreData(scoreData, isCapture, playerPosition);
                 }
             },
 

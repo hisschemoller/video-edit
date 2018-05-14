@@ -33,39 +33,94 @@ var WH = WH || {};
           frames: 3881
         }
       ],
-      clips: []
+      score: []
     },
 
-    createClips = function() {
-      let clips = [];
+    createScore = function() {
+      let score = [];
 
-      clips = [...clips,
+      score = [...score,
         {
+          type: 'action',
+          start: WH.util.musicToTime('0:0:0'),
+          action: 'columns'
+        },
+        {
+          type: 'clip',
           resourceID: 'cmayor1',
           start: 0,
           end: WH.util.musicToTime('8:0:0'),
-          clipStart: 6
+          clipStart: 3 * 60 + 30
         },
         {
+          type: 'clip',
           resourceID: 'cmayor2',
           start: 0,
-          end: WH.util.musicToTime('8:0:0'),
-          clipStart: 46
+          end: WH.util.musicToTime('2:0:0') - 1,
+          clipStart: 4 * 60 + 11
         },
         {
+          type: 'clip',
           resourceID: 'cmayor3a',
-          start: WH.util.musicToTime('1:0:0'),
-          end: WH.util.musicToTime('8:0:0'),
-          clipStart: 51
+          start: 0,
+          end: WH.util.musicToTime('2:0:0') - 1,
+          clipStart: 4 * 60 + 20 
+        },
+        {
+          type: 'action',
+          start: WH.util.musicToTime('2:0:0'),
+          action: 'rows'
+        },
+        {
+          type: 'clip',
+          resourceID: 'cmayor1',
+          start: WH.util.musicToTime('2:0:0'),
+          end: WH.util.musicToTime('24:0:0'),
+          clipStart: 3 * 60 + 30
+        },
+        {
+          type: 'clip',
+          resourceID: 'cmayor2',
+          start: WH.util.musicToTime('2:0:0'),
+          end: WH.util.musicToTime('24:0:0'),
+          clipStart: 4 * 60 + 11
+        },
+        {
+          type: 'clip',
+          resourceID: 'cmayor3a',
+          start: WH.util.musicToTime('2:0:0'),
+          end: WH.util.musicToTime('24:0:0'),
+          clipStart: 4 * 60 + 20 
+        },
+        {
+          type: 'clip',
+          resourceID: 'cmayor3a',
+          start: WH.util.musicToTime('2:0:0'),
+          end: WH.util.musicToTime('24:0:0'),
+          clipStart: 4 * 60 + 20.1 
+        },
+        {
+          type: 'clip',
+          resourceID: 'cmayor3a',
+          start: WH.util.musicToTime('2:0:0'),
+          end: WH.util.musicToTime('24:0:0'),
+          clipStart: 4 * 60 + 20.2 
+        },
+        {
+          type: 'clip',
+          resourceID: 'cmayor3a',
+          start: WH.util.musicToTime('2:0:0'),
+          end: WH.util.musicToTime('24:0:0'),
+          clipStart: 4 * 60 + 20.3 
         }
       ];
 
-      return clips;
+      return score;
     },
 
     createData = function() {
         WH.util.setTiming(data.settings);
-        data.clips = createClips();
+        data.score = createScore();
         return data;
     };
 

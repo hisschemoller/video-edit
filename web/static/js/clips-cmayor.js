@@ -15,7 +15,7 @@ var WH = WH || {};
     WH.createClips = function(specs = {}, my = {}) {
 
         let that,
-            numClips = 6,
+            numClips = 12,
             idleClips = [],
             activeClips = [],
             stoppedClips = [],
@@ -25,9 +25,10 @@ var WH = WH || {};
             canvasHeight = specs.canvasHeight,
             canvasWidth = specs.canvasWidth,
             measure = WH.util.musicToTime('1:0:0') * 1000,
-            tweenInDuration = measure * 0.6,
-            tweenOutDuration = measure,
+            tweenInDuration = measure * 0.7,
+            tweenOutDuration = measure * 0.5,
             isFirstRun = true,
+            isColumns = true,
 
             init = function() {
                 for (var i = 0; i < numClips; i++) {
@@ -41,30 +42,71 @@ var WH = WH || {};
                 borders.push({ value: canvasWidth});
             },
 
+            addNewScoreData = function(scoreData, isCapture, position) {
+                scoreData.forEach(data => {
+                    switch (data.type) {
+                        case 'clip':
+                            startClip(data, isCapture, position);
+                            break;
+                        case 'action':
+                            switch (data.action) {
+                                case 'columns':
+                                    changeToColumns();
+                                    break;
+                                case 'rows':
+                                    changeToRows();
+                                    break;
+                            }
+                            break;
+                    }
+                });
+                isFirstRun = false;
+                console.log('activeClips', activeClips);
+                console.log('borders', borders);
+            },
+
+            changeToColumns = function() {
+                isColumns = true;
+                const columnWidth = borders.length > 2 ? activeClips.length / canvasWidth : canvasWidth;
+                borders.forEach((border, index) => {
+                    border.value = index * columnWidth;
+                });
+            },
+
+            changeToRows = function() {
+                isColumns = false;
+                const rowHeight = borders.length > 2 ? activeClips.length / canvasHeight : canvasHeight;
+                console.log('borders.length', borders.length);
+                borders.forEach((border, index) => {
+                    border.value = index * rowHeight;
+                    console.log('border.value', border.value);
+                });
+            },
+
             /**
              * Start new clips.
-             * @param {Array} Data of clips to add and start.
+             * @param {Object} clipData Data for video clip to add and start.
              * @param {Boolean} isCapture True if the video is being recorded.
              * @param {Number} position Playback position on the main video timeline.
              */
-            startClips = function(clipData, isCapture, position) {
-                for (let i = 0, n = clipData.length; i < n; i++) {
+            startClip = function(clipData, isCapture, position) {
 
-                    // select a random position for the new clip
-                    const index = Math.round(Math.random() * activeClips.length);
+                // select a random position for the new clip
+                const index = Math.round(Math.random() * activeClips.length);
 
-                    // add the new clip
-                    if (idleClips.length) {
-                        const clip = idleClips.pop();
-                        clip.start(clipData[i], isCapture, position);
-                        activeClips.splice(index, 0, clip);
-                        
-                        if (!isFirstRun) {
-                            clip.setIsTweeningIn(true);
-                        }
+                // add the new clip
+                if (idleClips.length) {
+                    const clip = idleClips.pop();
+                    clip.start(clipData, isCapture, position);
+                    activeClips.splice(index, 0, clip);
+                    
+                    if (!isFirstRun) {
+                        clip.setIsTweeningIn(true);
                     }
+                }
 
-                    // add the border at the right of the new clip
+                // add the border at the right of the new clip
+                if (activeClips.length > 1) {
                     borders.splice(index + 1, 0, {
                         value: borders[index].value,
                         isTweening: false
@@ -72,24 +114,21 @@ var WH = WH || {};
                 }
 
                 if (isFirstRun) {
-                    isFirstRun = false;
 
                     // set borders to equal width
-                    for (let i = 1, n = clipData.length; i < n; i++) {
-                        borders[i].value = (i / n) * canvasWidth;
+                    for (let i = 1, n = activeClips.length; i < n; i++) {
+                        borders[i].value = (i / n) * (isColumns ? canvasWidth : canvasHeight);
                     }
-
-                    // remove the last added border because there's one
-                    // less dividing border than there are clips
-                    borders.splice(borders.length - 2, 1);
                 } else {
+
+                    // tween the clip size from zero
                     setTweenIns(borders, position, tweenInDuration);
                 }
 
                 // sort the clips by z-index
-                // activeClips.sort((a, b) => {
-                //     return a.getZIndex() - b.getZIndex();
-                // });
+                activeClips.sort((a, b) => {
+                    return a.getZIndex() - b.getZIndex();
+                });
 
                 // setTweenDestinations(borderTweens, canvasWidth, position, true);
             },
@@ -106,14 +145,23 @@ var WH = WH || {};
              * @param {Object} ctx Canvas drawing context.
              */
             draw = function(time, ctx) {
-                let clip, x1, x2;
+                let clip, x, y, width, height;
                 for (let i = 0, n = activeClips.length; i < n; i++) {
                     clip = activeClips[i];
                     if (clip.getIsPlaying()) {
                         setTweenValues(borders, time);
-                        x1 = borders[i].value; // (i === 0) ? 0 : borderTweens[i - 1].value;
-                        x2 = borders[i + 1].value; // (i === n - 1) ? ctx.canvas.width : borderTweens[i].value;
-                        clip.draw(ctx, x1, x2);
+                        if (isColumns) {
+                            x = borders[i].value;
+                            width = borders[i + 1].value - borders[i].value;
+                            y = 0;
+                            height = canvasHeight;
+                        } else {
+                            x = 0;
+                            width = canvasWidth;
+                            y = borders[i].value;
+                            height = borders[i + 1].value - borders[i].value;
+                        }
+                        clip.draw(ctx, x, y, width, height);
                         clip.update(time);
                         
                         // check if clip should tween out
@@ -144,33 +192,33 @@ var WH = WH || {};
             },
 
             setTweenIns = function(borders, time, duration) {
-                const newClipWidth = canvasWidth / activeClips.length;
-                let x = 0;
+                const newClipSize = (isColumns ? canvasWidth : canvasHeight) / activeClips.length;
+                let position = 0;
                 for (let i = 1, n = borders.length - 1; i < n; i++) {
                     const border = borders[i];
                     border.fromValue = border.value;
-                    border.toValue = x + newClipWidth;
+                    border.toValue = position + newClipSize;
                     border.fromTime = time;
                     border.toTime = time + duration;
                     border.isTweening = true;
-                    x = border.toValue;
+                    position = border.toValue;
                 }
             },
 
             setTweenOuts = function(tweenOutClipIndexes, time, duration) {
                 const remainingClips = activeClips.map((clip, index) => tweenOutClipIndexes.indexOf(index) === -1);
                 const remainingClipCount = activeClips.length - tweenOutClipIndexes.length;
-                const remainingClipWidth = canvasWidth / remainingClipCount;
+                const remainingClipSize = (isColumns ? canvasWidth : canvasHeight) / remainingClipCount;
 
-                let x = 0;
+                let position = 0;
                 for (let i = 0, n = activeClips.length - 1; i < n; i++) {
                     const border = borders[i + 1];
                     border.fromValue = border.value;
-                    border.toValue = x + (remainingClips[i] ? remainingClipWidth : 0);
+                    border.toValue = position + (remainingClips[i] ? remainingClipSize : 0);
                     border.fromTime = time;
                     border.toTime = time + duration;
                     border.isTweening = true;
-                    x = border.toValue;
+                    position = border.toValue;
                 }
             },
 
@@ -240,7 +288,7 @@ var WH = WH || {};
 
         init();
 
-        that.startClips = startClips;
+        that.addNewScoreData = addNewScoreData;
         that.draw = draw;
         return that;
     };

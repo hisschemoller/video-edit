@@ -43,14 +43,14 @@ var WH = WH || {};
              * Draw the video clip frame on canvas.
              * @param {Object} ctx Canvas drawing context.
              */
-            draw = function(ctx, x1, x2) {
+            draw = function(ctx, x, y, width, height) {
                 if (data.flipHorizontal) {
                     ctx.save();
                     ctx.scale(-1, 1);
-                    ctx.drawImage(img, x1, 0, x2 - x1, ctx.canvas.height, x1, 0, x2 - x1, ctx.canvas.height);
+                    ctx.drawImage(img, x, y, width, height, x, y, width, height);
                     ctx.restore();
                 } else {
-                    ctx.drawImage(img, x1, 0, x2 - x1, ctx.canvas.height, x1, 0, x2 - x1, ctx.canvas.height);
+                    ctx.drawImage(img, x, y, width, height, x, y, width, height);
                 }
             },
 
