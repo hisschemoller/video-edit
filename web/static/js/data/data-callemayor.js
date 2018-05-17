@@ -9,7 +9,7 @@ var WH = WH || {};
         canvasWidth: 640,
         timing: 'music',
         ppqn: 24,
-        bpm: 120,
+        bpm: 112,
         timesignature: {
           numerator: 4, // number of beats in a measure
           denominator: 4 // length of a beat (4 = quarter note, 8 = eight note)
@@ -37,7 +37,17 @@ var WH = WH || {};
     },
 
     createScore = function() {
-      let score = [];
+      let score = [],
+      startVariation = Math.random() * 3,
+      cmayor1Start = 2 * 60 + 30 + startVariation,
+      cmayor2Start = 3 * 60 + 11 + startVariation,
+      cmayor3aStart = 3 * 60 + 18 + startVariation;
+
+      // 0 - 16 
+
+      // calle mayor
+      
+      // three columns of three different days
 
       score = [...score,
         {
@@ -48,70 +58,263 @@ var WH = WH || {};
         {
           type: 'clip',
           resourceID: 'cmayor1',
-          start: 0,
-          end: WH.util.musicToTime('8:0:0'),
-          clipStart: 3 * 60 + 30
+          start: WH.util.musicToTime('0:0:0'),
+          end: WH.util.musicToTime('16:0:0'),
+          clipStart: cmayor1Start
         },
         {
           type: 'clip',
           resourceID: 'cmayor2',
-          start: 0,
-          end: WH.util.musicToTime('2:0:0') - 1,
-          clipStart: 4 * 60 + 11
+          start: WH.util.musicToTime('0:0:0'),
+          end: WH.util.musicToTime('16:0:0'),
+          clipStart: cmayor2Start
         },
         {
           type: 'clip',
           resourceID: 'cmayor3a',
-          start: 0,
-          end: WH.util.musicToTime('2:0:0') - 1,
-          clipStart: 4 * 60 + 20 
+          start: WH.util.musicToTime('0:0:0'),
+          end: WH.util.musicToTime('34:0:0'),
+          clipStart: cmayor3aStart
+        },
+
+        // 18 - 34 
+
+        // calle mayor
+        
+        // eight columns of day three
+
+        {
+          type: 'clip',
+          resourceID: 'cmayor3a',
+          start: WH.util.musicToTime('18:0:0'),
+          end: WH.util.musicToTime('34:0:0'),
+          clipStart: cmayor3aStart + WH.util.musicToTime('18:0:0') + 0.1
         },
         {
+          type: 'clip',
+          resourceID: 'cmayor3a',
+          start: WH.util.musicToTime('18:0:0'),
+          end: WH.util.musicToTime('34:0:0'),
+          clipStart: cmayor3aStart + WH.util.musicToTime('18:0:0') + 0.15
+        },
+        {
+          type: 'clip',
+          resourceID: 'cmayor3a',
+          start: WH.util.musicToTime('18:0:0'),
+          end: WH.util.musicToTime('34:0:0'),
+          clipStart: cmayor3aStart + WH.util.musicToTime('18:0:0') + 0.2
+        },
+        {
+          type: 'clip',
+          resourceID: 'cmayor3a',
+          start: WH.util.musicToTime('18:0:0'),
+          end: WH.util.musicToTime('34:0:0'),
+          clipStart: cmayor3aStart + WH.util.musicToTime('18:0:0') + 0.25
+        },
+        {
+          type: 'clip',
+          resourceID: 'cmayor3a',
+          start: WH.util.musicToTime('18:0:0'),
+          end: WH.util.musicToTime('34:0:0'),
+          clipStart: cmayor3aStart + WH.util.musicToTime('18:0:0') + 0.3
+        },
+        {
+          type: 'clip',
+          resourceID: 'cmayor3a',
+          start: WH.util.musicToTime('18:0:0'),
+          end: WH.util.musicToTime('52:0:0'),
+          clipStart: cmayor3aStart + WH.util.musicToTime('18:0:0') + 0.35
+        },
+      ];
+
+      // 36 - 52
+
+      // puerta del sol
+
+      // three rows of all three days
+
+      score = [...score, 
+        {
           type: 'action',
-          start: WH.util.musicToTime('2:0:0'),
+          start: WH.util.musicToTime('34:0:0') + 0.1,
           action: 'rows'
         },
         {
           type: 'clip',
           resourceID: 'cmayor1',
-          start: WH.util.musicToTime('2:0:0'),
-          end: WH.util.musicToTime('24:0:0'),
-          clipStart: 3 * 60 + 30
+          start: WH.util.musicToTime('36:0:0'),
+          end: WH.util.musicToTime('52:0:0'),
+          clipStart: cmayor1Start + WH.util.musicToTime('36:0:0')
         },
         {
           type: 'clip',
           resourceID: 'cmayor2',
-          start: WH.util.musicToTime('2:0:0'),
-          end: WH.util.musicToTime('24:0:0'),
-          clipStart: 4 * 60 + 11
+          start: WH.util.musicToTime('36:0:0'),
+          end: WH.util.musicToTime('70:0:0'),
+          clipStart: cmayor2Start + WH.util.musicToTime('36:0:0')
+        },
+      ];
+
+      // 54 - 70
+
+      // puerta del sol
+
+      // four rows of day 2
+
+      score = [...score,
+        {
+          type: 'action',
+          start: WH.util.musicToTime('52:0:0') + 0.1,
+          action: 'rows'
+        },
+        {
+          type: 'clip',
+          resourceID: 'cmayor2',
+          start: WH.util.musicToTime('54:0:0'),
+          end: WH.util.musicToTime('70:0:0'),
+          clipStart: cmayor2Start + WH.util.musicToTime('54:0:0') + 0.1
+        },
+        {
+          type: 'clip',
+          resourceID: 'cmayor2',
+          start: WH.util.musicToTime('54:0:0'),
+          end: WH.util.musicToTime('70:0:0'),
+          clipStart: cmayor2Start + WH.util.musicToTime('54:0:0') + 0.2
+        },
+        {
+          type: 'clip',
+          resourceID: 'cmayor2',
+          start: WH.util.musicToTime('54:0:0'),
+          end: WH.util.musicToTime('88:0:0'),
+          clipStart: cmayor2Start + WH.util.musicToTime('54:0:0') + 0.3
+        },
+      ];
+
+      // 72 - 88
+
+      // puerta del sol
+
+      // four columns of all three days
+
+      score = [...score,
+        {
+          type: 'action',
+          start: WH.util.musicToTime('70:0:0') + 0.1,
+          action: 'columns'
+        },
+        {
+          type: 'clip',
+          resourceID: 'cmayor1',
+          start: WH.util.musicToTime('72:0:0'),
+          end: WH.util.musicToTime('88:0:0'),
+          clipStart: cmayor1Start + WH.util.musicToTime('72:0:0')
+        },
+        {
+          type: 'clip',
+          resourceID: 'cmayor1',
+          start: WH.util.musicToTime('72:0:0'),
+          end: WH.util.musicToTime('88:0:0'),
+          clipStart: cmayor1Start + WH.util.musicToTime('72:0:0') + 0.1
         },
         {
           type: 'clip',
           resourceID: 'cmayor3a',
-          start: WH.util.musicToTime('2:0:0'),
-          end: WH.util.musicToTime('24:0:0'),
-          clipStart: 4 * 60 + 20 
+          start: WH.util.musicToTime('72:0:0'),
+          end: WH.util.musicToTime('106:0:0'),
+          clipStart: cmayor3aStart + WH.util.musicToTime('72:0:0')
+        },
+      ];
+
+      // 90 - 106
+
+      // puerta del sol
+
+      // two rows of day three
+
+      score = [...score,
+        {
+          type: 'action',
+          start: WH.util.musicToTime('88:0:0') + 0.1,
+          action: 'rows'
         },
         {
           type: 'clip',
           resourceID: 'cmayor3a',
-          start: WH.util.musicToTime('2:0:0'),
-          end: WH.util.musicToTime('24:0:0'),
-          clipStart: 4 * 60 + 20.1 
+          start: WH.util.musicToTime('90:0:0'),
+          end: WH.util.musicToTime('109:0:0') + 0.1,
+          clipStart: cmayor3aStart + WH.util.musicToTime('90:0:0') + 0.1
+        },
+      ];
+
+      // 108 - 124
+
+      // carrera de san jerónimo
+
+      // three or four columns of day three
+
+      let cmayor3bStart = 6;
+
+      score = [...score,
+        {
+          type: 'action',
+          start: WH.util.musicToTime('106:0:0') + 0.1,
+          action: 'columns'
         },
         {
           type: 'clip',
-          resourceID: 'cmayor3a',
-          start: WH.util.musicToTime('2:0:0'),
-          end: WH.util.musicToTime('24:0:0'),
-          clipStart: 4 * 60 + 20.2 
+          resourceID: 'cmayor3b',
+          start: WH.util.musicToTime('108:0:0'),
+          end: WH.util.musicToTime('124:0:0'),
+          clipStart: cmayor3bStart
         },
         {
           type: 'clip',
-          resourceID: 'cmayor3a',
-          start: WH.util.musicToTime('2:0:0'),
-          end: WH.util.musicToTime('24:0:0'),
-          clipStart: 4 * 60 + 20.3 
+          resourceID: 'cmayor3b',
+          start: WH.util.musicToTime('108:0:0'),
+          end: WH.util.musicToTime('124:0:0'),
+          clipStart: cmayor3bStart + 0.1
+        },
+        {
+          type: 'clip',
+          resourceID: 'cmayor3b',
+          start: WH.util.musicToTime('108:0:0'),
+          end: WH.util.musicToTime('142:0:0'),
+          clipStart: cmayor3bStart + 0.2
+        },
+        {
+          type: 'clip',
+          resourceID: 'cmayor3b',
+          start: WH.util.musicToTime('108:0:0'),
+          end: WH.util.musicToTime('142:0:0'),
+          clipStart: cmayor3bStart + 0.3
+        },
+      ];
+
+      // 126 - 144
+
+      // carrera de san jerónimo
+
+      // three rows of day three
+
+      score = [...score,
+        {
+          type: 'action',
+          start: WH.util.musicToTime('124:0:0') + 0.1,
+          action: 'rows'
+        },
+        {
+          type: 'clip',
+          resourceID: 'cmayor3b',
+          start: WH.util.musicToTime('126:0:0'),
+          end: WH.util.musicToTime('144:0:0'),
+          clipStart: cmayor3bStart + WH.util.musicToTime('18:0:0') + 0.1,
+        },
+        {
+          type: 'clip',
+          resourceID: 'cmayor3b',
+          start: WH.util.musicToTime('126:0:0'),
+          end: WH.util.musicToTime('145:0:0'),
+          clipStart: cmayor3bStart + WH.util.musicToTime('18:0:0') + 0.2,
         }
       ];
 
