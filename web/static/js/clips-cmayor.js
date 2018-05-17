@@ -61,11 +61,10 @@ var WH = WH || {};
                     }
                 });
                 isFirstRun = false;
-                console.log('activeClips', activeClips);
-                console.log('borders', borders);
             },
 
             changeToColumns = function() {
+                console.log('action: columns');
                 isColumns = true;
                 const columnWidth = borders.length > 2 ? activeClips.length / canvasWidth : canvasWidth;
                 borders.forEach((border, index) => {
@@ -74,12 +73,11 @@ var WH = WH || {};
             },
 
             changeToRows = function() {
+                console.log('action: rows');
                 isColumns = false;
                 const rowHeight = borders.length > 2 ? activeClips.length / canvasHeight : canvasHeight;
-                console.log('borders.length', borders.length);
                 borders.forEach((border, index) => {
                     border.value = index * rowHeight;
-                    console.log('border.value', border.value);
                 });
             },
 
