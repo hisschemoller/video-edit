@@ -127,7 +127,7 @@ var WH = WH || {};
         },
       ];
 
-
+      // kijkende mensen
 
       score = [...score, 
         {
@@ -136,6 +136,7 @@ var WH = WH || {};
           start: WH.util.musicToTime('33:0:0') + WH.util.musicToTime('0:1:0'),
           end: WH.util.musicToTime('70:0:0'),
           clipStart: cmayor2Start + WH.util.musicToTime('33:0:0') + WH.util.musicToTime('0:1:0'),
+          index: 0,
         },
       ];
 
@@ -224,7 +225,8 @@ var WH = WH || {};
           resourceID: 'cmayor1',
           start: WH.util.musicToTime('72:0:0'),
           end: WH.util.musicToTime('88:0:0'),
-          clipStart: cmayor1Start + WH.util.musicToTime('72:0:0')
+          clipStart: cmayor1Start + WH.util.musicToTime('72:0:0'),
+          index: 1,
         },
         {
           type: 'clip',
@@ -232,13 +234,14 @@ var WH = WH || {};
           start: WH.util.musicToTime('72:0:0'),
           end: WH.util.musicToTime('88:0:0'),
           clipStart: cmayor1Start + WH.util.musicToTime('72:0:0') + 0.1,
+          index: 2,
         },
         {
           type: 'clip',
           resourceID: 'cmayor3a',
           start: WH.util.musicToTime('72:0:0'),
           end: WH.util.musicToTime('106:0:0'),
-          clipStart: cmayor3aStart + WH.util.musicToTime('72:0:0')
+          clipStart: cmayor3aStart + WH.util.musicToTime('72:0:0'),
         },
       ];
 
@@ -330,7 +333,7 @@ var WH = WH || {};
           type: 'clip',
           resourceID: 'cmayor3b',
           start: WH.util.musicToTime('126:0:0'),
-          end: WH.util.musicToTime('148:0:0'),
+          end: WH.util.musicToTime('148:2:0'),
           clipStart: cmayor3bStart + WH.util.musicToTime('18:0:0') + 0.2,
         }
       ];
