@@ -82,8 +82,12 @@ var WH = WH || {};
                 return isPlaying;
             },
 
+            getIndex = function() {
+                return data.index;
+            },
+
             getZIndex = function() {
-                return data.zIndex;;
+                return data.zIndex;
             },
             
             getStart = function() {
@@ -119,6 +123,7 @@ var WH = WH || {};
         that.capture = capture;
         that.update = update;
         that.getIsPlaying = getIsPlaying;
+        that.getIndex = getIndex;
         that.getZIndex = getZIndex;
         that.getStart = getStart;
         that.getEnd = getEnd;

@@ -40,6 +40,14 @@ var WH = WH || {};
 
                 borders.push({ value: 0 });
                 borders.push({ value: canvasWidth});
+
+                document.addEventListener('keydown', e => {
+                    let msg = 'num: ' + activeClips.length + ', borders: ';
+                    borders.forEach(border => {
+                        msg += Math.round(border.value) + ', ';
+                    });
+                    console.log(msg);
+                });
             },
 
             addNewScoreData = function(scoreData, isCapture, position) {
@@ -90,7 +98,8 @@ var WH = WH || {};
             startClip = function(clipData, isCapture, position) {
 
                 // select a random position for the new clip
-                const index = Math.round(Math.random() * activeClips.length);
+                const randomIndex = Math.floor(Math.random() * (activeClips.length + 1));
+                let index = isNaN(clipData.index) ? randomIndex : clipData.index;
 
                 // add the new clip
                 if (idleClips.length) {
@@ -102,6 +111,33 @@ var WH = WH || {};
                         clip.setIsTweeningIn(true);
                     }
                 }
+
+                // order the clips so that indexed clips retain their position
+                let newArray = [];
+                // add indexed clips at the correct position
+                activeClips.forEach((clip, loopIndex) => {
+                    if (!isNaN(clip.getIndex())) {
+                        newArray[clip.getIndex()] = clip;
+                        // update the index so the new border will be inserted correctly
+                        index = Math.min(clip.getIndex(), activeClips.length - 1);
+                    }
+                });
+                // fill remaining positions with non indexed clips
+                activeClips.forEach((clip, loopIndex) => {
+                    if (isNaN(clip.getIndex())) {
+                        for (let i = 0, n = activeClips.length; i < n; i++) {
+                            if (!newArray[i]) {
+                                newArray[i] = clip;
+                                // update the index so the new border will be inserted correctly
+                                if (index === loopIndex) {
+                                    index = Math.min(i, activeClips.length - 1);
+                                }
+                                break;
+                            }
+                        }
+                    }
+                });
+                activeClips = newArray;
 
                 // add the border at the right of the new clip
                 if (activeClips.length > 1) {
