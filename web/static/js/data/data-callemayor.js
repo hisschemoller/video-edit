@@ -73,7 +73,7 @@ var WH = WH || {};
           type: 'clip',
           resourceID: 'cmayor3a',
           start: WH.util.musicToTime('0:0:0'),
-          end: WH.util.musicToTime('34:0:0'),
+          end: WH.util.musicToTime('33:0:0'),
           clipStart: cmayor3aStart
         },
 
@@ -87,43 +87,55 @@ var WH = WH || {};
           type: 'clip',
           resourceID: 'cmayor3a',
           start: WH.util.musicToTime('18:0:0'),
-          end: WH.util.musicToTime('34:0:0'),
+          end: WH.util.musicToTime('33:0:0'),
           clipStart: cmayor3aStart + WH.util.musicToTime('18:0:0') + 0.1
         },
         {
           type: 'clip',
           resourceID: 'cmayor3a',
           start: WH.util.musicToTime('18:0:0'),
-          end: WH.util.musicToTime('34:0:0'),
+          end: WH.util.musicToTime('33:0:0'),
           clipStart: cmayor3aStart + WH.util.musicToTime('18:0:0') + 0.15
         },
         {
           type: 'clip',
           resourceID: 'cmayor3a',
           start: WH.util.musicToTime('18:0:0'),
-          end: WH.util.musicToTime('34:0:0'),
+          end: WH.util.musicToTime('33:0:0'),
           clipStart: cmayor3aStart + WH.util.musicToTime('18:0:0') + 0.2
         },
         {
           type: 'clip',
           resourceID: 'cmayor3a',
           start: WH.util.musicToTime('18:0:0'),
-          end: WH.util.musicToTime('34:0:0'),
+          end: WH.util.musicToTime('33:0:0'),
           clipStart: cmayor3aStart + WH.util.musicToTime('18:0:0') + 0.25
         },
         {
           type: 'clip',
           resourceID: 'cmayor3a',
           start: WH.util.musicToTime('18:0:0'),
-          end: WH.util.musicToTime('34:0:0'),
+          end: WH.util.musicToTime('33:0:0'),
           clipStart: cmayor3aStart + WH.util.musicToTime('18:0:0') + 0.3
         },
         {
           type: 'clip',
           resourceID: 'cmayor3a',
           start: WH.util.musicToTime('18:0:0'),
-          end: WH.util.musicToTime('52:0:0'),
+          end: WH.util.musicToTime('34:0:0') + WH.util.musicToTime('0:2:0'),
           clipStart: cmayor3aStart + WH.util.musicToTime('18:0:0') + 0.35
+        },
+      ];
+
+
+
+      score = [...score, 
+        {
+          type: 'clip',
+          resourceID: 'cmayor2',
+          start: WH.util.musicToTime('33:0:0') + WH.util.musicToTime('0:1:0'),
+          end: WH.util.musicToTime('70:0:0'),
+          clipStart: cmayor2Start + WH.util.musicToTime('33:0:0') + WH.util.musicToTime('0:1:0'),
         },
       ];
 
@@ -133,25 +145,30 @@ var WH = WH || {};
 
       // three rows of all three days
 
+      // cmayor1Start;
+      cmayor2Start -= 4;
+      cmayor3aStart -= 3;
+
       score = [...score, 
         {
           type: 'action',
-          start: WH.util.musicToTime('34:0:0') + 0.1,
+          start: WH.util.musicToTime('36:0:0') + WH.util.musicToTime('0:0:0'),
           action: 'rows'
         },
+
         {
           type: 'clip',
           resourceID: 'cmayor1',
-          start: WH.util.musicToTime('36:0:0'),
+          start: WH.util.musicToTime('36:1:0'),
           end: WH.util.musicToTime('52:0:0'),
-          clipStart: cmayor1Start + WH.util.musicToTime('36:0:0')
+          clipStart: cmayor1Start + WH.util.musicToTime('36:1:0')
         },
         {
           type: 'clip',
-          resourceID: 'cmayor2',
-          start: WH.util.musicToTime('36:0:0'),
-          end: WH.util.musicToTime('70:0:0'),
-          clipStart: cmayor2Start + WH.util.musicToTime('36:0:0')
+          resourceID: 'cmayor3a',
+          start: WH.util.musicToTime('36:1:0'),
+          end: WH.util.musicToTime('52:0:0'),
+          clipStart: cmayor3aStart + WH.util.musicToTime('36:1:0')
         },
       ];
 
@@ -164,7 +181,7 @@ var WH = WH || {};
       score = [...score,
         {
           type: 'action',
-          start: WH.util.musicToTime('52:0:0') + 0.1,
+          start: WH.util.musicToTime('52:0:0') + WH.util.musicToTime('0:2:0'),
           action: 'rows'
         },
         {
@@ -199,7 +216,7 @@ var WH = WH || {};
       score = [...score,
         {
           type: 'action',
-          start: WH.util.musicToTime('70:0:0') + 0.1,
+          start: WH.util.musicToTime('70:0:0') + WH.util.musicToTime('0:2:0'),
           action: 'columns'
         },
         {
@@ -214,7 +231,7 @@ var WH = WH || {};
           resourceID: 'cmayor1',
           start: WH.util.musicToTime('72:0:0'),
           end: WH.util.musicToTime('88:0:0'),
-          clipStart: cmayor1Start + WH.util.musicToTime('72:0:0') + 0.1
+          clipStart: cmayor1Start + WH.util.musicToTime('72:0:0') + 0.1,
         },
         {
           type: 'clip',
@@ -234,7 +251,7 @@ var WH = WH || {};
       score = [...score,
         {
           type: 'action',
-          start: WH.util.musicToTime('88:0:0') + 0.1,
+          start: WH.util.musicToTime('88:0:0') + WH.util.musicToTime('0:2:0'),
           action: 'rows'
         },
         {
@@ -257,7 +274,7 @@ var WH = WH || {};
       score = [...score,
         {
           type: 'action',
-          start: WH.util.musicToTime('106:0:0') + 0.1,
+          start: WH.util.musicToTime('106:0:0') + WH.util.musicToTime('0:2:0'),
           action: 'columns'
         },
         {
@@ -278,19 +295,19 @@ var WH = WH || {};
           type: 'clip',
           resourceID: 'cmayor3b',
           start: WH.util.musicToTime('108:0:0'),
-          end: WH.util.musicToTime('142:0:0'),
+          end: WH.util.musicToTime('124:0:0'),
           clipStart: cmayor3bStart + 0.2
         },
         {
           type: 'clip',
           resourceID: 'cmayor3b',
           start: WH.util.musicToTime('108:0:0'),
-          end: WH.util.musicToTime('142:0:0'),
+          end: WH.util.musicToTime('148:0:0'),
           clipStart: cmayor3bStart + 0.3
         },
       ];
 
-      // 126 - 144
+      // 126 - 148
 
       // carrera de san jerónimo
 
@@ -299,21 +316,21 @@ var WH = WH || {};
       score = [...score,
         {
           type: 'action',
-          start: WH.util.musicToTime('124:0:0') + 0.1,
+          start: WH.util.musicToTime('124:0:0') + WH.util.musicToTime('0:2:0'),
           action: 'rows'
         },
         {
           type: 'clip',
           resourceID: 'cmayor3b',
           start: WH.util.musicToTime('126:0:0'),
-          end: WH.util.musicToTime('144:0:0'),
+          end: WH.util.musicToTime('148:0:0'),
           clipStart: cmayor3bStart + WH.util.musicToTime('18:0:0') + 0.1,
         },
         {
           type: 'clip',
           resourceID: 'cmayor3b',
           start: WH.util.musicToTime('126:0:0'),
-          end: WH.util.musicToTime('145:0:0'),
+          end: WH.util.musicToTime('148:0:0'),
           clipStart: cmayor3bStart + WH.util.musicToTime('18:0:0') + 0.2,
         }
       ];
