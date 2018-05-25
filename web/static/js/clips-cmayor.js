@@ -119,7 +119,9 @@ var WH = WH || {};
                     if (!isNaN(clip.getIndex())) {
                         newArray[clip.getIndex()] = clip;
                         // update the index so the new border will be inserted correctly
-                        index = Math.min(clip.getIndex(), activeClips.length - 1);
+                        if (loopIndex === index) {
+                            index = Math.min(clip.getIndex(), activeClips.length - 1);
+                        }
                     }
                 });
                 // fill remaining positions with non indexed clips
