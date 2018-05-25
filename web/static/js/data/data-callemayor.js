@@ -122,7 +122,7 @@ var WH = WH || {};
           type: 'clip',
           resourceID: 'cmayor3a',
           start: WH.util.musicToTime('18:0:0'),
-          end: WH.util.musicToTime('34:0:0') + WH.util.musicToTime('0:2:0'),
+          end: WH.util.musicToTime('34:2:0'),
           clipStart: cmayor3aStart + WH.util.musicToTime('18:0:0') + 0.35
         },
       ];
@@ -134,7 +134,7 @@ var WH = WH || {};
           type: 'clip',
           resourceID: 'cmayor2',
           start: WH.util.musicToTime('33:0:0') + WH.util.musicToTime('0:1:0'),
-          end: WH.util.musicToTime('70:0:0'),
+          end: WH.util.musicToTime('52:0:0'),
           clipStart: cmayor2Start + WH.util.musicToTime('33:0:0') + WH.util.musicToTime('0:1:0'),
           index: 0,
         },
@@ -168,7 +168,7 @@ var WH = WH || {};
           type: 'clip',
           resourceID: 'cmayor3a',
           start: WH.util.musicToTime('36:1:0'),
-          end: WH.util.musicToTime('52:0:0'),
+          end: WH.util.musicToTime('70:0:0'),
           clipStart: cmayor3aStart + WH.util.musicToTime('36:1:0')
         },
       ];
@@ -177,7 +177,7 @@ var WH = WH || {};
 
       // puerta del sol
 
-      // four rows of day 2
+      // four rows of day 2, no day 3
 
       score = [...score,
         {
@@ -187,24 +187,24 @@ var WH = WH || {};
         },
         {
           type: 'clip',
-          resourceID: 'cmayor2',
+          resourceID: 'cmayor3a',
           start: WH.util.musicToTime('54:0:0'),
           end: WH.util.musicToTime('70:0:0'),
-          clipStart: cmayor2Start + WH.util.musicToTime('54:0:0') + 0.1
+          clipStart: cmayor3aStart + WH.util.musicToTime('54:0:0') + 0.1
         },
         {
           type: 'clip',
-          resourceID: 'cmayor2',
+          resourceID: 'cmayor3a',
           start: WH.util.musicToTime('54:0:0'),
           end: WH.util.musicToTime('70:0:0'),
-          clipStart: cmayor2Start + WH.util.musicToTime('54:0:0') + 0.2
+          clipStart: cmayor3aStart + WH.util.musicToTime('54:0:0') + 0.2
         },
         {
           type: 'clip',
-          resourceID: 'cmayor2',
+          resourceID: 'cmayor3a',
           start: WH.util.musicToTime('54:0:0'),
-          end: WH.util.musicToTime('88:0:0'),
-          clipStart: cmayor2Start + WH.util.musicToTime('54:0:0') + 0.3
+          end: WH.util.musicToTime('106:0:0'),
+          clipStart: cmayor3aStart + WH.util.musicToTime('54:0:0') + 0.3
         },
       ];
 
@@ -238,10 +238,10 @@ var WH = WH || {};
         },
         {
           type: 'clip',
-          resourceID: 'cmayor3a',
+          resourceID: 'cmayor2',
           start: WH.util.musicToTime('72:0:0'),
-          end: WH.util.musicToTime('106:0:0'),
-          clipStart: cmayor3aStart + WH.util.musicToTime('72:0:0'),
+          end: WH.util.musicToTime('88:0:0'),
+          clipStart: cmayor2Start + WH.util.musicToTime('72:0:0'),
         },
       ];
 
@@ -337,6 +337,36 @@ var WH = WH || {};
           clipStart: cmayor3bStart + WH.util.musicToTime('18:0:0') + 0.2,
         }
       ];
+
+      // score = [
+      //   {
+      //     type: 'action',
+      //     start: WH.util.musicToTime('0:0:0'),
+      //     action: 'columns'
+      //   },
+      //   {
+      //     type: 'clip',
+      //     resourceID: 'cmayor1',
+      //     start: WH.util.musicToTime('0:0:0'),
+      //     end: WH.util.musicToTime('4:0:0'),
+      //     clipStart: cmayor1Start,
+      //     index: 0,
+      //   },
+      //   {
+      //     type: 'clip',
+      //     resourceID: 'cmayor2',
+      //     start: WH.util.musicToTime('1:2:0'),
+      //     end: WH.util.musicToTime('4:0:0'),
+      //     clipStart: cmayor2Start
+      //   },
+      //   {
+      //     type: 'clip',
+      //     resourceID: 'cmayor3a',
+      //     start: WH.util.musicToTime('1:2:0'),
+      //     end: WH.util.musicToTime('4:0:0'),
+      //     clipStart: cmayor3aStart
+      //   },
+      // ];
 
       return score;
     },
