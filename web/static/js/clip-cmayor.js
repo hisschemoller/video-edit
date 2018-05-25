@@ -98,6 +98,10 @@ var WH = WH || {};
                 return data.end;
             },
             
+            getResourceID = function() {
+                return data.resourceID;
+            },
+            
             getIsTweeningIn = function() {
                 return isTweeningIn;
             },
@@ -127,6 +131,7 @@ var WH = WH || {};
         that.getZIndex = getZIndex;
         that.getStart = getStart;
         that.getEnd = getEnd;
+        that.getResourceID = getResourceID;
         that.getIsTweeningIn = getIsTweeningIn;
         that.setIsTweeningIn = setIsTweeningIn;
         that.getIsTweeningOut = getIsTweeningOut;

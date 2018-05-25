@@ -42,12 +42,24 @@ var WH = WH || {};
                 borders.push({ value: canvasWidth});
 
                 document.addEventListener('keydown', e => {
-                    let msg = 'num: ' + activeClips.length + ', borders: ';
+                    let msg = 'num: ' + activeClips.length + ', borders: ' + logBorders();
                     borders.forEach(border => {
                         msg += Math.round(border.value) + ', ';
                     });
                     console.log(msg);
                 });
+            },
+
+            logBorders = function() {
+                let msg = '';
+                borders.forEach((border, index) => {
+                    
+                    if (index > 0 && index <= activeClips.length ) {
+                        msg += activeClips[index - 1].getResourceID() + ' ';
+                    }
+                    msg += Math.round(border.value) + ' ';
+                });
+                return msg;
             },
 
             addNewScoreData = function(scoreData, isCapture, position) {
@@ -100,7 +112,7 @@ var WH = WH || {};
                 // select a random position for the new clip
                 const randomIndex = Math.floor(Math.random() * (activeClips.length + 1));
                 let index = isNaN(clipData.index) ? randomIndex : clipData.index;
-
+                
                 // add the new clip
                 if (idleClips.length) {
                     const clip = idleClips.pop();
@@ -114,24 +126,28 @@ var WH = WH || {};
 
                 // order the clips so that indexed clips retain their position
                 let newArray = [];
+
                 // add indexed clips at the correct position
                 activeClips.forEach((clip, loopIndex) => {
                     if (!isNaN(clip.getIndex())) {
                         newArray[clip.getIndex()] = clip;
+
                         // update the index so the new border will be inserted correctly
                         if (loopIndex === index) {
                             index = Math.min(clip.getIndex(), activeClips.length - 1);
                         }
                     }
                 });
+
                 // fill remaining positions with non indexed clips
                 activeClips.forEach((clip, loopIndex) => {
                     if (isNaN(clip.getIndex())) {
                         for (let i = 0, n = activeClips.length; i < n; i++) {
                             if (!newArray[i]) {
                                 newArray[i] = clip;
+
                                 // update the index so the new border will be inserted correctly
-                                if (index === loopIndex) {
+                                if (loopIndex === index) {
                                     index = Math.min(i, activeClips.length - 1);
                                 }
                                 break;
@@ -165,7 +181,7 @@ var WH = WH || {};
                 activeClips.sort((a, b) => {
                     return a.getZIndex() - b.getZIndex();
                 });
-
+                
                 // setTweenDestinations(borderTweens, canvasWidth, position, true);
             },
 
