@@ -60,21 +60,23 @@ var WH = WH || {};
           resourceID: 'cmayor1',
           start: WH.util.musicToTime('0:0:0'),
           end: WH.util.musicToTime('16:0:0'),
-          clipStart: cmayor1Start
+          clipStart: cmayor1Start,
         },
         {
           type: 'clip',
           resourceID: 'cmayor2',
           start: WH.util.musicToTime('0:0:0'),
           end: WH.util.musicToTime('16:0:0'),
-          clipStart: cmayor2Start
+          clipStart: cmayor2Start,
+          index: 1,
         },
         {
           type: 'clip',
           resourceID: 'cmayor3a',
           start: WH.util.musicToTime('0:0:0'),
           end: WH.util.musicToTime('33:0:0'),
-          clipStart: cmayor3aStart
+          clipStart: cmayor3aStart,
+          index: 0,
         },
 
         // 18 - 34 
