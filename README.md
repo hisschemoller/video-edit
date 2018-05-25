@@ -11,10 +11,21 @@ ffmpeg -i input.avi -c:v libx264 -crf 19 -preset slow -c:a aac -b:a 192k -ac 2 o
 ```
 
 Convert AVI to PNG image sequence.
-'%04d' generates a zero padded four digit integer.
+'%05d' generates a zero padded five digit integer.
 
 ```
-ffmpeg -i input.avi output_%04d.png
+ffmpeg -i input.avi output_%05d.png
+```
+
+Convert PNG image sequence to MP4.
+
+```
+ffmpeg -framerate 30 -i tmp/frame_%05d.png -c:v libx264 -crf 19 -preset slow -c:a aac -b:a 192k -ac 2 output.mp4
+```
+Convert PNG image sequence to MP4. This one works in Quicktime.
+
+```
+ffmpeg -framerate 30 -i tmp/frame_%05d.png -f mp4 -vcodec libx264 -pix_fmt yuv420p output.mp4
 ```
 
 Crop video with the crop filter.
@@ -35,10 +46,14 @@ ffmpeg -ss 00:00:30.0 -i input.avi -c copy -t 00:00:10.0 output.avi
 ffmpeg -ss 30 -i input.avi -c copy -t 10 output.avi
 ```
 
+Extract sound from video to wav.
+
+```
+ffmpeg -i input.mp4 -vn -acodec pcm_s16le -ar 44100 -ac 2 output.wav
+```
 
 
 
 
 ### Tags
-berliner-dom
-weesperplein
+berliner-dom, weesperplein
