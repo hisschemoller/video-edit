@@ -5,7 +5,7 @@ var WH = WH || {};
     const data = {
       settings: {
         framerate: 30,
-        canvasHeight: 480,
+        canvasHeight: 360,
         canvasWidth: 640,
         timing: 'music',
         ppqn: 24,
@@ -367,6 +367,42 @@ var WH = WH || {};
       //     start: WH.util.musicToTime('1:2:0'),
       //     end: WH.util.musicToTime('4:0:0'),
       //     clipStart: cmayor3aStart
+      //   },
+      // ];
+
+      // score = [
+      //   {
+      //     type: 'action',
+      //     start: WH.util.musicToTime('0:0:0'),
+      //     action: 'rows',
+      //   },
+      //   {
+      //     type: 'clip',
+      //     resourceID: 'cmayor2',
+      //     start: WH.util.musicToTime('0:0:0'),
+      //     end: WH.util.musicToTime('64:0:0'),
+      //     clipStart: cmayor2Start + WH.util.musicToTime('32:0:0'),
+      //   },
+      //   {
+      //     type: 'clip',
+      //     resourceID: 'cmayor2',
+      //     start: WH.util.musicToTime('0:0:0'),
+      //     end: WH.util.musicToTime('64:0:0'),
+      //     clipStart: cmayor2Start + WH.util.musicToTime('32:0:0') + 0.1,
+      //   },
+      //   {
+      //     type: 'clip',
+      //     resourceID: 'cmayor2',
+      //     start: WH.util.musicToTime('0:0:0'),
+      //     end: WH.util.musicToTime('64:0:0'),
+      //     clipStart: cmayor2Start + WH.util.musicToTime('32:0:0') + 0.2,
+      //   },
+      //   {
+      //     type: 'clip',
+      //     resourceID: 'cmayor2',
+      //     start: WH.util.musicToTime('0:0:0'),
+      //     end: WH.util.musicToTime('64:0:0'),
+      //     clipStart: cmayor2Start + WH.util.musicToTime('32:0:0') + 0.3,
       //   },
       // ];
 
