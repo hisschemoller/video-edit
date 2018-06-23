@@ -28,6 +28,13 @@ Convert PNG image sequence to MP4. This one works in Quicktime.
 ffmpeg -framerate 30 -i tmp/frame_%05d.png -f mp4 -vcodec libx264 -pix_fmt yuv420p output.mp4
 ```
 
+Convert MP4 to MOV.
+
+```
+ffmpeg -i input.mp4 -acodec copy -vcodec copy -f mov output.mov
+```
+
+
 Crop video with the crop filter.
 out_w and out_h are width and height of the output rectangle.
 out_x and out_y are the left top corner of the output rectangle.
@@ -52,8 +59,12 @@ Extract sound from video to wav.
 ffmpeg -i input.mp4 -vn -acodec pcm_s16le -ar 44100 -ac 2 output.wav
 ```
 
+Add wav audio to mp4 video
 
-
+```
+ffmpeg -i input_vid.mp4 -i input_audio.wav -vcodec copy output.mp4
+ffmpeg -i input_vid.mp4 -i input_audio.wav -vcodec libx264 -acodec libmp3lame output.mp4
+```
 
 ### Tags
 berliner-dom, weesperplein
