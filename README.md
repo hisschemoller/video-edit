@@ -4,9 +4,11 @@ A node app captures the canvas frames and saves them to a PNG image sequence.
 
 ## Videos made with these scripts
 
-(Weesperplein)[https://youtu.be/qBblh8aPP38]
-(Berliner Dom)[https://youtu.be/E3PbfHYp2gE]
-(Three Day Walk)[https://youtu.be/cnD8Nd36EC0]
+[Weesperplein](https://youtu.be/qBblh8aPP38)
+
+[Berliner Dom](https://youtu.be/E3PbfHYp2gE)
+
+[Three Day Walk](https://youtu.be/cnD8Nd36EC0)
 
 ## FFMPEG
 
