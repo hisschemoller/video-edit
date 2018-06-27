@@ -2,6 +2,12 @@
 Scripts to render video fragments on a canvas element.
 A node app captures the canvas frames and saves them to a PNG image sequence.
 
+## Videos made with these scripts
+
+(Weesperplein)[https://youtu.be/qBblh8aPP38]
+(Berliner Dom)[https://youtu.be/E3PbfHYp2gE]
+(Three Day Walk)[https://youtu.be/cnD8Nd36EC0]
+
 ## FFMPEG
 
 Convert AVI to MP4:
@@ -33,7 +39,6 @@ Convert MP4 to MOV.
 ```
 ffmpeg -i input.mp4 -acodec copy -vcodec copy -f mov output.mov
 ```
-
 
 Crop video with the crop filter.
 out_w and out_h are width and height of the output rectangle.
