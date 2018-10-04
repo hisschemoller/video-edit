@@ -4,7 +4,7 @@ var WH = WH || {};
 
 document.addEventListener('DOMContentLoaded', function(e) {
     
-    let createPlayer = () => {
+    const createPlayer = () => {
         WH.createPlayer({
             dataObject: WH.createCalleMayorData(),
             isCapture: false,

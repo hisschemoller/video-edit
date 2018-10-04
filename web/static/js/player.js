@@ -43,8 +43,7 @@ var WH = WH || {};
                     canvasHeight: data.get().settings.canvasHeight,
                     canvasWidth: data.get().settings.canvasWidth
                 });
-
-                console.log('start');
+                
                 origin = performance.now();
                 position = 0;
 

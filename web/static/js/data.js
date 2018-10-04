@@ -28,7 +28,7 @@ var WH = WH || {};
                 }
 
                 const clipData = data.score.slice(0);
-
+                
                 let clip;
                 for (let i = 0, n = clipData.length; i < n; i++) {
                     clip = clipData[i];

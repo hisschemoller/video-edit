@@ -2,3 +2,5 @@ node_modules
 tmp
 web/static/seq
 web/static/video
+tmp_project
+tmp_project_16x9

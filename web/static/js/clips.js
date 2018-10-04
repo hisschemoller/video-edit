@@ -34,7 +34,7 @@ var WH = WH || {};
              * @param {Boolean} isCapture True if the video is being recorded.
              * @param {Number} position Playback position on the main video timeline.
              */
-            startClips = function(clipData, isCapture, position) {
+            addNewScoreData = function(clipData, isCapture, position) {
                 let clip;
                 for (let i = 0, n = clipData.length; i < n; i++) {
                     if (idleClips.length) {
@@ -81,7 +81,7 @@ var WH = WH || {};
 
         init();
 
-        that.startClips = startClips;
+        that.addNewScoreData = addNewScoreData;
         that.draw = draw;
         return that;
     };
