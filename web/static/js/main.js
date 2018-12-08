@@ -1,17 +1,10 @@
-'use strict';
+import createData from './data/data-skalitzer.js';
+import createPlayer from './player.js';
+import { musicToTime } from './util.js';
 
-var WH = WH || {};
-
-document.addEventListener('DOMContentLoaded', function(e) {
-    
-    const createPlayer = () => {
-        WH.createPlayer({
-            dataObject: WH.createCalleMayorData(),
-            isCapture: false,
-            startOffset: WH.util.musicToTime('0:0:0'),
-            throttle: 4
-        });
-    }
-    
-    createPlayer();
+createPlayer({
+  dataObject: createData(),
+  isCapture: false,
+  startOffset: musicToTime('0:0:0'),
+  throttle: 4,
 });

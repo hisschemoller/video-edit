@@ -1,100 +1,94 @@
-var WH = WH || {};
 
-(function(WH) {
+export default function createClip(specs = {}, my = {}) {
+  let that,
+    framerate = specs.framerate,
+    data,
+    img,
+    imgURLPrefix,
+    imgURLSuffix = '.png',
+    imgURLNr,
+    globalStartPosition,
+    isPlaying = false,
+    isCapture = false,
 
-    WH.createClip = function(specs = {}, my = {}) {
+  init = function() {
+    img = new Image();
+  },
 
-        let that,
-            framerate = specs.framerate,
-            data,
-            img,
-            imgURLPrefix,
-            imgURLSuffix = '.png',
-            imgURLNr,
-            globalStartPosition,
-            isPlaying = false,
-            isCapture = false,
+  start = function(newData, isVideoCapture, position) {
+    data = newData;
+    isPlaying = true;
+    isCapture = isVideoCapture;
+    globalStartPosition = position;
+    
+    imgURLPrefix = data.resource.url;
+    imgURLNr = Math.round(data.clipStart * framerate) + 1;
+    img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + imgURLNr).slice(-5) : '99999') + imgURLSuffix;
+    console.log('start clip', data.resourceID);
+  },
+  
+  end = () => {
+    console.log('end clip', data.resourceID);
+    isPlaying = false;
+    imgURLPrefix = '';
+  },
 
-            init = function() {
-                img = new Image();
-            },
+  /**
+   * Draw the video clip frame on canvas.
+   * @param {Object} ctx Canvas drawing context.
+   */
+  draw = function(ctx) {
+    if (data.flipHorizontal) {
+      ctx.save();
+      ctx.scale(-1, 1);
+      ctx.drawImage(img, data.sx, data.sy, data.sWidth, data.sHeight, data.dx, data.dy, data.dWidth, data.dHeight);
+      ctx.restore();
+    } else {
+      ctx.drawImage(img, data.sx, data.sy, data.sWidth, data.sHeight, data.dx, data.dy, data.dWidth, data.dHeight);
+    }
+  },
 
-            start = function(newData, isVideoCapture, position) {
-                data = newData;
-                isPlaying = true;
-                isCapture = isVideoCapture;
-                globalStartPosition = position;
-                
-                imgURLPrefix = data.resource.url;
-                imgURLNr = Math.round(data.clipStart * framerate) + 1;
-                img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + imgURLNr).slice(-5) : '99999') + imgURLSuffix;
-                console.log('start clip', data.resourceID);
-            },
-            
-            end = () => {
-                console.log('end clip', data.resourceID);
-                isPlaying = false;
-                imgURLPrefix = '';
-            }
+  capture = function(ctx, framerate) {
+    draw(ctx);
+    video.currentTime += 1 / framerate;
+  },
 
-            /**
-             * Draw the video clip frame on canvas.
-             * @param {Object} ctx Canvas drawing context.
-             */
-            draw = function(ctx) {
-                if (data.flipHorizontal) {
-                    ctx.save();
-                    ctx.scale(-1, 1);
-                    ctx.drawImage(img, data.sx, data.sy, data.sWidth, data.sHeight, data.dx, data.dy, data.dWidth, data.dHeight);
-                    ctx.restore();
-                } else {
-                    ctx.drawImage(img, data.sx, data.sy, data.sWidth, data.sHeight, data.dx, data.dy, data.dWidth, data.dHeight);
-                }
-            },
+  update = function(position) {
+    if (isPlaying) {
+      if (position < data.end) {
+        let localPosition = ((position - globalStartPosition) / 1000) + data.clipStart;
+        let newImgURLNr = Math.min(Math.floor(localPosition * framerate) + 1, data.resource.frames);
+        if (newImgURLNr !== imgURLNr) {
+          if (newImgURLNr <= data.resource.frames) {
+            imgURLNr = newImgURLNr;
+            img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + imgURLNr).slice(-5) : '99999') + imgURLSuffix;
+          } else {
+            // end();
+          }
+        }
+      } else {
+        end();
+      }
+    }
+  },
 
-            capture = function(ctx, framerate) {
-                draw(ctx);
-                video.currentTime += 1 / framerate;
-            },
+  getIsPlaying = function() {
+    return isPlaying;
+  },
 
-            update = function(position) {
-                if (isPlaying) {
-                    if (position < data.end) {
-                        let localPosition = ((position - globalStartPosition) / 1000) + data.clipStart;
-                        let newImgURLNr = Math.min(Math.floor(localPosition * framerate) + 1, data.resource.frames);
-                        if (newImgURLNr !== imgURLNr) {
-                            if (newImgURLNr <= data.resource.frames) {
-                                imgURLNr = newImgURLNr;
-                                img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + imgURLNr).slice(-5) : '99999') + imgURLSuffix;
-                            } else {
-                                // end();
-                            }
-                        }
-                    } else {
-                        end();
-                    }
-                }
-            },
+  getZIndex = function() {
+    return data.zIndex;;
+  };
 
-            getIsPlaying = function() {
-                return isPlaying;
-            },
+  that = specs.that || {};
 
-            getZIndex = function() {
-                return data.zIndex;;
-            };
+  init();
 
-        that = specs.that || {};
-
-        init();
-
-        that.start = start;
-        that.draw = draw;
-        that.capture = capture;
-        that.update = update;
-        that.getIsPlaying = getIsPlaying;
-        that.getZIndex = getZIndex;
-        return that;
-    };
-
-})(WH);
+  that.start = start;
+  that.draw = draw;
+  that.capture = capture;
+  that.update = update;
+  that.getIsPlaying = getIsPlaying;
+  that.getZIndex = getZIndex;
+  return that;
+}
