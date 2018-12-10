@@ -10,6 +10,8 @@ export default function createClip(specs = {}, my = {}) {
     globalStartPosition,
     isPlaying = false,
     isCapture = false,
+    translateX = 0,
+    translateY = 0,
 
   init = function() {
     img = new Image();
@@ -41,10 +43,10 @@ export default function createClip(specs = {}, my = {}) {
     if (data.flipHorizontal) {
       ctx.save();
       ctx.scale(-1, 1);
-      ctx.drawImage(img, data.sx, data.sy, data.sWidth, data.sHeight, data.dx, data.dy, data.dWidth, data.dHeight);
+      ctx.drawImage(img, data.sx + translateX, data.sy + translateY, data.sWidth, data.sHeight, data.dx + translateX, data.dy + translateY, data.dWidth, data.dHeight);
       ctx.restore();
     } else {
-      ctx.drawImage(img, data.sx, data.sy, data.sWidth, data.sHeight, data.dx, data.dy, data.dWidth, data.dHeight);
+      ctx.drawImage(img, data.sx + translateX, data.sy + translateY, data.sWidth, data.sHeight, data.dx + translateX, data.dy + translateY, data.dWidth, data.dHeight);
     }
   },
 
@@ -56,6 +58,13 @@ export default function createClip(specs = {}, my = {}) {
   update = function(position) {
     if (isPlaying) {
       if (position < data.end) {
+        const positionNormalized = (position - data.start) / (data.end - data.start);
+        if (data.distanceX) {
+          translateX = data.distanceX * positionNormalized;
+        }
+        if (data.distanceY) {
+          translateY = data.distanceY * positionNormalized;
+        }
         let localPosition = ((position - globalStartPosition) / 1000) + data.clipStart;
         let newImgURLNr = Math.min(Math.floor(localPosition * framerate) + 1, data.resource.frames);
         if (newImgURLNr !== imgURLNr) {

@@ -100,10 +100,10 @@ function addZoomData(data) {
       clip.offsetX = clip.offsetX || 0;
       clip.offsetY = clip.offsetY || 0;
 
-      clip.dx = clip.x1;
-      clip.dy = clip.y1;
-      clip.dWidth = clip.x2 - clip.x1;
-      clip.dHeight = clip.y2 - clip.y1;
+      clip.dx = clip.x;
+      clip.dy = clip.y;
+      clip.dWidth = clip.w;
+      clip.dHeight = clip.h;
 
       clip.sx = clip.offsetX / clip.zoom;
       clip.sy = clip.offsetY / clip.zoom;
@@ -113,6 +113,13 @@ function addZoomData(data) {
       if (clip.flipHorizontal) {
         clip.dx -= clip.dWidth;
       }
+
+      clip.x2 = clip.x2 || clip.x;
+      clip.y2 = clip.y2 || clip.y;
+      clip.distanceX = clip.x2 - clip.x;
+      clip.distanceY = clip.y2 - clip.y;
+
+      console.log(clip);
     }
   }
 
