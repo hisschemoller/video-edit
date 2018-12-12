@@ -27,23 +27,42 @@ function createScore() {
 
   let start = musicToTime('0:0:0'),
     end = musicToTime('32:0:0'),
-    clipStart = 30;
+    clipStart = 72;
     
-  score = [...score, 
+  score = [...score,
     {
       type: 'clip',
       resourceID: 'main',
       start, end, clipStart,
-      x1: 0, x2: 320,
-      y1: 0, y2: 480,
+      x: 0, y: 0,
+      w: 640, h: 480,
+    },
+    // {
+    //   type: 'clip',
+    //   resourceID: 'main',
+    //   start: start + 1, end: start + 4, clipStart: 267.8,
+    //   x: -200, y: 200,
+    //   w: 200, h: 280,
+    //   offsetX: -200, offsetY: 200,
+    //   x2: 800,
+    // },
+    {
+      type: 'clip',
+      resourceID: 'main',
+      start: start, end: start + 12, clipStart: clipStart + 0.5,
+      x: 400, y: 200,
+      w: 50, h: 280,
+      offsetX: 400, offsetY: 200,
+      x2: -400,
     },
     {
       type: 'clip',
       resourceID: 'main',
-      start, end, clipStart: clipStart + 30,
-      x1: 320, x2: 640,
-      y1: 0, y2: 480,
-      offsetX: 320, offsetY: 0,
+      start, end: start, clipStart: clipStart + 1,
+      x: 400, y: 200,
+      w: 50, h: 280,
+      offsetX: 400, offsetY: 200,
+      x2: -400,
     },
   ];
 
