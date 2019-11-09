@@ -10,7 +10,7 @@ createPlayer({
 });
 ```
 
-To create a final video files the app generates a PNG image sequence in a directory 'tmp' within the installation directory. This is done with a Node.js Express app that opens a socket connection to receive the image data. Please see the file server.js. Capture is enabled as an argument of createPlayer in main.js:
+To create a final video file the app generates a PNG image sequence in a directory 'tmp' within the installation directory. This is done with a Node.js Express app that opens a socket connection to receive the image data. Please see the file server.js. Capture is enabled as an argument of createPlayer in main.js:
 
 ```javascript
 createPlayer({
@@ -32,7 +32,7 @@ The app will be available at http://localhost:3000
 
 ## Note on using the app
 
-Please note that this is in no way a ready to use application. I use this as a collection of files that I adjust to my needs for a current video project that I work on.
+Please note that this is in no way a ready to use application. I use it as a collection of files that I adjust to my needs for the current video project that I work on.
 
 Also I don't think I will further develop this project. I've now moved to a new project [video-edit-3d](https://github.com/hisschemoller/video-edit-3d) where I combine these video scripts with WebGL 3D scenes using three.js. Follow the link to that project's repository here on GitHub.
 
@@ -46,7 +46,7 @@ Also I don't think I will further develop this project. I've now moved to a new 
 
 ## FFMPEG
 
-FFMPEG is a convenient command line tool to transfer between video and image sequences, and too add audio to video files.
+FFMPEG is a convenient command line tool to transfer between video and image sequences, and to add audio to video files.
 
 Convert AVI to MP4:
 
