@@ -1,8 +1,30 @@
 # Video Edit
-Scripts to render video fragments on a canvas element.
-A node app captures the canvas frames and saves them to a PNG image sequence.
 
-## Videos made with these scripts
+JavaScript to render video fragments on a canvas element. 
+
+Video files must first be converted to PNG image sequences, as I found that JavaScript handles image sequences much faster than video files. Additionally by using images it's possible to use a flag in the code to throttle the frame rate. Set thottling as an argument of createPlayer in main.js:
+
+```javascript
+createPlayer({
+  throttle: 4,
+});
+```
+
+To create a final video files the app generates a PNG image sequence in a directory 'tmp' within the installation directory. This is done with a Node.js Express app that opens a socket connection to receive the image data. Please see the file server.js. Capture is enabled as an argument of createPlayer in main.js:
+
+```javascript
+createPlayer({
+  isCapture: true,
+});
+```
+
+## Note on using the app
+
+Please note that this is in no way a ready to use application. I use this as a collection of files that I adjust to my needs for a current video project that I work on.
+
+Also I don't think I will further develop this project. I've now moved to a new project [video-edit-3d](https://github.com/hisschemoller/video-edit-3d) where I combine these video scripts with WebGL 3D scenes using three.js. Follow the link to that project's repository here on GitHub.
+
+## Videos made with this app
 
 [Weesperplein](https://youtu.be/qBblh8aPP38)
 
@@ -11,6 +33,8 @@ A node app captures the canvas frames and saves them to a PNG image sequence.
 [Three Day Walk](https://youtu.be/cnD8Nd36EC0)
 
 ## FFMPEG
+
+FFMPEG is a convenient command line tool to transfer between video and image sequences, and too add audio to video files.
 
 Convert AVI to MP4:
 
@@ -74,4 +98,4 @@ ffmpeg -i input_vid.mp4 -i input_audio.wav -vcodec libx264 -acodec libmp3lame ou
 ```
 
 ### Tags
-berliner-dom, weesperplein
+three-day-walk, berliner-dom, weesperplein
