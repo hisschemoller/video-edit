@@ -18,6 +18,18 @@ createPlayer({
 });
 ```
 
+## Installation
+
+
+As usual, clone the repo and:
+
+```bash
+yarn install
+yarn start
+```
+
+The app will be available at http://localhost:3000
+
 ## Note on using the app
 
 Please note that this is in no way a ready to use application. I use this as a collection of files that I adjust to my needs for a current video project that I work on.
