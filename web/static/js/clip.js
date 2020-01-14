@@ -1,36 +1,34 @@
+/**
+ * Create a score clip that draws it's image content on canvas.
+ * @param {Object} specs 
+ * @returns {Object} Clip API methods.
+ */
+export default function createClip(specs = {}) {
+  const { framerate } = specs;
+  const img = new Image();
 
-export default function createClip(specs = {}, my = {}) {
-  let that,
-    framerate = specs.framerate,
-    data,
-    img,
-    imgURLPrefix,
+  let imgURLPrefix,
     imgURLSuffix = '.png',
     imgURLNr,
     globalStartPosition,
     isPlaying = false,
-    isCapture = false,
     translateX = 0,
     translateY = 0,
+    clipStart, distanceX, distanceY, dx, dy, dWidth, dHeight, endTime, flipHorizontal, startTime, sx, sy, sWidth, sHeight, resource, resourceID, zIndex,
 
-  init = function() {
-    img = new Image();
-  },
-
-  start = function(newData, isVideoCapture, position) {
-    data = newData;
+  start = function(data, isVideoCapture, position) {
+    ({ clipStart, distanceX, distanceY, dx, dy, dWidth, dHeight, end: endTime, flipHorizontal, start: startTime, sx, sy, sWidth, sHeight, resource, resourceID, zIndex, } = data);
     isPlaying = true;
-    isCapture = isVideoCapture;
     globalStartPosition = position;
     
-    imgURLPrefix = data.resource.url;
-    imgURLNr = Math.round(data.clipStart * framerate) + 1;
+    imgURLPrefix = resource.url;
+    imgURLNr = Math.round(clipStart * framerate) + 1;
     img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + imgURLNr).slice(-5) : '99999') + imgURLSuffix;
-    console.log('start clip', data.resourceID);
+    console.log('start clip', resourceID);
   },
   
   end = () => {
-    console.log('end clip', data.resourceID);
+    console.log('end clip', resourceID);
     isPlaying = false;
     imgURLPrefix = '';
   },
@@ -40,13 +38,13 @@ export default function createClip(specs = {}, my = {}) {
    * @param {Object} ctx Canvas drawing context.
    */
   draw = function(ctx) {
-    if (data.flipHorizontal) {
+    if (flipHorizontal) {
       ctx.save();
       ctx.scale(-1, 1);
-      ctx.drawImage(img, data.sx + translateX, data.sy + translateY, data.sWidth, data.sHeight, data.dx + translateX, data.dy + translateY, data.dWidth, data.dHeight);
+      ctx.drawImage(img, sx + translateX, sy + translateY, sWidth, sHeight, dx + translateX, dy + translateY, dWidth, dHeight);
       ctx.restore();
     } else {
-      ctx.drawImage(img, data.sx + translateX, data.sy + translateY, data.sWidth, data.sHeight, data.dx + translateX, data.dy + translateY, data.dWidth, data.dHeight);
+      ctx.drawImage(img, sx + translateX, sy + translateY, sWidth, sHeight, dx + translateX, dy + translateY, dWidth, dHeight);
     }
   },
 
@@ -57,18 +55,18 @@ export default function createClip(specs = {}, my = {}) {
 
   update = function(position) {
     if (isPlaying) {
-      if (position < data.end) {
-        const positionNormalized = (position - data.start) / (data.end - data.start);
-        if (data.distanceX) {
-          translateX = data.distanceX * positionNormalized;
+      if (position < endTime) {
+        const positionNormalized = (position - startTime) / (endTime - startTime);
+        if (distanceX) {
+          translateX = distanceX * positionNormalized;
         }
-        if (data.distanceY) {
-          translateY = data.distanceY * positionNormalized;
+        if (distanceY) {
+          translateY = distanceY * positionNormalized;
         }
-        let localPosition = ((position - globalStartPosition) / 1000) + data.clipStart;
-        let newImgURLNr = Math.min(Math.floor(localPosition * framerate) + 1, data.resource.frames);
+        let localPosition = ((position - globalStartPosition) / 1000) + clipStart;
+        let newImgURLNr = Math.min(Math.floor(localPosition * framerate) + 1, resource.frames);
         if (newImgURLNr !== imgURLNr) {
-          if (newImgURLNr <= data.resource.frames) {
+          if (newImgURLNr <= resource.frames) {
             imgURLNr = newImgURLNr;
             img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + imgURLNr).slice(-5) : '99999') + imgURLSuffix;
           } else {
@@ -86,18 +84,15 @@ export default function createClip(specs = {}, my = {}) {
   },
 
   getZIndex = function() {
-    return data.zIndex;;
+    return zIndex;
   };
 
-  that = specs.that || {};
-
-  init();
-
-  that.start = start;
-  that.draw = draw;
-  that.capture = capture;
-  that.update = update;
-  that.getIsPlaying = getIsPlaying;
-  that.getZIndex = getZIndex;
-  return that;
+  return {
+    capture,
+    draw,
+    getIsPlaying,
+    getZIndex,
+    start,
+    update,
+  };
 }
