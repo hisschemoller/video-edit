@@ -68,6 +68,8 @@ score: [
     y: 0, // y position on the canvas
     w: 480, // width of the clip
     h: 320, // height of the clip
+    x2: 100, // x position on the canvas to animate the clip to
+    y2: 100, // y position on the canvas to animate the clip to
     offsetX: 0, // x position in the video
     offsetY: 0, // y position in the video
     zoom: 1, // scaling of the clip on the canvas
