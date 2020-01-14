@@ -26,7 +26,7 @@ function createScore() {
   let score = [];
 
   let start = musicToTime('0:0:0'),
-    end = musicToTime('4:0:0'),
+    end = musicToTime('2:0:0'),
     clipStart = 72;
     
   score = [
@@ -55,9 +55,9 @@ function createScore() {
       start, end, clipStart,
       x: 0, y: 200,
       w: 100, h: 100,
-      offsetX: 0, offsetY: 200,
+      offsetX: 0, offsetY: 100,
       zoom: 640 / 480,
-      x2: 440,
+      x2: 640,
     },
   ];
 

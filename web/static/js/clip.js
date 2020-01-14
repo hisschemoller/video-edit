@@ -12,12 +12,14 @@ export default function createClip(specs = {}) {
     imgURLNr,
     globalStartPosition,
     isPlaying = false,
-    translateX = 0,
-    translateY = 0,
-    clipStart, distanceX, distanceY, dx, dy, dWidth, dHeight, endTime, flipHorizontal, startTime, sx, sy, sWidth, sHeight, resource, resourceID, zIndex,
+    dTranslateX = 0,
+    dTranslateY = 0,
+    sTranslateX = 0,
+    sTranslateY = 0,
+    clipStart, dDistanceX, dDistanceY, distanceY, sDistanceX, sDistanceY, dx, dy, dWidth, dHeight, endTime, flipHorizontal, startTime, sx, sy, sWidth, sHeight, resource, resourceID, zIndex,
 
   start = function(data, isVideoCapture, position) {
-    ({ clipStart, distanceX, distanceY, dx, dy, dWidth, dHeight, end: endTime, flipHorizontal, start: startTime, sx, sy, sWidth, sHeight, resource, resourceID, zIndex, } = data);
+    ({ clipStart, dDistanceX, dDistanceY, sDistanceX, sDistanceY, dx, dy, dWidth, dHeight, end: endTime, flipHorizontal, start: startTime, sx, sy, sWidth, sHeight, resource, resourceID, zIndex, } = data);
     isPlaying = true;
     globalStartPosition = position;
     
@@ -41,10 +43,10 @@ export default function createClip(specs = {}) {
     if (flipHorizontal) {
       ctx.save();
       ctx.scale(-1, 1);
-      ctx.drawImage(img, sx + translateX, sy + translateY, sWidth, sHeight, dx + translateX, dy + translateY, dWidth, dHeight);
+      ctx.drawImage(img, sx + sTranslateX, sy + sTranslateY, sWidth, sHeight, dx + dTranslateX, dy + dTranslateY, dWidth, dHeight);
       ctx.restore();
     } else {
-      ctx.drawImage(img, sx + translateX, sy + translateY, sWidth, sHeight, dx + translateX, dy + translateY, dWidth, dHeight);
+      ctx.drawImage(img, sx + sTranslateX, sy + sTranslateY, sWidth, sHeight, dx + dTranslateX, dy + dTranslateY, dWidth, dHeight);
     }
   },
 
@@ -57,11 +59,13 @@ export default function createClip(specs = {}) {
     if (isPlaying) {
       if (position < endTime) {
         const positionNormalized = (position - startTime) / (endTime - startTime);
-        if (distanceX) {
-          translateX = distanceX * positionNormalized;
+        if (dDistanceX) {
+          dTranslateX = dDistanceX * positionNormalized;
+          sTranslateX = sDistanceX * positionNormalized;
         }
         if (distanceY) {
-          translateY = distanceY * positionNormalized;
+          dTranslateY = dDistanceY * positionNormalized;
+          sTranslateY = sDistanceY * positionNormalized;
         }
         let localPosition = ((position - globalStartPosition) / 1000) + clipStart;
         let newImgURLNr = Math.min(Math.floor(localPosition * framerate) + 1, resource.frames);

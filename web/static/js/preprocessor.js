@@ -116,8 +116,10 @@ function addZoomData(data) {
 
       clip.x2 = clip.x2 || clip.x;
       clip.y2 = clip.y2 || clip.y;
-      clip.distanceX = clip.x2 - clip.x;
-      clip.distanceY = clip.y2 - clip.y;
+      clip.dDistanceX = clip.x2 - clip.x;
+      clip.dDistanceY = clip.y2 - clip.y;
+      clip.sDistanceX = clip.dDistanceX / clip.zoom;
+      clip.sDistanceY = clip.dDistanceY / clip.zoom;
 
       console.log(clip);
     }
