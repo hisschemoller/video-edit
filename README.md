@@ -28,7 +28,7 @@ yarn install
 yarn start
 ```
 
-The app will be available at http://localhost:3000
+The app will be available at http://localhost:3013
 
 ## Note on using the app
 
@@ -38,11 +38,9 @@ Also I don't think I will further develop this project. I've now moved to a new 
 
 ## Videos made with this app
 
-[Weesperplein](https://youtu.be/qBblh8aPP38)
-
-[Berliner Dom](https://youtu.be/E3PbfHYp2gE)
-
-[Three Day Walk](https://youtu.be/cnD8Nd36EC0)
+- [Three Day Walk](https://youtu.be/cnD8Nd36EC0)
+- [Berliner Dom](https://youtu.be/E3PbfHYp2gE)
+- [Weesperplein](https://youtu.be/qBblh8aPP38)
 
 ## Data
 
@@ -50,20 +48,32 @@ All settings for the player are provided in a data object.
 
 ```javascript
 data: {
-  resources,
-  score,
-  settings,
+  resources: [], // video frames resources
+  score: [], // list of clips to play 
+  settings: {}, // general settings for the project
 }
 ```
+
+The score consists of an array of clips to play.
 
 ```javascript
 score: [
   {
-    type: 'clip',
-    start, end, clipStart,
-    x: 0, y: 0,
-    w: 320, h: 480,
-    zoom: 1,
+    type: 'clip', // 'clip' is a video drawn on the canvas
+    resourceID: 'identifier', // video resource id
+    start, // start time of the clip in the score
+    end, // end time of the clip in the score
+    clipStart, // start time of the video played by this clip
+    x: 0, // x position on the canvas
+    y: 0, // y position on the canvas
+    w: 480, // width of the clip
+    h: 320, // height of the clip
+    offsetX: 0, // x position in the video
+    offsetY: 0, // y position in the video
+    zoom: 1, // scaling of the clip on the canvas
+  },
+  {
+    type: 'action', // the only other type, was used by the Calle Mayor video
   }
 ]
 ```
