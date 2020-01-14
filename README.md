@@ -44,6 +44,30 @@ Also I don't think I will further develop this project. I've now moved to a new 
 
 [Three Day Walk](https://youtu.be/cnD8Nd36EC0)
 
+## Data
+
+All settings for the player are provided in a data object.
+
+```javascript
+data: {
+  resources,
+  score,
+  settings,
+}
+```
+
+```javascript
+score: [
+  {
+    type: 'clip',
+    start, end, clipStart,
+    x: 0, y: 0,
+    w: 320, h: 480,
+    zoom: 1,
+  }
+]
+```
+
 ## FFMPEG
 
 FFMPEG is a convenient command line tool to transfer between video and image sequences, and to add audio to video files.
