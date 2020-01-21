@@ -19,7 +19,28 @@ export default function createClip(specs = {}) {
     clipStart, dDistanceX, dDistanceY, distanceY, sDistanceX, sDistanceY, dx, dy, dWidth, dHeight, endTime, flipHorizontal, startTime, sx, sy, sWidth, sHeight, resource, resourceID, zIndex,
 
   start = function(data, isVideoCapture, position) {
-    ({ clipStart, dDistanceX, dDistanceY, sDistanceX, sDistanceY, dx, dy, dWidth, dHeight, end: endTime, flipHorizontal, start: startTime, sx, sy, sWidth, sHeight, resource, resourceID, zIndex, } = data);
+    ({ 
+      clipStart, 
+      dDistanceX, 
+      dDistanceY, 
+      sDistanceX, 
+      sDistanceY, 
+      dx, 
+      dy, 
+      dWidth, 
+      dHeight, 
+      end: endTime, 
+      flipHorizontal, 
+      start: startTime, 
+      sx, 
+      sy, 
+      sWidth, 
+      sHeight, 
+      resource, 
+      resourceID, 
+      zIndex, 
+    } = data);
+    
     isPlaying = true;
     globalStartPosition = position;
     

@@ -53,11 +53,10 @@ function createScore() {
       type: 'clip',
       resourceID: 'main',
       start, end, clipStart,
-      x: 0, y: 200,
+      x: 0, y: 200, x2: 640,
       w: 100, h: 100,
       offsetX: 0, offsetY: 100,
       zoom: 640 / 480,
-      x2: 640,
     },
   ];
 
